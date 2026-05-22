@@ -1,0 +1,76 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:OneDriveDriver.Desktop.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="350" d:DesignHeight="500"
+        x:Class="OneDriveDriver.Desktop.Views.MainWindow"
+        Width="350"
+        Height="500"
+        CanResize="False"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="OneDriveDriver.Desktop">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+    <DockPanel Margin="8">
+        <Panel DockPanel.Dock="Top">
+            <Grid ColumnDefinitions="*,Auto">
+                <TextBlock Classes="Title-Text">OneDrive Driver</TextBlock>
+                <Button Command="{Binding NavigateToConfigCommand}" Classes="Config-Button" Content="Config" Grid.Column="1"/>
+            </Grid>
+            <Border VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="1" Background="LightGray"></Border>
+        </Panel>
+        <TransitioningContentControl Content="{Binding Content}">
+            <TransitioningContentControl.PageTransition>
+                <CompositePageTransition>
+                    <PageSlide Duration="0:00:0.280" Orientation="Vertical">
+                        <PageSlide.SlideInEasing>
+                            <CubicEaseInOut />
+                        </PageSlide.SlideInEasing>
+                        <PageSlide.SlideOutEasing>
+                            <CubicEaseInOut />
+                        </PageSlide.SlideOutEasing>
+                    </PageSlide>
+                    <CrossFade Duration="0:00:0.380" />
+                </CompositePageTransition>
+            </TransitioningContentControl.PageTransition>
+        </TransitioningContentControl>
+    </DockPanel>
+    <Window.Styles>
+        <Style Selector="TextBlock.Title-Text">
+            <Setter Property="Margin" Value="0,12" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="LetterSpacing" Value="0.5"></Setter>
+        </Style>
+        <Style Selector="Button.Config-Button">
+            <Setter Property="CornerRadius" Value="1000" />
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="Background" Duration="0:0:00.1" Easing="CubicEaseOut" />
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Button.Config-Button /template/ ContentPresenter">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="Background" Duration="0:0:00.1" Easing="CubicEaseOut" />
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Button.Config-Button:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="#0F000000"></Setter>
+        </Style>
+        <Style Selector="Button.Config-Button:pressed /template/ ContentPresenter" >
+            <Setter Property="Background" Value="#2F000000"></Setter>
+        </Style>
+        <Style Selector="Button.Config-Button:pressed">
+            <Setter Property="RenderTransform" Value="scale(1)"></Setter>
+        </Style>
+    </Window.Styles>
+</Window>
