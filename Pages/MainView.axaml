@@ -3,8 +3,51 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="using:OneDriveDriver.Desktop.ViewModels"
+             xmlns:model="using:OneDriveDriver.Desktop.Models"
+             xmlns:converter="using:OneDriveDriver.Desktop.Converters"
+             x:DataType="vm:MainViewViewModel"
              x:Class="OneDriveDriver.Desktop.Pages.MainView">
-    <StackPanel>
-        <TextBlock>I'm MainView</TextBlock>
-    </StackPanel>
+    <UserControl.Resources>
+        <converter:IsNullConverter x:Key="NullConverter" />
+        <converter:IsNotNullConverter x:Key="NotNullConverter" />
+        <converter:ByteSizeToHumanReadableConverter x:Key="ByteSizeToHumanReadableConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Hidden">
+            <ItemsControl ItemsSource="{Binding FileList}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="model:FileItem">
+                        <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="8" Margin="0,8,0,0"
+                                Padding="8">
+                            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
+                                <Image Width="32" Height="32"
+                                       Source="avares://OneDriveDriver.Desktop/Assets/avalonia-logo.ico">
+                                </Image>
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Name}" />
+                                    <WrapPanel>
+                                        <TextBlock Classes="FileInfo" Text="{Binding MimeType}"
+                                                   IsVisible="{Binding MimeType, Converter={StaticResource NotNullConverter}}">
+                                        </TextBlock>
+                                        <TextBlock Classes="FileInfo" Text="{Binding Size,Converter={StaticResource ByteSizeToHumanReadableConverter}}"
+                                                   IsVisible="{Binding Size, Converter={StaticResource NotNullConverter}}">
+                                        </TextBlock>
+                                    </WrapPanel>
+                                </StackPanel>
+                                <Button Grid.Column="2" FontSize="12" Content="Downlaod" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+    <UserControl.Styles>
+        <Style Selector="TextBlock.FileInfo">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Foreground" Value="Gray" />
+            <Setter Property="Margin" Value="0,0,4,0" />
+        </Style>
+    </UserControl.Styles>
 </UserControl>

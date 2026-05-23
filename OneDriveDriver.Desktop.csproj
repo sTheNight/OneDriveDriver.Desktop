@@ -23,6 +23,7 @@
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.1"/>
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="11.0.0-preview.4.26230.115" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.5-beta1" />
+        <PackageReference Include="Xaml.Behaviors" Version="12.0.0.1" />
     </ItemGroup>
 
     <ItemGroup>
