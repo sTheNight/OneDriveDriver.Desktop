@@ -1,26 +1,28 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Microsoft.Extensions.DependencyInjection;
 using OneDriveDriver.Desktop.Models;
-using System;
 
 namespace OneDriveDriver.Desktop.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase {
-    [ObservableProperty] private object? _content;
-    private readonly IServiceProvider _serviceProvider;
+    private readonly MainViewViewModel _mainView;
+    private readonly ConfigViewViewModel _configView;
 
-    public MainWindowViewModel(IServiceProvider serviceProvider) {
-        _serviceProvider = serviceProvider;
+    [ObservableProperty] private object? _content;
+
+    public MainWindowViewModel(MainViewViewModel mainView, ConfigViewViewModel configView) {
+        _mainView = mainView;
+        _configView = configView;
+
         WeakReferenceMessenger.Default.Register<RouteMessage>(this, OnNavigatedTo);
         OnNavigatedTo(this, new RouteMessage(RouteKey.MainView));
     }
 
     public void OnNavigatedTo(object recipient, RouteMessage key) {
         Content = key.Key switch {
-            RouteKey.MainView => _serviceProvider.GetRequiredService<MainViewViewModel>(),
-            RouteKey.ConfigView => _serviceProvider.GetRequiredService<ConfigViewViewModel>(),
+            RouteKey.MainView => _mainView,
+            RouteKey.ConfigView => _configView,
             _ => null
         };
     }

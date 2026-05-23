@@ -9,8 +9,8 @@ public static class ServiceCollectionExtenssions {
         public void AddDependencyInjection() {
             serviceCollection.AddSingleton<FileListStore>();
             serviceCollection.AddSingleton<MainWindowViewModel>();
-            serviceCollection.AddTransient<MainViewViewModel>();
-            serviceCollection.AddTransient<ConfigViewViewModel>();
+            serviceCollection.AddSingleton<MainViewViewModel>();
+            serviceCollection.AddSingleton<ConfigViewViewModel>();
         }
     }
 }

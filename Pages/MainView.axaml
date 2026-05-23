@@ -12,42 +12,97 @@
         <converter:IsNullConverter x:Key="NullConverter" />
         <converter:IsNotNullConverter x:Key="NotNullConverter" />
         <converter:ByteSizeToHumanReadableConverter x:Key="ByteSizeToHumanReadableConverter" />
+        <converter:ItemToIconConverter x:Key="ItemToIconConverter" />
+        <converter:IconColorConverter x:Key="IconColorConverter" />
     </UserControl.Resources>
     <Grid>
-        <ScrollViewer VerticalScrollBarVisibility="Hidden">
-            <ItemsControl ItemsSource="{Binding FileList}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate x:DataType="model:FileItem">
-                        <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="8" Margin="0,8,0,0"
-                                Padding="8">
-                            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
-                                <Image Width="32" Height="32"
-                                       Source="avares://OneDriveDriver.Desktop/Assets/avalonia-logo.ico">
-                                </Image>
-                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                    <TextBlock Text="{Binding Name}" />
-                                    <WrapPanel>
-                                        <TextBlock Classes="FileInfo" Text="{Binding MimeType}"
-                                                   IsVisible="{Binding MimeType, Converter={StaticResource NotNullConverter}}">
-                                        </TextBlock>
-                                        <TextBlock Classes="FileInfo" Text="{Binding Size,Converter={StaticResource ByteSizeToHumanReadableConverter}}"
-                                                   IsVisible="{Binding Size, Converter={StaticResource NotNullConverter}}">
-                                        </TextBlock>
-                                    </WrapPanel>
-                                </StackPanel>
-                                <Button Grid.Column="2" FontSize="12" Content="Downlaod" />
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
+        <DockPanel>
+            <Border DockPanel.Dock="Top">
+                <Button Command="{Binding RefreshCommand}">Refresh</Button>
+            </Border>
+            <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                <Panel Classes="FileListPanel" Classes.loading="{Binding IsLoading}">
+                    <ItemsControl ItemsSource="{Binding FileList}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="model:FileItem">
+                                <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="8" Margin="0,8,0,0"
+                                        Padding="8">
+                                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
+                                        <Border Width="32" Height="32" BorderBrush="LightGray" BorderThickness="1"
+                                                VerticalAlignment="Center" CornerRadius="8">
+                                            <Image Width="16" Height="16" VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center">
+                                                <Image.Source>
+                                                    <SvgImage
+                                                        CurrentColor="{Binding Converter={StaticResource IconColorConverter}}"
+                                                        Source="{Binding Converter={StaticResource ItemToIconConverter}}">
+                                                    </SvgImage>
+                                                </Image.Source>
+                                            </Image>
+                                        </Border>
+                                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding Name}" />
+                                            <WrapPanel Margin="0,4,0,0">
+                                                <TextBlock Classes="FileInfo" Text="{Binding MimeType}"
+                                                           IsVisible="{Binding MimeType, Converter={StaticResource NotNullConverter}}">
+                                                </TextBlock>
+                                                <TextBlock Classes="FileInfo"
+                                                           Text="{Binding ChildCount, StringFormat='{}{0} items'}"
+                                                           IsVisible="{Binding ChildCount, Converter={StaticResource NotNullConverter}}" />
+                                                <TextBlock Classes="FileInfo"
+                                                           Text="{Binding Size,Converter={StaticResource ByteSizeToHumanReadableConverter}}"
+                                                           IsVisible="{Binding Size, Converter={StaticResource NotNullConverter}}">
+                                                </TextBlock>
+                                            </WrapPanel>
+                                        </StackPanel>
+                                        <Button Grid.Column="2" FontSize="12" Content="Downlaod" />
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Panel>
+            </ScrollViewer>
+        </DockPanel>
+        <Border Classes="LoadingOverlay"
+                Classes.active="{Binding IsLoading}"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                ZIndex="100"
+                Background="#3F000000">
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Loading..." />
+        </Border>
     </Grid>
     <UserControl.Styles>
         <Style Selector="TextBlock.FileInfo">
             <Setter Property="FontSize" Value="12" />
             <Setter Property="Foreground" Value="Gray" />
-            <Setter Property="Margin" Value="0,0,4,0" />
+            <Setter Property="Margin" Value="0,0,8,0" />
+        </Style>
+        <Style Selector="Border.LoadingOverlay">
+            <Setter Property="Opacity" Value="0" />
+            <Setter Property="IsHitTestVisible" Value="False" />
+            <Setter Property="Transitions">
+                <Transitions>
+                    <DoubleTransition Property="Opacity" Duration="0:0:0.2" />
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Border.LoadingOverlay.active">
+            <Setter Property="Opacity" Value="1" />
+            <Setter Property="IsHitTestVisible" Value="True" />
+        </Style>
+        <Style Selector="Panel.FileListPanel.loading">
+            <Setter Property="Effect">
+                <BlurEffect Radius="8"></BlurEffect>
+            </Setter>
+        </Style>
+        <Style Selector="Panel.FileListPanel">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <EffectTransition Property="Effect" Duration="0:0:0.2" />
+                </Transitions>
+            </Setter>
         </Style>
     </UserControl.Styles>
 </UserControl>
