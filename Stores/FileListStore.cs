@@ -6,6 +6,7 @@ using OneDriveDriver.Desktop.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -23,6 +24,20 @@ public partial class FileListStore : BaseStore {
     [ObservableProperty] private string? _errorMessage;
 
     public ObservableCollection<FileItem> FileList { get; } = new();
+    public ObservableCollection<string> Segments { get; } = new();
+    public bool CanGoBack => !IsLoading && Segments.Count > 0;
+
+    public FileListStore() {
+        Segments.CollectionChanged += OnSegmentsChanged;
+    }
+
+    private void OnSegmentsChanged(object? sender, NotifyCollectionChangedEventArgs e) {
+        OnPropertyChanged(nameof(CanGoBack));
+    }
+
+    partial void OnIsLoadingChanged(bool value) {
+        OnPropertyChanged(nameof(CanGoBack));
+    }
 
     public async Task EnsureLoadedAsync() {
         if (IsLoaded)
@@ -46,8 +61,8 @@ public partial class FileListStore : BaseStore {
         try {
             IsLoading = true;
             ErrorMessage = null;
-
-            var response = await _httpClient.GetAsync("/api/list");
+            var path = BuildFullUri();
+            var response = await _httpClient.GetAsync($"/api/list{path}");
             response.EnsureSuccessStatusCode();
 
             var content = await response.Content.ReadAsStringAsync();
@@ -67,5 +82,26 @@ public partial class FileListStore : BaseStore {
         } finally {
             IsLoading = false;
         }
+    }
+
+    public async Task AddSegment(string segment) {
+        Segments.Add(segment);
+        await RefreshAsync();
+    }
+
+    public async Task Back() {
+        if (Segments.Count == 0)
+            return;
+        Segments.RemoveAt(Segments.Count - 1);
+        await RefreshAsync();
+    }
+
+    public string BuildFullUri() {
+        string fullUri = string.Empty;
+        foreach (var segment in Segments) {
+            fullUri += "/" + segment;
+        }
+
+        return fullUri;
     }
 }

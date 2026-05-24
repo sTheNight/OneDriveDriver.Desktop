@@ -10,9 +10,9 @@ public class ItemToIconConverter : IValueConverter {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture) {
         if (value is FileItem fileItem) {
             if (fileItem.ItemType == "folder") {
-                return "avares://OneDriveDriver.Desktop/Assets/folder.svg";
+                return "avares://OneDriveDriver.Desktop/Assets/Icons/folder.svg";
             } else {
-                return "avares://OneDriveDriver.Desktop/Assets/file.svg";
+                return "avares://OneDriveDriver.Desktop/Assets/Icons/file.svg";
             }
         } else {
             return null;

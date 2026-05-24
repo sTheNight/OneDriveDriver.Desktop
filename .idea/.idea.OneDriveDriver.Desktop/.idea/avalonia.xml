@@ -4,6 +4,7 @@
     <option name="projectPerEditor">
       <map>
         <entry key="App.axaml" value="OneDriveDriver.Desktop.csproj" />
+        <entry key="Controls/IconButton.axaml" value="OneDriveDriver.Desktop.csproj" />
         <entry key="Pages/ConfigView.axaml" value="OneDriveDriver.Desktop.csproj" />
         <entry key="Pages/MainView.axaml" value="OneDriveDriver.Desktop.csproj" />
         <entry key="Views/MainWindow.axaml" value="OneDriveDriver.Desktop.csproj" />

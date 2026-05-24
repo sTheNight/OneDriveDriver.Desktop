@@ -17,16 +17,39 @@
     </UserControl.Resources>
     <Grid>
         <DockPanel>
-            <Border DockPanel.Dock="Top">
-                <Button Command="{Binding RefreshCommand}">Refresh</Button>
+            <Border DockPanel.Dock="Top" Padding="8" Margin="0,8,0,0" BorderBrush="LightGray" BorderThickness="1"
+                    CornerRadius="8">
+                <Panel>
+                    <Button Command="{Binding BackCommand}" Classes="IconButton" HorizontalAlignment="Left">
+                        <Image Width="16" Height="16" VerticalAlignment="Center"
+                               HorizontalAlignment="Center">
+                            <Image.Source>
+                                <SvgImage
+                                    Source="avares://OneDriveDriver.Desktop/Assets/Icons/arrow-left.svg">
+                                </SvgImage>
+                            </Image.Source>
+                        </Image>
+                    </Button>
+                    <Button Command="{Binding RefreshCommand}" Classes="IconButton" HorizontalAlignment="Right">
+                        <Image Width="16" Height="16" VerticalAlignment="Center"
+                               HorizontalAlignment="Center">
+                            <Image.Source>
+                                <SvgImage
+                                    Source="avares://OneDriveDriver.Desktop/Assets/Icons/refresh-ccw.svg">
+                                </SvgImage>
+                            </Image.Source>
+                        </Image>
+                    </Button>
+                </Panel>
             </Border>
             <ScrollViewer VerticalScrollBarVisibility="Hidden">
                 <Panel Classes="FileListPanel" Classes.loading="{Binding IsLoading}">
                     <ItemsControl ItemsSource="{Binding FileList}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate x:DataType="model:FileItem">
-                                <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="8" Margin="0,8,0,0"
-                                        Padding="8">
+                                <Border Classes="FileListBorder" BorderBrush="LightGray" BorderThickness="1"
+                                        CornerRadius="8" Margin="0,8,0,0" Padding="8"
+                                        PointerReleased="OnFileItemPointerReleased">
                                     <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
                                         <Border Width="32" Height="32" BorderBrush="LightGray" BorderThickness="1"
                                                 VerticalAlignment="Center" CornerRadius="8">
@@ -55,7 +78,19 @@
                                                 </TextBlock>
                                             </WrapPanel>
                                         </StackPanel>
-                                        <Button Grid.Column="2" FontSize="12" Content="Downlaod" />
+                                        <Button Grid.Column="2" Classes="IconButton" HorizontalAlignment="Right"
+                                                Command="{Binding $parent[ItemsControl].((vm:MainViewViewModel)DataContext).DownloadCommand}"
+                                                CommandParameter="{Binding}"
+                                                IsVisible="{Binding DownloadUrl,Converter={StaticResource NotNullConverter}}">
+                                            <Image Width="16" Height="16" VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center">
+                                                <Image.Source>
+                                                    <SvgImage
+                                                        Source="avares://OneDriveDriver.Desktop/Assets/Icons/download.svg">
+                                                    </SvgImage>
+                                                </Image.Source>
+                                            </Image>
+                                        </Button>
                                     </Grid>
                                 </Border>
                             </DataTemplate>
@@ -69,7 +104,7 @@
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 ZIndex="100"
-                Background="#3F000000">
+                Background="#3Fffffff">
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Loading..." />
         </Border>
     </Grid>
@@ -79,6 +114,7 @@
             <Setter Property="Foreground" Value="Gray" />
             <Setter Property="Margin" Value="0,0,8,0" />
         </Style>
+        <!-- LoadingOverlay -->
         <Style Selector="Border.LoadingOverlay">
             <Setter Property="Opacity" Value="0" />
             <Setter Property="IsHitTestVisible" Value="False" />
@@ -92,6 +128,7 @@
             <Setter Property="Opacity" Value="1" />
             <Setter Property="IsHitTestVisible" Value="True" />
         </Style>
+        <!-- File List Panel -->
         <Style Selector="Panel.FileListPanel.loading">
             <Setter Property="Effect">
                 <BlurEffect Radius="8"></BlurEffect>
@@ -103,6 +140,38 @@
                     <EffectTransition Property="Effect" Duration="0:0:0.2" />
                 </Transitions>
             </Setter>
+        </Style>
+        <!-- Icon Button -->
+        <Style Selector="Button.IconButton /template/ ContentPresenter">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="Background" Duration="0:0:00.1" />
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Button.IconButton:disabled /template/ ContentPresenter">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <Style Selector="Button.IconButton /template/ ContentPresenter">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <Style Selector="Button.IconButton:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="#0F000000"></Setter>
+        </Style>
+        <Style Selector="Button.IconButton:pressed /template/ ContentPresenter">
+            <Setter Property="Background" Value="#2F000000"></Setter>
+        </Style>
+        <!-- FileListBorder -->
+        <Style Selector="Border.FileListBorder">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="Background" Duration="0:0:0.1"></BrushTransition>
+                </Transitions>
+            </Setter>
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <Style Selector="Border.FileListBorder:pointerover">
+            <Setter Property="Background" Value="#0F000000" />
         </Style>
     </UserControl.Styles>
 </UserControl>
