@@ -6,6 +6,7 @@
              xmlns:vm="using:OneDriveDriver.Desktop.ViewModels"
              xmlns:model="using:OneDriveDriver.Desktop.Models"
              xmlns:converter="using:OneDriveDriver.Desktop.Converters"
+             xmlns:control="using:OneDriveDriver.Desktop.Controls"
              x:DataType="vm:MainViewViewModel"
              x:Class="OneDriveDriver.Desktop.Pages.MainView">
     <UserControl.Resources>
@@ -20,26 +21,18 @@
             <Border DockPanel.Dock="Top" Padding="8" Margin="0,8,0,0" BorderBrush="LightGray" BorderThickness="1"
                     CornerRadius="8">
                 <Panel>
-                    <Button Command="{Binding BackCommand}" Classes="IconButton" HorizontalAlignment="Left">
-                        <Image Width="16" Height="16" VerticalAlignment="Center"
-                               HorizontalAlignment="Center">
-                            <Image.Source>
-                                <SvgImage
-                                    Source="avares://OneDriveDriver.Desktop/Assets/Icons/arrow-left.svg">
-                                </SvgImage>
-                            </Image.Source>
-                        </Image>
-                    </Button>
-                    <Button Command="{Binding RefreshCommand}" Classes="IconButton" HorizontalAlignment="Right">
-                        <Image Width="16" Height="16" VerticalAlignment="Center"
-                               HorizontalAlignment="Center">
-                            <Image.Source>
-                                <SvgImage
-                                    Source="avares://OneDriveDriver.Desktop/Assets/Icons/refresh-ccw.svg">
-                                </SvgImage>
-                            </Image.Source>
-                        </Image>
-                    </Button>
+                    <control:IconButton
+                        Icon="avares://OneDriveDriver.Desktop/Assets/Icons/arrow-left.svg"
+                        Width="32"
+                        Height="32"
+                        Command="{Binding BackCommand}"
+                        HorizontalAlignment="Left" />
+                    <control:IconButton
+                        Icon="avares://OneDriveDriver.Desktop/Assets/Icons/refresh-ccw.svg"
+                        Width="32"
+                        Height="32"
+                        Command="{Binding RefreshCommand}"
+                        HorizontalAlignment="Right" />
                 </Panel>
             </Border>
             <ScrollViewer VerticalScrollBarVisibility="Hidden">
@@ -78,19 +71,15 @@
                                                 </TextBlock>
                                             </WrapPanel>
                                         </StackPanel>
-                                        <Button Grid.Column="2" Classes="IconButton" HorizontalAlignment="Right"
-                                                Command="{Binding $parent[ItemsControl].((vm:MainViewViewModel)DataContext).DownloadCommand}"
-                                                CommandParameter="{Binding}"
-                                                IsVisible="{Binding DownloadUrl,Converter={StaticResource NotNullConverter}}">
-                                            <Image Width="16" Height="16" VerticalAlignment="Center"
-                                                   HorizontalAlignment="Center">
-                                                <Image.Source>
-                                                    <SvgImage
-                                                        Source="avares://OneDriveDriver.Desktop/Assets/Icons/download.svg">
-                                                    </SvgImage>
-                                                </Image.Source>
-                                            </Image>
-                                        </Button>
+                                        <control:IconButton
+                                            Grid.Column="2"
+                                            Width="32"
+                                            Height="32"
+                                            HorizontalAlignment="Right"
+                                            CommandParameter="{Binding}"
+                                            Command="{Binding $parent[ItemsControl].((vm:MainViewViewModel)DataContext).DownloadCommand}"
+                                            IsVisible="{Binding DownloadUrl,Converter={StaticResource NotNullConverter}}"
+                                            Icon="avares://OneDriveDriver.Desktop/Assets/Icons/download.svg" />
                                     </Grid>
                                 </Border>
                             </DataTemplate>
@@ -140,26 +129,6 @@
                     <EffectTransition Property="Effect" Duration="0:0:0.2" />
                 </Transitions>
             </Setter>
-        </Style>
-        <!-- Icon Button -->
-        <Style Selector="Button.IconButton /template/ ContentPresenter">
-            <Setter Property="Transitions">
-                <Transitions>
-                    <BrushTransition Property="Background" Duration="0:0:00.1" />
-                </Transitions>
-            </Setter>
-        </Style>
-        <Style Selector="Button.IconButton:disabled /template/ ContentPresenter">
-            <Setter Property="Background" Value="Transparent" />
-        </Style>
-        <Style Selector="Button.IconButton /template/ ContentPresenter">
-            <Setter Property="Background" Value="Transparent" />
-        </Style>
-        <Style Selector="Button.IconButton:pointerover /template/ ContentPresenter">
-            <Setter Property="Background" Value="#0F000000"></Setter>
-        </Style>
-        <Style Selector="Button.IconButton:pressed /template/ ContentPresenter">
-            <Setter Property="Background" Value="#2F000000"></Setter>
         </Style>
         <!-- FileListBorder -->
         <Style Selector="Border.FileListBorder">

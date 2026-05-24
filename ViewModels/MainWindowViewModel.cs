@@ -10,6 +10,7 @@ public partial class MainWindowViewModel : ViewModelBase {
     private readonly ConfigViewViewModel _configView;
 
     [ObservableProperty] private object? _content;
+    [ObservableProperty] private bool _isAboutDialogShow = false;
 
     public MainWindowViewModel(MainViewViewModel mainView, ConfigViewViewModel configView) {
         _mainView = mainView;
@@ -30,5 +31,15 @@ public partial class MainWindowViewModel : ViewModelBase {
     [RelayCommand]
     public void NavigateToConfig() {
         WeakReferenceMessenger.Default.Send(new RouteMessage(RouteKey.ConfigView));
+    }
+
+    [RelayCommand]
+    public void ShowAboutDialog() {
+        IsAboutDialogShow = true;
+    }
+
+    [RelayCommand]
+    public void CloseAboutDialog() {
+        IsAboutDialogShow = false;
     }
 }

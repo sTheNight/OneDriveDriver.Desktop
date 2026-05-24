@@ -7,37 +7,73 @@
         x:Class="OneDriveDriver.Desktop.Views.MainWindow"
         Width="500"
         Height="800"
+        FontFamily="{StaticResource Noto}"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
+        xmlns:control="using:OneDriveDriver.Desktop.Controls"
         Title="OneDriveDriver.Desktop">
-
-    <Design.DataContext>
-        <vm:MainWindowViewModel />
-    </Design.DataContext>
-    <DockPanel Margin="8">
-        <Panel DockPanel.Dock="Top">
-            <Grid ColumnDefinitions="*,Auto">
-                <TextBlock Classes="Title-Text">OneDrive Driver</TextBlock>
-                <Button Command="{Binding NavigateToConfigCommand}" Classes="Config-Button" Content="Config" Grid.Column="1"/>
-            </Grid>
-            <Border VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="1" Background="LightGray"></Border>
-        </Panel>
-        <TransitioningContentControl Content="{Binding Content}">
-            <TransitioningContentControl.PageTransition>
-                <CompositePageTransition>
-                    <PageSlide Duration="0:00:0.280" Orientation="Vertical">
-                        <PageSlide.SlideInEasing>
-                            <CubicEaseInOut />
-                        </PageSlide.SlideInEasing>
-                        <PageSlide.SlideOutEasing>
-                            <CubicEaseInOut />
-                        </PageSlide.SlideOutEasing>
-                    </PageSlide>
-                    <CrossFade Duration="0:00:0.380" />
-                </CompositePageTransition>
-            </TransitioningContentControl.PageTransition>
-        </TransitioningContentControl>
-    </DockPanel>
+    <Grid>
+        <Border
+            HorizontalAlignment="Stretch"
+            Classes="AboutDialog"
+            Classes.Shown="{Binding IsAboutDialogShow}"
+            VerticalAlignment="Stretch"
+            Background="#3f000000"
+            ZIndex="999">
+            <Border
+                HorizontalAlignment="Stretch"
+                Margin="16,0"
+                CornerRadius="12"
+                VerticalAlignment="Center"
+                Background="White"
+                BorderThickness="1"
+                BoxShadow="0 5 8 8 #0A000000"
+                Padding="16">
+                <StackPanel>
+                    <Panel HorizontalAlignment="Stretch">
+                        <TextBlock FontSize="18" FontWeight="DemiBold" HorizontalAlignment="Left">About</TextBlock>
+                        <control:IconButton Width="32" HorizontalAlignment="Right" Height="32"
+                                            Icon="avares://OneDriveDriver.Desktop/Assets/Icons/x.svg"
+                                            Command="{Binding CloseAboutDialogCommand}"/>
+                    </Panel>
+                    <TextBlock Margin="0,12,0,0">Lorem</TextBlock>
+                </StackPanel>
+            </Border>
+        </Border>
+        <DockPanel Margin="8">
+            <Panel DockPanel.Dock="Top">
+                <Grid ColumnDefinitions="*,Auto">
+                    <TextBlock Classes="Title-Text">OneDrive Driver</TextBlock>
+                    <control:IconButton Width="32" Height="32" CornerRadius="1000" Grid.Column="1"
+                                        Icon="avares://OneDriveDriver.Desktop/Assets/Icons/ellipsis-vertical.svg">
+                        <control:IconButton.Flyout>
+                            <MenuFlyout>
+                                <MenuItem Header="Config" Command="{Binding NavigateToConfigCommand}" />
+                                <MenuItem Header="Github" />
+                                <MenuItem Header="About" Command="{Binding ShowAboutDialogCommand}" />
+                            </MenuFlyout>
+                        </control:IconButton.Flyout>
+                    </control:IconButton>
+                </Grid>
+                <Border VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="1" Background="LightGray"></Border>
+            </Panel>
+            <TransitioningContentControl Content="{Binding Content}">
+                <TransitioningContentControl.PageTransition>
+                    <CompositePageTransition>
+                        <PageSlide Duration="0:00:0.280" Orientation="Vertical">
+                            <PageSlide.SlideInEasing>
+                                <CubicEaseInOut />
+                            </PageSlide.SlideInEasing>
+                            <PageSlide.SlideOutEasing>
+                                <CubicEaseInOut />
+                            </PageSlide.SlideOutEasing>
+                        </PageSlide>
+                        <CrossFade Duration="0:00:0.380" />
+                    </CompositePageTransition>
+                </TransitioningContentControl.PageTransition>
+            </TransitioningContentControl>
+        </DockPanel>
+    </Grid>
     <Window.Styles>
         <Style Selector="TextBlock.Title-Text">
             <Setter Property="Margin" Value="0,12" />
@@ -45,31 +81,18 @@
             <Setter Property="FontSize" Value="18" />
             <Setter Property="LetterSpacing" Value="0.5"></Setter>
         </Style>
-        <Style Selector="Button.Config-Button">
-            <Setter Property="CornerRadius" Value="1000" />
-            <Setter Property="Background" Value="Transparent"></Setter>
-            <Setter Property="FontSize" Value="14"></Setter>
+        <Style Selector="Border.AboutDialog">
+            <Setter Property="Opacity" Value="0" />
+            <Setter Property="IsHitTestVisible" Value="False" />
             <Setter Property="Transitions">
                 <Transitions>
-                    <BrushTransition Property="Background" Duration="0:0:00.1" Easing="CubicEaseOut" />
+                    <DoubleTransition Property="Opacity" Duration="0:0:0.2" />
                 </Transitions>
             </Setter>
         </Style>
-        <Style Selector="Button.Config-Button /template/ ContentPresenter">
-            <Setter Property="Transitions">
-                <Transitions>
-                    <BrushTransition Property="Background" Duration="0:0:00.1" Easing="CubicEaseOut" />
-                </Transitions>
-            </Setter>
-        </Style>
-        <Style Selector="Button.Config-Button:pointerover /template/ ContentPresenter">
-            <Setter Property="Background" Value="#0F000000"></Setter>
-        </Style>
-        <Style Selector="Button.Config-Button:pressed /template/ ContentPresenter" >
-            <Setter Property="Background" Value="#2F000000"></Setter>
-        </Style>
-        <Style Selector="Button.Config-Button:pressed">
-            <Setter Property="RenderTransform" Value="scale(1)"></Setter>
+        <Style Selector="Border.AboutDialog.Shown">
+            <Setter Property="Opacity" Value="1" />
+            <Setter Property="IsHitTestVisible" Value="True" />
         </Style>
     </Window.Styles>
 </Window>

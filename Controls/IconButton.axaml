@@ -1,8 +1,57 @@
-<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="OneDriveDriver.Desktop.Controls.IconButton">
-    Welcome to Avalonia!
-</UserControl>
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:OneDriveDriver.Desktop.Controls">
+    <Design.PreviewWith>
+        <Grid>
+            <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="16">
+                <TextBlock VerticalAlignment="Center">Click Me:</TextBlock>
+                <controls:IconButton Width="32" Height="32" Icon="avares://OneDriveDriver.Desktop/Assets/Icons/file.svg" />
+            </WrapPanel>
+        </Grid>
+    </Design.PreviewWith>
+
+    <Style Selector="controls|IconButton">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="CornerRadius" Value="4" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Background" Duration="0:0:00.1" />
+            </Transitions>
+        </Setter>
+        <Setter Property="Template">
+            <ControlTemplate TargetType="controls:IconButton">
+                <Border
+                    x:Name="PART_Background"
+                    Background="{TemplateBinding Background}"
+                    CornerRadius="{TemplateBinding CornerRadius}"
+                    Padding="{TemplateBinding Padding}">
+                    <Image Width="16"
+                           Height="16"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center">
+                        <Image.Source>
+                            <SvgImage Source="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </Image.Source>
+                    </Image>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+    <Style Selector="controls|IconButton /template/ Border#PART_Background">
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Background" Duration="0:0:0.2" />
+            </Transitions>
+        </Setter>
+    </Style>
+    <Style Selector="controls|IconButton:pointerover /template/ Border#PART_Background">
+        <Setter Property="Background" Value="#0F000000" />
+    </Style>
+    <Style Selector="controls|IconButton:pressed /template/ Border#PART_Background">
+        <Setter Property="Background" Value="#2F000000" />
+    </Style>
+    <Style Selector="controls|IconButton:disabled /template/ Border#PART_Background">
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+</Styles>

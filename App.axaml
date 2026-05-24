@@ -3,13 +3,19 @@
              x:Class="OneDriveDriver.Desktop.App"
              xmlns:local="using:OneDriveDriver.Desktop"
              RequestedThemeVariant="Default">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+    <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
     <Application.DataTemplates>
-        <local:ViewLocator/>
+        <local:ViewLocator />
     </Application.DataTemplates>
-  
+
     <Application.Styles>
         <FluentTheme />
+        <StyleInclude Source="avares://OneDriveDriver.Desktop/Controls/IconButton.axaml" />
     </Application.Styles>
+    <Application.Resources>
+        <FontFamily x:Key="Noto">
+            avares://OneDriveDriver.Desktop/Assets/Fonts#Noto Serif SC
+        </FontFamily>
+    </Application.Resources>
 </Application>
