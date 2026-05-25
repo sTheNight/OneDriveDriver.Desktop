@@ -31,7 +31,8 @@
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center">
                         <Image.Source>
-                            <SvgImage Source="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}}" />
+                            <SvgImage Source="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}}"
+                                      CurrentColor="{Binding IconColor, RelativeSource={RelativeSource TemplatedParent}}" />
                         </Image.Source>
                     </Image>
                 </Border>
@@ -53,5 +54,8 @@
     </Style>
     <Style Selector="controls|IconButton:disabled /template/ Border#PART_Background">
         <Setter Property="Background" Value="Transparent" />
+    </Style>
+    <Style Selector="controls|IconButton:disabled">
+        <Setter Property="IconColor" Value="Gray" />
     </Style>
 </Styles>
