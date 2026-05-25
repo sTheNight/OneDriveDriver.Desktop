@@ -34,13 +34,13 @@
                         <TextBlock FontSize="18" FontWeight="DemiBold" HorizontalAlignment="Left">About</TextBlock>
                         <control:IconButton Width="32" HorizontalAlignment="Right" Height="32"
                                             Icon="avares://OneDriveDriver.Desktop/Assets/Icons/x.svg"
-                                            Command="{Binding CloseAboutDialogCommand}"/>
+                                            Command="{Binding CloseAboutDialogCommand}" />
                     </Panel>
                     <TextBlock Margin="0,12,0,0">Lorem</TextBlock>
                 </StackPanel>
             </Border>
         </Border>
-        <DockPanel Margin="8">
+        <DockPanel Margin="8" Classes="MainWindowsMain" Classes.IsModalShow="{Binding IsAboutDialogShow}">
             <Panel DockPanel.Dock="Top">
                 <Grid ColumnDefinitions="*,Auto">
                     <TextBlock Classes="Title-Text">OneDrive Driver</TextBlock>
@@ -49,7 +49,7 @@
                         <control:IconButton.Flyout>
                             <MenuFlyout>
                                 <MenuItem Header="Config" Command="{Binding NavigateToConfigCommand}" />
-                                <MenuItem Header="Github" />
+                                <MenuItem Header="Github" Command="{Binding OpenGithubCommand}" />
                                 <MenuItem Header="About" Command="{Binding ShowAboutDialogCommand}" />
                             </MenuFlyout>
                         </control:IconButton.Flyout>
@@ -93,6 +93,18 @@
         <Style Selector="Border.AboutDialog.Shown">
             <Setter Property="Opacity" Value="1" />
             <Setter Property="IsHitTestVisible" Value="True" />
+        </Style>
+        <Style Selector="DockPanel.MainWindowsMain.IsModalShow">
+            <Setter Property="Effect">
+                <BlurEffect Radius="8" />
+            </Setter>
+        </Style>
+        <Style Selector="DockPanel.MainWindowsMain">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <EffectTransition Property="Effect" Duration="0:0:0.2" />
+                </Transitions>
+            </Setter>
         </Style>
     </Window.Styles>
 </Window>

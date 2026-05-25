@@ -3,6 +3,7 @@ using OneDriveDriver.Desktop.Models;
 using OneDriveDriver.Desktop.Services;
 using OneDriveDriver.Desktop.Stores;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Threading.Tasks;
 
 namespace OneDriveDriver.Desktop.ViewModels;
@@ -12,11 +13,11 @@ public partial class MainViewViewModel : ViewModelBase {
     private readonly IUrlLauncher _urlLauncher;
 
     public ObservableCollection<FileItem> FileList => _fileListStore.FileList;
+    public ObservableCollection<BreadcrumbItem> Breadcrumbs { get; } = new();
 
     public bool IsLoading => _fileListStore.IsLoading;
 
     public string? ErrorMessage => _fileListStore.ErrorMessage;
-    public bool CanBack => _fileListStore.CanGoBack;
 
     public MainViewViewModel(FileListStore fileListStore, IUrlLauncher urlLauncher) {
         _fileListStore = fileListStore;
@@ -27,14 +28,24 @@ public partial class MainViewViewModel : ViewModelBase {
 
             if (e.PropertyName == nameof(FileListStore.ErrorMessage))
                 OnPropertyChanged(nameof(ErrorMessage));
-
-            if (e.PropertyName == nameof(FileListStore.CanGoBack)) {
-                OnPropertyChanged(nameof(CanBack));
-                BackCommand.NotifyCanExecuteChanged();
-            }
         };
+        _fileListStore.Segments.CollectionChanged += (_, _) => { RebuildBreadcrumbs(); };
+        RebuildBreadcrumbs();
 
         _ = _fileListStore.EnsureLoadedAsync();
+    }
+
+    private void RebuildBreadcrumbs() {
+        Breadcrumbs.Clear();
+        Breadcrumbs.Add(new BreadcrumbItem("Home", 0, _fileListStore.Segments.Count == 0, false));
+
+        for (var i = 0; i < _fileListStore.Segments.Count; i++) {
+            Breadcrumbs.Add(new BreadcrumbItem(
+                _fileListStore.Segments[i],
+                i + 1,
+                i == _fileListStore.Segments.Count - 1,
+                true));
+        }
     }
 
     [RelayCommand]
@@ -56,8 +67,8 @@ public partial class MainViewViewModel : ViewModelBase {
             await _fileListStore.AddSegment(fileItem.Name);
     }
 
-    [RelayCommand(CanExecute = nameof(CanBack))]
-    public async Task BackAsync() {
-        await _fileListStore.Back();
+    [RelayCommand]
+    public async Task NavigateToBreadcrumbAsync(BreadcrumbItem breadcrumb) {
+        await _fileListStore.NavigateToSegmentCount(breadcrumb.SegmentCount);
     }
 }

@@ -12,6 +12,7 @@
     <Application.Styles>
         <FluentTheme />
         <StyleInclude Source="avares://OneDriveDriver.Desktop/Controls/IconButton.axaml" />
+        <StyleInclude Source="avares://OneDriveDriver.Desktop/Controls/GhostButton.axaml" />
     </Application.Styles>
     <Application.Resources>
         <FontFamily x:Key="Noto">

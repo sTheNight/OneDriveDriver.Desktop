@@ -20,20 +20,45 @@
         <DockPanel>
             <Border DockPanel.Dock="Top" Padding="8" Margin="0,8,0,0" BorderBrush="LightGray" BorderThickness="1"
                     CornerRadius="8">
-                <Panel>
+                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                    <ScrollViewer HorizontalAlignment="Stretch"
+                                  MinWidth="0"
+                                  HorizontalScrollBarVisibility="Hidden"
+                                  VerticalScrollBarVisibility="Disabled"
+                                  PointerWheelChanged="OnBreadcrumbPointerWheelChanged">
+                        <ItemsControl ItemsSource="{Binding Breadcrumbs}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="model:BreadcrumbItem">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Classes="BreadcrumbSeparator"
+                                                   VerticalAlignment="Center"
+                                                   Text="/"
+                                                   IsVisible="{Binding ShowSeparator}" />
+                                        <Button Classes="GhostButton BreadcrumbItem"
+                                                Classes.current="{Binding IsCurrent}"
+                                                FontSize="12"
+                                                VerticalAlignment="Center"
+                                                Content="{Binding Title}"
+                                                Command="{Binding $parent[ItemsControl].((vm:MainViewViewModel)DataContext).NavigateToBreadcrumbCommand}"
+                                                CommandParameter="{Binding}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
                     <control:IconButton
-                        Icon="avares://OneDriveDriver.Desktop/Assets/Icons/arrow-left.svg"
-                        Width="32"
-                        Height="32"
-                        Command="{Binding BackCommand}"
-                        HorizontalAlignment="Left" />
-                    <control:IconButton
+                        Grid.Column="1"
                         Icon="avares://OneDriveDriver.Desktop/Assets/Icons/refresh-ccw.svg"
                         Width="32"
                         Height="32"
                         Command="{Binding RefreshCommand}"
                         HorizontalAlignment="Right" />
-                </Panel>
+                </Grid>
             </Border>
             <ScrollViewer VerticalScrollBarVisibility="Hidden">
                 <Panel Classes="FileListPanel" Classes.loading="{Binding IsLoading}">
@@ -102,6 +127,15 @@
             <Setter Property="FontSize" Value="12" />
             <Setter Property="Foreground" Value="Gray" />
             <Setter Property="Margin" Value="0,0,8,0" />
+        </Style>
+        <!-- Breadcrumb -->
+        <Style Selector="TextBlock.BreadcrumbSeparator">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="Gray" />
+            <Setter Property="Margin" Value="2,0" />
+        </Style>
+        <Style Selector="Button.BreadcrumbItem.current">
+            <Setter Property="FontWeight" Value="SemiBold" />
         </Style>
         <!-- LoadingOverlay -->
         <Style Selector="Border.LoadingOverlay">

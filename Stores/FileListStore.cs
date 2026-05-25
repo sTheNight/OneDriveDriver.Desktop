@@ -25,19 +25,6 @@ public partial class FileListStore : BaseStore {
 
     public ObservableCollection<FileItem> FileList { get; } = new();
     public ObservableCollection<string> Segments { get; } = new();
-    public bool CanGoBack => !IsLoading && Segments.Count > 0;
-
-    public FileListStore() {
-        Segments.CollectionChanged += OnSegmentsChanged;
-    }
-
-    private void OnSegmentsChanged(object? sender, NotifyCollectionChangedEventArgs e) {
-        OnPropertyChanged(nameof(CanGoBack));
-    }
-
-    partial void OnIsLoadingChanged(bool value) {
-        OnPropertyChanged(nameof(CanGoBack));
-    }
 
     public async Task EnsureLoadedAsync() {
         if (IsLoaded)
@@ -89,10 +76,14 @@ public partial class FileListStore : BaseStore {
         await RefreshAsync();
     }
 
-    public async Task Back() {
-        if (Segments.Count == 0)
+    public async Task NavigateToSegmentCount(int segmentCount) {
+        segmentCount = Math.Clamp(segmentCount, 0, Segments.Count);
+        if (segmentCount == Segments.Count)
             return;
-        Segments.RemoveAt(Segments.Count - 1);
+        
+        while (Segments.Count > segmentCount)
+            Segments.RemoveAt(Segments.Count - 1);
+
         await RefreshAsync();
     }
 

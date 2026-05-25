@@ -5,7 +5,8 @@
         <Grid>
             <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="16">
                 <TextBlock VerticalAlignment="Center">Click Me:</TextBlock>
-                <controls:IconButton Width="32" Height="32" Icon="avares://OneDriveDriver.Desktop/Assets/Icons/file.svg" />
+                <controls:IconButton Width="32" Height="32"
+                                     Icon="avares://OneDriveDriver.Desktop/Assets/Icons/file.svg" />
             </WrapPanel>
         </Grid>
     </Design.PreviewWith>
@@ -57,5 +58,12 @@
     </Style>
     <Style Selector="controls|IconButton:disabled">
         <Setter Property="IconColor" Value="Gray" />
+    </Style>
+    <Style Selector="controls|IconButton">
+        <Setter Property="Transitions">
+            <Transitions>
+                <ColorTransition Property="IconColor" Duration="0:0:0.2" />
+            </Transitions>
+        </Setter>
     </Style>
 </Styles>

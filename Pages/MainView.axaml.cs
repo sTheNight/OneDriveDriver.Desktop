@@ -1,3 +1,4 @@
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.VisualTree;
@@ -24,5 +25,21 @@ public partial class MainView : UserControl {
             return;
 
         await viewModel.OpenFileCommand.ExecuteAsync(fileItem);
+    }
+
+    private void OnBreadcrumbPointerWheelChanged(object? sender, PointerWheelEventArgs e) {
+        if (sender is not ScrollViewer scrollViewer)
+            return;
+
+        if (Math.Abs(e.Delta.X) >= Math.Abs(e.Delta.Y))
+            return;
+
+        var scrollableWidth = Math.Max(0, scrollViewer.Extent.Width - scrollViewer.Viewport.Width);
+        if (scrollableWidth == 0)
+            return;
+
+        var offsetX = Math.Clamp(scrollViewer.Offset.X - e.Delta.Y * 48, 0, scrollableWidth);
+        scrollViewer.Offset = new Vector(offsetX, scrollViewer.Offset.Y);
+        e.Handled = true;
     }
 }
