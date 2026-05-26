@@ -3,14 +3,13 @@ using OneDriveDriver.Desktop.Models;
 using OneDriveDriver.Desktop.Services;
 using OneDriveDriver.Desktop.Stores;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Threading.Tasks;
 
 namespace OneDriveDriver.Desktop.ViewModels;
 
 public partial class MainViewViewModel : ViewModelBase {
     private readonly FileListStore _fileListStore;
-    private readonly IUrlLauncher _urlLauncher;
+    private readonly FileDownloadService _fileDownloadService;
 
     public ObservableCollection<FileItem> FileList => _fileListStore.FileList;
     public ObservableCollection<BreadcrumbItem> Breadcrumbs { get; } = new();
@@ -19,9 +18,9 @@ public partial class MainViewViewModel : ViewModelBase {
 
     public string? ErrorMessage => _fileListStore.ErrorMessage;
 
-    public MainViewViewModel(FileListStore fileListStore, IUrlLauncher urlLauncher) {
+    public MainViewViewModel(FileListStore fileListStore, FileDownloadService fileDownloadService) {
         _fileListStore = fileListStore;
-        _urlLauncher = urlLauncher;
+        _fileDownloadService = fileDownloadService;
         _fileListStore.PropertyChanged += (_, e) => {
             if (e.PropertyName == nameof(FileListStore.IsLoading))
                 OnPropertyChanged(nameof(IsLoading));
@@ -55,10 +54,7 @@ public partial class MainViewViewModel : ViewModelBase {
 
     [RelayCommand]
     public async Task DownloadAsync(FileItem fileItem) {
-        if (string.IsNullOrWhiteSpace(fileItem.DownloadUrl))
-            return;
-
-        await _urlLauncher.LaunchAsync(fileItem.DownloadUrl);
+        await _fileDownloadService.DownloadAsync(fileItem);
     }
 
     [RelayCommand]

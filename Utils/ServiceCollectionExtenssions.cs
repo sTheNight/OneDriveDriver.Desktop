@@ -9,6 +9,8 @@ public static class ServiceCollectionExtenssions {
     extension(ServiceCollection serviceCollection) {
         public void AddDependencyInjection() {
             serviceCollection.AddSingleton<IUrlLauncher, UrlLauncher>();
+            serviceCollection.AddSingleton<FileSaveService>();
+            serviceCollection.AddSingleton<FileDownloadService>();
             serviceCollection.AddSingleton<FileListStore>();
             serviceCollection.AddSingleton<MainWindowViewModel>();
             serviceCollection.AddSingleton<MainViewViewModel>();

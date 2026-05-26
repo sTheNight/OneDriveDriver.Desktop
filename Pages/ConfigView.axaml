@@ -9,5 +9,6 @@
     <StackPanel>
         <TextBlock>I'm ConfigView</TextBlock>
         <Button Command="{Binding PushToMainViewCommand}" Content="Push to MainView"/>
+        <Button Command="{Binding FileSaveTestCommand}">123</Button>
     </StackPanel>
 </UserControl>

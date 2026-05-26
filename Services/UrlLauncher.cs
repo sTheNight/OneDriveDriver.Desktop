@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 
 namespace OneDriveDriver.Desktop.Services;
@@ -12,10 +13,10 @@ public class UrlLauncher : IUrlLauncher {
 
         if (Application.Current?.ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime desktop)
             return false;
-
+        
         if (desktop.MainWindow is null)
             return false;
-
+        
         return await desktop.MainWindow.Launcher.LaunchUriAsync(uri);
     }
 }
