@@ -43,7 +43,7 @@
     <Style Selector="controls|IconButton /template/ Border#PART_Background">
         <Setter Property="Transitions">
             <Transitions>
-                <BrushTransition Property="Background" Duration="0:0:0.2" />
+                <BrushTransition Property="Background" Duration="0:0:0.15" />
             </Transitions>
         </Setter>
     </Style>
@@ -62,7 +62,7 @@
     <Style Selector="controls|IconButton">
         <Setter Property="Transitions">
             <Transitions>
-                <ColorTransition Property="IconColor" Duration="0:0:0.2" />
+                <ColorTransition Property="IconColor" Duration="0:0:0.15" />
             </Transitions>
         </Setter>
     </Style>
