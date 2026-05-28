@@ -6,44 +6,5 @@
              xmlns:vm="using:OneDriveDriver.Desktop.ViewModels"
              x:DataType="vm:ConfigViewViewModel"
              x:Class="OneDriveDriver.Desktop.Pages.ConfigView">
-    <StackPanel>
-        <TextBlock>I'm ConfigView</TextBlock>
-        <Button Command="{Binding PushToMainViewCommand}" Content="Push to MainView"/>
-        <Button Command="{Binding FileSaveTestCommand}">123</Button>
-        <Button Classes="LinearButton">123</Button>
-        <Image Source="avares://OneDriveDriver.Desktop/Assets/th.jpg" HorizontalAlignment="Stretch"></Image>
-    </StackPanel>
-    <UserControl.Styles>
-        <Style Selector="Button.LinearButton">
-            <Setter Property="Foreground">
-                <SolidColorBrush Color="White" />
-            </Setter>
-        </Style>
-        <Style Selector="Button.LinearButton:pointerover /template/ AccessText">
-            <Setter Property="Foreground">
-                <SolidColorBrush Color="White" />
-            </Setter>
-        </Style>
-        <Style Selector="Button.LinearButton /template/ ContentPresenter">
-            <Setter Property="Transitions">
-                <Transitions>
-                    <BrushTransition Property="Background" Duration="0:0:0.1" />
-                </Transitions>
-            </Setter>
-            <Setter Property="Background">
-                <LinearGradientBrush StartPoint="0%,50%" EndPoint="100%,50%">
-                    <GradientStop Color="#6366F1" Offset="0" />
-                    <GradientStop Color="#EC4899" Offset="1" />
-                </LinearGradientBrush>
-            </Setter>
-        </Style>
-        <Style Selector="Button.LinearButton:pointerover /template/ ContentPresenter">
-            <Setter Property="Background">
-                <LinearGradientBrush StartPoint="50%,0%" EndPoint="50%,100%">
-                    <GradientStop Color="#6366F1" Offset="0" />
-                    <GradientStop Color="#EC4899" Offset="1" />
-                </LinearGradientBrush>
-            </Setter>
-        </Style>
-    </UserControl.Styles>
+    
 </UserControl>

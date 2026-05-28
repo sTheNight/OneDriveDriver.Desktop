@@ -13,6 +13,7 @@ public static class ServiceCollectionExtenssions {
             serviceCollection.AddSingleton<FileDownloadService>();
             serviceCollection.AddSingleton<FileListStore>();
             serviceCollection.AddSingleton<MainWindowViewModel>();
+            serviceCollection.AddSingleton<TestViewViewModel>();
             serviceCollection.AddSingleton<MainViewViewModel>();
             serviceCollection.AddSingleton<ConfigViewViewModel>();
         }

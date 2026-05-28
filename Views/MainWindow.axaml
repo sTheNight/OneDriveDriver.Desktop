@@ -44,7 +44,12 @@
         <DockPanel Margin="8" Classes="MainWindowsMain" Classes.IsModalShow="{Binding IsAboutDialogShow}">
             <Panel DockPanel.Dock="Top">
                 <Grid ColumnDefinitions="*,Auto">
-                    <TextBlock Classes="Title-Text">OneDrive Driver</TextBlock>
+                    <WrapPanel>
+                        <control:IconButton Width="32" Height="32" VerticalAlignment="Center" CornerRadius="1000"
+                                            Margin="0,0,4,0"
+                                            Icon="avares://OneDriveDriver.Desktop/Assets/Icons/arrow-left.svg" />
+                        <TextBlock VerticalAlignment="Center" Classes="Title-Text">OneDrive Driver</TextBlock>
+                    </WrapPanel>
                     <control:IconButton Width="32" Height="32" CornerRadius="1000" Grid.Column="1"
                                         Icon="avares://OneDriveDriver.Desktop/Assets/Icons/ellipsis-vertical.svg">
                         <control:IconButton.Flyout>
@@ -52,6 +57,7 @@
                                 <MenuItem Header="Config" Command="{Binding NavigateToConfigCommand}" />
                                 <MenuItem Header="Github" Command="{Binding OpenGithubCommand}" />
                                 <MenuItem Header="About" Command="{Binding ShowAboutDialogCommand}" />
+                                <MenuItem Header="Test" Command="{Binding NavigateToTestCommand}" />
                             </MenuFlyout>
                         </control:IconButton.Flyout>
                     </control:IconButton>
@@ -60,7 +66,7 @@
             </Panel>
             <TransitioningContentControl Content="{Binding Content}">
                 <TransitioningContentControl.PageTransition>
-                    <trans:TestTransition Duration="0:0:0.2" />
+                    <trans:TestTransition Duration="0:0:0.3" />
                 </TransitioningContentControl.PageTransition>
             </TransitioningContentControl>
         </DockPanel>

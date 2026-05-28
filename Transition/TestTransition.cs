@@ -32,7 +32,7 @@ public class TestTransition : IPageTransition {
         }
 
         var tasks = new List<Task>();
-        var easing = new CubicEaseInOut();
+        var easing = new CircularEaseOut();
         var fromTransform = from?.RenderTransform;
         var toTransform = to?.RenderTransform;
 
