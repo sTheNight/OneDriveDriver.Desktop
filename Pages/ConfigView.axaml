@@ -11,6 +11,7 @@
         <Button Command="{Binding PushToMainViewCommand}" Content="Push to MainView"/>
         <Button Command="{Binding FileSaveTestCommand}">123</Button>
         <Button Classes="LinearButton">123</Button>
+        <Image Source="avares://OneDriveDriver.Desktop/Assets/th.jpg" HorizontalAlignment="Stretch"></Image>
     </StackPanel>
     <UserControl.Styles>
         <Style Selector="Button.LinearButton">

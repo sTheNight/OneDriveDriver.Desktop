@@ -11,6 +11,7 @@
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         xmlns:control="using:OneDriveDriver.Desktop.Controls"
+        xmlns:trans="using:OneDriveDriver.Desktop.Transition"
         Title="OneDriveDriver.Desktop">
     <Grid>
         <Border
@@ -59,17 +60,7 @@
             </Panel>
             <TransitioningContentControl Content="{Binding Content}">
                 <TransitioningContentControl.PageTransition>
-                    <CompositePageTransition>
-                        <PageSlide Duration="0:00:0.280" Orientation="Vertical">
-                            <PageSlide.SlideInEasing>
-                                <CubicEaseInOut />
-                            </PageSlide.SlideInEasing>
-                            <PageSlide.SlideOutEasing>
-                                <CubicEaseInOut />
-                            </PageSlide.SlideOutEasing>
-                        </PageSlide>
-                        <CrossFade Duration="0:00:0.380" />
-                    </CompositePageTransition>
+                    <trans:TestTransition Duration="0:0:0.2" />
                 </TransitioningContentControl.PageTransition>
             </TransitioningContentControl>
         </DockPanel>

@@ -15,6 +15,7 @@ sealed class Program {
     public static AppBuilder BuildAvaloniaApp()
         => AppBuilder.Configure<App>()
             .UsePlatformDetect()
+            .With(new SkiaOptions { UseOpacitySaveLayer = true })
 #if DEBUG
             .WithDeveloperTools()
 #endif
