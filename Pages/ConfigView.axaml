@@ -16,39 +16,21 @@
                     <TextBox></TextBox>
                     <TextBlock Margin="0,8,0,0">Password</TextBlock>
                     <TextBox PasswordChar="*"></TextBox>
-                    <Button Classes="PrimaryButton" HorizontalAlignment="Right" Margin="0,8,0,0">
-                        <WrapPanel>
-                            <Image Width="12" Height="12" VerticalAlignment="Center">
+                    <Button Classes="PrimaryButton" HorizontalAlignment="Right" Margin="0,8,0,0"
+                            VerticalContentAlignment="Center">
+                        <Grid ColumnDefinitions="Auto,Auto" VerticalAlignment="Center">
+                            <Image Grid.Column="0" Width="12" Height="12" VerticalAlignment="Center">
                                 <Image.Source>
                                     <SvgImage Source="avares://OneDriveDriver.Desktop/Assets/Icons/log-in.svg"
                                               CurrentColor="White">
                                     </SvgImage>
                                 </Image.Source>
                             </Image>
-                            <TextBlock VerticalAlignment="Center" Margin="4,0,0,0">Login</TextBlock>
-                        </WrapPanel>
-                    </Button>
-                </StackPanel>
-            </Border>
-            <Border BorderBrush="{StaticResource DividerColor}" BorderThickness="1" CornerRadius="12" Padding="16"
-                    Margin="0,8,0,0">
-                <StackPanel>
-                    <TextBlock FontWeight="SemiBold">OneDrive Config</TextBlock>
-                    <TextBlock Margin="0,16,0,0">CLIENT_ID</TextBlock>
-                    <TextBox></TextBox>
-                    <TextBlock Margin="0,16,0,0">CLIENT_SECRET</TextBlock>
-                    <TextBox></TextBox>
-                    <Button Classes="PrimaryButton" HorizontalAlignment="Right" Margin="0,8,0,0">
-                        <WrapPanel>
-                            <Image Width="12" Height="12" VerticalAlignment="Center">
-                                <Image.Source>
-                                    <SvgImage Source="avares://OneDriveDriver.Desktop/Assets/Icons/save.svg"
-                                              CurrentColor="White">
-                                    </SvgImage>
-                                </Image.Source>
-                            </Image>
-                            <TextBlock VerticalAlignment="Center" Margin="4,0,0,0">Save</TextBlock>
-                        </WrapPanel>
+                            <TextBlock Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center"
+                                       Margin="4,0,0,0">
+                                Login
+                            </TextBlock>
+                        </Grid>
                     </Button>
                 </StackPanel>
             </Border>

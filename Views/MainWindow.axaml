@@ -32,7 +32,7 @@
                 <StackPanel>
                     <Panel HorizontalAlignment="Stretch">
                         <TextBlock FontSize="18" FontWeight="DemiBold" HorizontalAlignment="Left">About</TextBlock>
-                        <control:IconButton Width="32" HorizontalAlignment="Right" Height="32" Focusable="False"
+                        <control:GhostIconButton Width="32" HorizontalAlignment="Right" Height="32" Focusable="False"
                                             Icon="avares://OneDriveDriver.Desktop/Assets/Icons/x.svg"
                                             Command="{Binding CloseAboutDialogCommand}" />
                     </Panel>
@@ -44,22 +44,22 @@
             <Panel DockPanel.Dock="Top">
                 <Grid ColumnDefinitions="*,Auto">
                     <WrapPanel>
-                        <control:IconButton Width="32" Height="32" VerticalAlignment="Center" CornerRadius="1000"
+                        <control:GhostIconButton Width="32" Height="32" VerticalAlignment="Center" CornerRadius="1000"
                                             Margin="0,0,4,0" Command="{Binding NavigateToMainCommand}"
                                             Icon="avares://OneDriveDriver.Desktop/Assets/Icons/arrow-left.svg" />
                         <TextBlock VerticalAlignment="Center" Classes="Title-Text">OneDrive Driver</TextBlock>
                     </WrapPanel>
-                    <control:IconButton Width="32" Height="32" CornerRadius="1000" Grid.Column="1"
+                    <control:GhostIconButton Width="32" Height="32" CornerRadius="1000" Grid.Column="1"
                                         Icon="avares://OneDriveDriver.Desktop/Assets/Icons/ellipsis-vertical.svg">
-                        <control:IconButton.Flyout>
+                        <control:GhostIconButton.Flyout>
                             <MenuFlyout>
                                 <MenuItem Header="Config" Command="{Binding NavigateToConfigCommand}" />
+                                <MenuItem Header="Test" Command="{Binding NavigateToTestCommand}" />
                                 <MenuItem Header="Github" Command="{Binding OpenGithubCommand}" />
                                 <MenuItem Header="About" Command="{Binding ShowAboutDialogCommand}" />
-                                <MenuItem Header="Test" Command="{Binding NavigateToTestCommand}" />
                             </MenuFlyout>
-                        </control:IconButton.Flyout>
-                    </control:IconButton>
+                        </control:GhostIconButton.Flyout>
+                    </control:GhostIconButton>
                 </Grid>
                 <Border VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="1" Background="{StaticResource DividerColor}"></Border>
             </Panel>

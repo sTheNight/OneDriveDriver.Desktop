@@ -51,7 +51,7 @@
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
                     </ScrollViewer>
-                    <control:IconButton
+                    <control:GhostIconButton
                         Grid.Column="1"
                         Icon="avares://OneDriveDriver.Desktop/Assets/Icons/refresh-ccw.svg"
                         Width="32"
@@ -96,7 +96,7 @@
                                                 </TextBlock>
                                             </WrapPanel>
                                         </StackPanel>
-                                        <control:IconButton
+                                        <control:GhostIconButton
                                             Grid.Column="2"
                                             Width="32"
                                             Height="32"

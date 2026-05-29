@@ -18,7 +18,7 @@
 
     <Application.Styles>
         <FluentTheme />
-        <StyleInclude Source="avares://OneDriveDriver.Desktop/Controls/IconButton.axaml" />
+        <StyleInclude Source="avares://OneDriveDriver.Desktop/Controls/GhostIconButton.axaml" />
         <StyleInclude Source="avares://OneDriveDriver.Desktop/Controls/GhostButton.axaml" />
         <StyleInclude Source="avares://OneDriveDriver.Desktop/Controls/PrimaryButton.axaml" />
     </Application.Styles>

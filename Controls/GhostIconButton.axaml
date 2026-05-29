@@ -5,13 +5,13 @@
         <Grid>
             <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="16">
                 <TextBlock VerticalAlignment="Center">Click Me:</TextBlock>
-                <controls:IconButton Width="32" Height="32"
+                <controls:GhostIconButton Width="32" Height="32"
                                      Icon="avares://OneDriveDriver.Desktop/Assets/Icons/file.svg" />
             </WrapPanel>
         </Grid>
     </Design.PreviewWith>
 
-    <Style Selector="controls|IconButton">
+    <Style Selector="controls|GhostIconButton">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="CornerRadius" Value="4" />
@@ -21,7 +21,7 @@
             </Transitions>
         </Setter>
         <Setter Property="Template">
-            <ControlTemplate TargetType="controls:IconButton">
+            <ControlTemplate TargetType="controls:GhostIconButton">
                 <Border
                     x:Name="PART_Background"
                     Background="{TemplateBinding Background}"
@@ -40,26 +40,26 @@
             </ControlTemplate>
         </Setter>
     </Style>
-    <Style Selector="controls|IconButton /template/ Border#PART_Background">
+    <Style Selector="controls|GhostIconButton /template/ Border#PART_Background">
         <Setter Property="Transitions">
             <Transitions>
                 <BrushTransition Property="Background" Duration="0:0:0.15" />
             </Transitions>
         </Setter>
     </Style>
-    <Style Selector="controls|IconButton:pointerover /template/ Border#PART_Background">
+    <Style Selector="controls|GhostIconButton:pointerover /template/ Border#PART_Background">
         <Setter Property="Background" Value="{StaticResource GhostButtonHoverColor}" />
     </Style>
-    <Style Selector="controls|IconButton:pressed /template/ Border#PART_Background">
+    <Style Selector="controls|GhostIconButton:pressed /template/ Border#PART_Background">
         <Setter Property="Background" Value="{StaticResource GhostButtonPressedColor}" />
     </Style>
-    <Style Selector="controls|IconButton:disabled /template/ Border#PART_Background">
+    <Style Selector="controls|GhostIconButton:disabled /template/ Border#PART_Background">
         <Setter Property="Background" Value="Transparent" />
     </Style>
-    <Style Selector="controls|IconButton:disabled">
+    <Style Selector="controls|GhostIconButton:disabled">
         <Setter Property="IconColor" Value="Gray" />
     </Style>
-    <Style Selector="controls|IconButton">
+    <Style Selector="controls|GhostIconButton">
         <Setter Property="Transitions">
             <Transitions>
                 <ColorTransition Property="IconColor" Duration="0:0:0.15" />
