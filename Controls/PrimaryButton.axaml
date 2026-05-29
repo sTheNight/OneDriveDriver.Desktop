@@ -1,0 +1,27 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+        </Border>
+    </Design.PreviewWith>
+    <Style Selector="Button.PrimaryButton /template/ ContentPresenter">
+        <Setter Property="Background" Value="Black" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Background" Duration="0:0:0.15" />
+            </Transitions>
+        </Setter>
+    </Style>
+    <Style Selector="Button.PrimaryButton:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#4F4F4F" />
+    </Style>
+    <Style Selector="Button.PrimaryButton:pressed /template/ ContentPresenter">
+        <Setter Property="Background" Value="#6F6F6F" />
+    </Style>
+    <Style Selector="Button.PrimaryButton:pressed">
+        <Setter Property="RenderTransform">
+            <ScaleTransform ScaleX="1" ScaleY="1" />
+        </Setter>
+    </Style>
+</Styles>

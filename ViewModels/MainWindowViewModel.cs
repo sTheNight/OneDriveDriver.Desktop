@@ -16,7 +16,12 @@ public partial class MainWindowViewModel : ViewModelBase {
     [ObservableProperty] private object? _content;
     [ObservableProperty] private bool _isAboutDialogShow = false;
 
-    public MainWindowViewModel(MainViewViewModel mainView, ConfigViewViewModel configView,TestViewViewModel testView,IUrlLauncher urlLauncher) {
+    public MainWindowViewModel(
+        MainViewViewModel mainView,
+        ConfigViewViewModel configView,
+        TestViewViewModel testView,
+        IUrlLauncher urlLauncher
+    ) {
         _mainView = mainView;
         _configView = configView;
         _testView = testView;
@@ -27,17 +32,24 @@ public partial class MainWindowViewModel : ViewModelBase {
     }
 
     public void OnNavigatedTo(object recipient, RouteMessage key) {
-        Content = key.Key switch {
+        ViewModelBase? target = key.Key switch {
             RouteKey.MainView => _mainView,
             RouteKey.ConfigView => _configView,
             RouteKey.TestView => _testView,
             _ => null
         };
+        if (target == null || Content == target) return;
+        Content = target;
     }
 
     [RelayCommand]
     public void NavigateToConfig() {
         WeakReferenceMessenger.Default.Send(new RouteMessage(RouteKey.ConfigView));
+    }
+
+    [RelayCommand]
+    public void NavigateToMain() {
+        WeakReferenceMessenger.Default.Send(new RouteMessage(RouteKey.MainView));
     }
 
     [RelayCommand]

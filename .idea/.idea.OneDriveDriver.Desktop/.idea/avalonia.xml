@@ -6,6 +6,8 @@
         <entry key="App.axaml" value="OneDriveDriver.Desktop.csproj" />
         <entry key="Controls/GhostButton.axaml" value="OneDriveDriver.Desktop.csproj" />
         <entry key="Controls/IconButton.axaml" value="OneDriveDriver.Desktop.csproj" />
+        <entry key="Controls/PrimaryButton.axaml" value="OneDriveDriver.Desktop.csproj" />
+        <entry key="MainTheme.axaml" value="OneDriveDriver.Desktop.csproj" />
         <entry key="Pages/ConfigView.axaml" value="OneDriveDriver.Desktop.csproj" />
         <entry key="Pages/MainView.axaml" value="OneDriveDriver.Desktop.csproj" />
         <entry key="Pages/TestView.axaml" value="OneDriveDriver.Desktop.csproj" />

@@ -2,9 +2,56 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="800"
              xmlns:vm="using:OneDriveDriver.Desktop.ViewModels"
              x:DataType="vm:ConfigViewViewModel"
              x:Class="OneDriveDriver.Desktop.Pages.ConfigView">
-    
+    <Grid>
+        <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Border BorderBrush="{StaticResource DividerColor}" BorderThickness="1"
+                    CornerRadius="12" Padding="16" Margin="0,8,0,0">
+                <StackPanel>
+                    <TextBlock FontWeight="SemiBold">Login</TextBlock>
+                    <TextBlock Margin="0,16,0,0">Username</TextBlock>
+                    <TextBox></TextBox>
+                    <TextBlock Margin="0,8,0,0">Password</TextBlock>
+                    <TextBox PasswordChar="*"></TextBox>
+                    <Button Classes="PrimaryButton" HorizontalAlignment="Right" Margin="0,8,0,0">
+                        <WrapPanel>
+                            <Image Width="12" Height="12" VerticalAlignment="Center">
+                                <Image.Source>
+                                    <SvgImage Source="avares://OneDriveDriver.Desktop/Assets/Icons/log-in.svg"
+                                              CurrentColor="White">
+                                    </SvgImage>
+                                </Image.Source>
+                            </Image>
+                            <TextBlock VerticalAlignment="Center" Margin="4,0,0,0">Login</TextBlock>
+                        </WrapPanel>
+                    </Button>
+                </StackPanel>
+            </Border>
+            <Border BorderBrush="{StaticResource DividerColor}" BorderThickness="1" CornerRadius="12" Padding="16"
+                    Margin="0,8,0,0">
+                <StackPanel>
+                    <TextBlock FontWeight="SemiBold">OneDrive Config</TextBlock>
+                    <TextBlock Margin="0,16,0,0">CLIENT_ID</TextBlock>
+                    <TextBox></TextBox>
+                    <TextBlock Margin="0,16,0,0">CLIENT_SECRET</TextBlock>
+                    <TextBox></TextBox>
+                    <Button Classes="PrimaryButton" HorizontalAlignment="Right" Margin="0,8,0,0">
+                        <WrapPanel>
+                            <Image Width="12" Height="12" VerticalAlignment="Center">
+                                <Image.Source>
+                                    <SvgImage Source="avares://OneDriveDriver.Desktop/Assets/Icons/save.svg"
+                                              CurrentColor="White">
+                                    </SvgImage>
+                                </Image.Source>
+                            </Image>
+                            <TextBlock VerticalAlignment="Center" Margin="4,0,0,0">Save</TextBlock>
+                        </WrapPanel>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </Grid>
 </UserControl>

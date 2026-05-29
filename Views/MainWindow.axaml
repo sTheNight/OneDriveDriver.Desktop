@@ -7,7 +7,6 @@
         x:Class="OneDriveDriver.Desktop.Views.MainWindow"
         Width="500"
         Height="800"
-        FontFamily="{StaticResource Noto}"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         xmlns:control="using:OneDriveDriver.Desktop.Controls"
@@ -46,7 +45,7 @@
                 <Grid ColumnDefinitions="*,Auto">
                     <WrapPanel>
                         <control:IconButton Width="32" Height="32" VerticalAlignment="Center" CornerRadius="1000"
-                                            Margin="0,0,4,0"
+                                            Margin="0,0,4,0" Command="{Binding NavigateToMainCommand}"
                                             Icon="avares://OneDriveDriver.Desktop/Assets/Icons/arrow-left.svg" />
                         <TextBlock VerticalAlignment="Center" Classes="Title-Text">OneDrive Driver</TextBlock>
                     </WrapPanel>
@@ -62,7 +61,7 @@
                         </control:IconButton.Flyout>
                     </control:IconButton>
                 </Grid>
-                <Border VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="1" Background="LightGray"></Border>
+                <Border VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="1" Background="{StaticResource DividerColor}"></Border>
             </Panel>
             <TransitioningContentControl Content="{Binding Content}">
                 <TransitioningContentControl.PageTransition>
