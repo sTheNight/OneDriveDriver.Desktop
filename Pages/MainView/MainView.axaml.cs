@@ -1,12 +1,10 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
-using Avalonia.VisualTree;
 using OneDriveDriver.Desktop.Models;
-using OneDriveDriver.Desktop.ViewModels;
 using System;
 
-namespace OneDriveDriver.Desktop.Pages;
+namespace OneDriveDriver.Desktop.Pages.MainView;
 
 public partial class MainView : UserControl {
     public MainView() {

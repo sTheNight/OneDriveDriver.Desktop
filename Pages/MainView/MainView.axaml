@@ -7,8 +7,9 @@
              xmlns:model="using:OneDriveDriver.Desktop.Models"
              xmlns:converter="using:OneDriveDriver.Desktop.Converters"
              xmlns:control="using:OneDriveDriver.Desktop.Controls"
-             x:DataType="vm:MainViewViewModel"
-             x:Class="OneDriveDriver.Desktop.Pages.MainView">
+             xmlns:mainView="clr-namespace:OneDriveDriver.Desktop.Pages.MainView"
+             x:DataType="mainView:MainViewViewModel"
+             x:Class="OneDriveDriver.Desktop.Pages.MainView.MainView">
     <UserControl.Resources>
         <converter:IsNullConverter x:Key="NullConverter" />
         <converter:IsNotNullConverter x:Key="NotNullConverter" />
@@ -44,7 +45,7 @@
                                                 FontSize="12"
                                                 VerticalAlignment="Center"
                                                 Content="{Binding Title}"
-                                                Command="{Binding $parent[ItemsControl].((vm:MainViewViewModel)DataContext).NavigateToBreadcrumbCommand}"
+                                                Command="{Binding $parent[ItemsControl].((mainView:MainViewViewModel)DataContext).NavigateToBreadcrumbCommand}"
                                                 CommandParameter="{Binding}" />
                                     </StackPanel>
                                 </DataTemplate>
@@ -102,7 +103,7 @@
                                             Height="32"
                                             HorizontalAlignment="Right"
                                             CommandParameter="{Binding}"
-                                            Command="{Binding $parent[ItemsControl].((vm:MainViewViewModel)DataContext).DownloadCommand}"
+                                            Command="{Binding $parent[ItemsControl].((mainView:MainViewViewModel)DataContext).DownloadCommand}"
                                             IsVisible="{Binding DownloadUrl,Converter={StaticResource NotNullConverter}}"
                                             Icon="avares://OneDriveDriver.Desktop/Assets/Icons/download.svg" />
                                     </Grid>

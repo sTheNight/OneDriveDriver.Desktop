@@ -4,8 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              xmlns:vm="using:OneDriveDriver.Desktop.ViewModels"
-             x:DataType="vm:TestViewViewModel"
-             x:Class="OneDriveDriver.Desktop.Pages.TestView">
+             xmlns:testView="clr-namespace:OneDriveDriver.Desktop.Pages.TestView"
+             x:DataType="testView:TestViewViewModel"
+             x:Class="OneDriveDriver.Desktop.Pages.TestView.TestView">
     <StackPanel>
         <TextBlock>I'm ConfigView</TextBlock>
         <Button Command="{Binding PushToMainViewCommand}" Content="Push to MainView"/>

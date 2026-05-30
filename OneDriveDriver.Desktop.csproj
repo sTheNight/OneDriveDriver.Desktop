@@ -30,4 +30,19 @@
     <ItemGroup>
       <Folder Include="Theme\" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Pages\MainView\MainView.axaml.cs">
+        <DependentUpon>MainView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Pages\ConfigView\ConfigView.axaml.cs">
+        <DependentUpon>ConfigView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Pages\TestView\TestView.axaml.cs">
+        <DependentUpon>TestView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
 </Project>

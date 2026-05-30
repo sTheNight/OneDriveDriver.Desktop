@@ -2,9 +2,10 @@
 using CommunityToolkit.Mvvm.Messaging;
 using OneDriveDriver.Desktop.Models;
 using OneDriveDriver.Desktop.Services;
+using OneDriveDriver.Desktop.ViewModels;
 using System.IO;
 
-namespace OneDriveDriver.Desktop.ViewModels;
+namespace OneDriveDriver.Desktop.Pages.TestView;
 
 public partial class TestViewViewModel : ViewModelBase {
     private readonly FileSaveService _fileSaveService;

@@ -6,9 +6,6 @@ using OneDriveDriver.Desktop.ViewModels;
 
 namespace OneDriveDriver.Desktop;
 
-/// <summary>
-/// Given a view model, returns the corresponding view if possible.
-/// </summary>
 [RequiresUnreferencedCode(
     "Default implementation of ViewLocator involves reflection which may be trimmed away.",
     Url = "https://docs.avaloniaui.net/docs/concepts/view-locator")]
@@ -16,9 +13,9 @@ public class ViewLocator : IDataTemplate {
     public Control? Build(object? param) {
         if (param is null)
             return null;
-
+        var targetNameSpace = param.GetType().Namespace;
         var name = param.GetType().Name.Replace("ViewModel", "");
-        var type = Type.GetType($"OneDriveDriver.Desktop.Pages.{name}");
+        var type = Type.GetType($"{targetNameSpace}.{name}");
 
         if (type != null) {
             return (Control)Activator.CreateInstance(type)!;

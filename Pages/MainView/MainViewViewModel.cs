@@ -2,10 +2,11 @@ using CommunityToolkit.Mvvm.Input;
 using OneDriveDriver.Desktop.Models;
 using OneDriveDriver.Desktop.Services;
 using OneDriveDriver.Desktop.Stores;
+using OneDriveDriver.Desktop.ViewModels;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
-namespace OneDriveDriver.Desktop.ViewModels;
+namespace OneDriveDriver.Desktop.Pages.MainView;
 
 public partial class MainViewViewModel : ViewModelBase {
     private readonly FileListStore _fileListStore;

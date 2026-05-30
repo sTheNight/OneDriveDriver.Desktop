@@ -2,15 +2,16 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using OneDriveDriver.Desktop.Models;
+using OneDriveDriver.Desktop.Pages.ConfigView;
+using OneDriveDriver.Desktop.Pages.MainView;
 using OneDriveDriver.Desktop.Services;
-using OneDriveDriver.Desktop.Stores;
 
 namespace OneDriveDriver.Desktop.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase {
     private readonly MainViewViewModel _mainView;
     private readonly ConfigViewViewModel _configView;
-    private readonly TestViewViewModel _testView;
+    private readonly Pages.TestView.TestViewViewModel _testView;
     private readonly IUrlLauncher _urlLauncher;
 
     [ObservableProperty] private object? _content;
@@ -19,7 +20,7 @@ public partial class MainWindowViewModel : ViewModelBase {
     public MainWindowViewModel(
         MainViewViewModel mainView,
         ConfigViewViewModel configView,
-        TestViewViewModel testView,
+        Pages.TestView.TestViewViewModel testView,
         IUrlLauncher urlLauncher
     ) {
         _mainView = mainView;

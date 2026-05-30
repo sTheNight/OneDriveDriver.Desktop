@@ -2,14 +2,14 @@
 using CommunityToolkit.Mvvm.Input;
 using Newtonsoft.Json;
 using OneDriveDriver.Desktop.Utils;
+using OneDriveDriver.Desktop.ViewModels;
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OneDriveDriver.Desktop.ViewModels;
+namespace OneDriveDriver.Desktop.Pages.ConfigView;
 
 public partial class ConfigViewViewModel : ViewModelBase {
     private readonly HttpClient _httpClient = new HttpClient() {
@@ -45,7 +45,7 @@ public partial class ConfigViewViewModel : ViewModelBase {
                 AccessToken = loginResponse.AccessToken;
             }
 
-            Console.WriteLine(AccessToken);
+            Console.WriteLine((string?)AccessToken);
 
             Console.WriteLine("is logged in");
         } catch (HttpRequestException e) {

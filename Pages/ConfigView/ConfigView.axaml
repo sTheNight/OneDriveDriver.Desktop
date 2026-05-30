@@ -4,8 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="800"
              xmlns:vm="using:OneDriveDriver.Desktop.ViewModels"
-             x:DataType="vm:ConfigViewViewModel"
-             x:Class="OneDriveDriver.Desktop.Pages.ConfigView">
+             xmlns:configView="clr-namespace:OneDriveDriver.Desktop.Pages.ConfigView"
+             x:DataType="configView:ConfigViewViewModel"
+             x:Class="OneDriveDriver.Desktop.Pages.ConfigView.ConfigView">
     <Grid>
         <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <Border IsVisible="{Binding !IsLoggedIn}" BorderBrush="{StaticResource DividerColor}" BorderThickness="1"
