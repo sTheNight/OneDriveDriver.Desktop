@@ -5,6 +5,8 @@ using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using OneDriveDriver.Desktop.Utils;
 using OneDriveDriver.Desktop.ViewModels;
 using OneDriveDriver.Desktop.Views;
@@ -25,7 +27,6 @@ public partial class App : Application {
                 DataContext = serviceProvider.GetRequiredService<MainWindowViewModel>(),
             };
         }
-
         base.OnFrameworkInitializationCompleted();
     }
 }

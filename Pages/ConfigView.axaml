@@ -8,15 +8,16 @@
              x:Class="OneDriveDriver.Desktop.Pages.ConfigView">
     <Grid>
         <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <Border BorderBrush="{StaticResource DividerColor}" BorderThickness="1"
+            <Border IsVisible="{Binding !IsLoggedIn}" BorderBrush="{StaticResource DividerColor}" BorderThickness="1"
                     CornerRadius="12" Padding="16" Margin="0,8,0,0">
                 <StackPanel>
                     <TextBlock FontWeight="SemiBold">Login</TextBlock>
                     <TextBlock Margin="0,16,0,0">Username</TextBlock>
-                    <TextBox></TextBox>
+                    <TextBox Text="{Binding Username}" Margin="0,4,0,0" PlaceholderText="Username" />
                     <TextBlock Margin="0,8,0,0">Password</TextBlock>
-                    <TextBox PasswordChar="*"></TextBox>
-                    <Button Classes="PrimaryButton" HorizontalAlignment="Right" Margin="0,8,0,0"
+                    <TextBox Text="{Binding Password}" Margin="0,4,0,0" PlaceholderText="Password" PasswordChar="*" />
+                    <Button Command="{Binding LoginCommand}" Classes="PrimaryButton" HorizontalAlignment="Right"
+                            Margin="0,8,0,0"
                             VerticalContentAlignment="Center">
                         <Grid ColumnDefinitions="Auto,Auto" VerticalAlignment="Center">
                             <Image Grid.Column="0" Width="12" Height="12" VerticalAlignment="Center">
@@ -34,6 +35,11 @@
                     </Button>
                 </StackPanel>
             </Border>
+            <Border IsVisible="{Binding IsLoggedIn}" BorderBrush="{StaticResource DividerColor}" BorderThickness="1"
+                    CornerRadius="12" Padding="16" Margin="0,8,0,0">
+                <TextBlock>123</TextBlock>
+            </Border>
+            <TextBlock Text="{Binding IsLoggedIn}" />
         </StackPanel>
     </Grid>
 </UserControl>

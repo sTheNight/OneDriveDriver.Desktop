@@ -46,7 +46,7 @@
                     <WrapPanel>
                         <control:GhostIconButton Width="32" Height="32" VerticalAlignment="Center" CornerRadius="1000"
                                             Margin="0,0,4,0" Command="{Binding NavigateToMainCommand}"
-                                            Icon="avares://OneDriveDriver.Desktop/Assets/Icons/arrow-left.svg" />
+                                            Icon="avares://OneDriveDriver.Desktop/Assets/Icons/house.svg" />
                         <TextBlock VerticalAlignment="Center" Classes="Title-Text">OneDrive Driver</TextBlock>
                     </WrapPanel>
                     <control:GhostIconButton Width="32" Height="32" CornerRadius="1000" Grid.Column="1"
