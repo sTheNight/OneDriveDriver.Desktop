@@ -23,6 +23,7 @@ public partial class MainWindowViewModel : ViewModelBase {
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsOverlayShow))]
     private bool _isAboutDialogShow;
+
     public bool IsBottomSheetShow => Content != null;
     public bool IsOverlayShow => IsAboutDialogShow || IsBottomSheetShow;
 
@@ -48,6 +49,11 @@ public partial class MainWindowViewModel : ViewModelBase {
         };
         if (Content == target) return;
         Content = target;
+    }
+
+    public void CloseAllModal() {
+        if (IsAboutDialogShow) IsAboutDialogShow = false;
+        if (Content != null) Content = null;
     }
 
     [RelayCommand]

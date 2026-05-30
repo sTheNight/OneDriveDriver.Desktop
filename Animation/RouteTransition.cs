@@ -8,14 +8,14 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace OneDriveDriver.Desktop.Transition;
+namespace OneDriveDriver.Desktop.Animation;
 
-public class TestTransition : IPageTransition {
+public class RouteTransition : IPageTransition {
     private const double OffsetY = 12d;
 
-    public TestTransition() { }
+    public RouteTransition() { }
 
-    public TestTransition(TimeSpan duration) {
+    public RouteTransition(TimeSpan duration) {
         Duration = duration;
     }
 
@@ -84,7 +84,7 @@ public class TestTransition : IPageTransition {
         Easing easing,
         CancellationToken cancellationToken
     ) {
-        return new Animation {
+        return new Avalonia.Animation.Animation {
             FillMode = FillMode.Forward,
             Duration = Duration,
             Easing = easing,

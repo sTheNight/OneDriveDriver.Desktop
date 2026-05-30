@@ -10,14 +10,15 @@
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         xmlns:control="using:OneDriveDriver.Desktop.Controls"
-        xmlns:trans="using:OneDriveDriver.Desktop.Transition"
+        xmlns:animation="clr-namespace:OneDriveDriver.Desktop.Animation"
         Title="OneDriveDriver.Desktop">
     <Grid>
         <!-- 遮罩层 -->
         <Border
+            Name="Overlay"
             HorizontalAlignment="Stretch"
-            Classes="Overlay"
             Classes.Shown="{Binding IsOverlayShow}"
+            PointerPressed="Overlay_OnPointerPressed"
             VerticalAlignment="Stretch"
             Background="#3f000000"
             ZIndex="900">
@@ -34,7 +35,6 @@
             Classes="AboutDialog"
             Classes.Active="{Binding IsAboutDialogShow}"
             ZIndex="999"
-            IsVisible="{Binding IsAboutDialogShow}"
             Padding="16">
             <StackPanel>
                 <Panel HorizontalAlignment="Stretch">
@@ -52,12 +52,12 @@
                 HorizontalAlignment="Stretch" Background="White" Height="500"
                 BoxShadow="0 5 8 8 #0A000000" ZIndex="998">
             <StackPanel>
-                <Grid Height="24" HorizontalAlignment="Stretch">
-                    <Button Command="{Binding CloseBottomSheetCommand}"></Button>
-                </Grid>
-                <TransitioningContentControl Content="{Binding Content}">
+                <Border Height="24" BackgroundSizing="CenterBorder" BorderBrush="Gray" BorderThickness="0,0,0,1">
+                    <Button Command="{Binding CloseBottomSheetCommand}" FontSize="8" HorizontalAlignment="Center">X</Button>
+                </Border>
+                <TransitioningContentControl Content="{Binding Content}" Padding="8">
                     <TransitioningContentControl.PageTransition>
-                        <trans:TestTransition Duration="0:0:0.3" />
+                        <animation:RouteTransition Duration="0:0:0.3" />
                     </TransitioningContentControl.PageTransition>
                 </TransitioningContentControl>
             </StackPanel>
@@ -91,7 +91,7 @@
     </Grid>
     <Window.Styles>
         <!-- 遮罩层效果相关 -->
-        <Style Selector="Border.Overlay">
+        <Style Selector="Border#Overlay">
             <Setter Property="Opacity" Value="0" />
             <Setter Property="IsHitTestVisible" Value="False" />
             <Setter Property="Transitions">
@@ -100,7 +100,7 @@
                 </Transitions>
             </Setter>
         </Style>
-        <Style Selector="Border.Overlay.Shown">
+        <Style Selector="Border#Overlay.Shown">
             <Setter Property="Opacity" Value="1" />
             <Setter Property="IsHitTestVisible" Value="True" />
         </Style>
@@ -115,6 +115,23 @@
                     <EffectTransition Property="Effect" Duration="0:0:0.2" />
                 </Transitions>
             </Setter>
+        </Style>
+        <!-- About Dialog -->
+        <Style Selector="Border.AboutDialog">
+            <Setter Property="Opacity" Value="0" />
+            <Setter Property="RenderTransform" Value="scale(1.01,1.01)" />
+            <Setter Property="IsHitTestVisible" Value="False" />
+            <Setter Property="Transitions">
+                <Transitions>
+                    <DoubleTransition Property="Opacity" Duration="0:0:0.15" />
+                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.15" />
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Border.AboutDialog.Active">
+            <Setter Property="Opacity" Value="1" />
+            <Setter Property="IsHitTestVisible" Value="True" />
+            <Setter Property="RenderTransform" Value="scale(1,1)" />
         </Style>
         <!-- BottomSheet -->
         <Style Selector="Border.BottomSheet">

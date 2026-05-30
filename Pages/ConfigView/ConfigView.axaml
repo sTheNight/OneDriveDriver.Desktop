@@ -10,7 +10,7 @@
     <Grid>
         <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <Border IsVisible="{Binding !IsLoggedIn}" BorderBrush="{StaticResource DividerColor}" BorderThickness="1"
-                    CornerRadius="12" Padding="16" Margin="0,8,0,0">
+                    CornerRadius="12" Padding="16">
                 <StackPanel>
                     <TextBlock FontWeight="SemiBold">Login</TextBlock>
                     <TextBlock Margin="0,16,0,0">Username</TextBlock>
