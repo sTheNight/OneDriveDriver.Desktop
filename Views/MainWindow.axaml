@@ -13,44 +13,65 @@
         xmlns:trans="using:OneDriveDriver.Desktop.Transition"
         Title="OneDriveDriver.Desktop">
     <Grid>
+        <!-- 遮罩层 -->
         <Border
             HorizontalAlignment="Stretch"
-            Classes="AboutDialog"
-            Classes.Shown="{Binding IsAboutDialogShow}"
+            Classes="Overlay"
+            Classes.Shown="{Binding IsOverlayShow}"
             VerticalAlignment="Stretch"
             Background="#3f000000"
-            ZIndex="999">
-            <Border
-                HorizontalAlignment="Stretch"
-                Margin="16,0"
-                CornerRadius="12"
-                VerticalAlignment="Center"
-                Background="White"
-                BorderThickness="1"
-                BoxShadow="0 5 8 8 #0A000000"
-                Padding="16">
-                <StackPanel>
-                    <Panel HorizontalAlignment="Stretch">
-                        <TextBlock FontSize="18" FontWeight="DemiBold" HorizontalAlignment="Left">About</TextBlock>
-                        <control:GhostIconButton Width="32" HorizontalAlignment="Right" Height="32" Focusable="False"
-                                            Icon="avares://OneDriveDriver.Desktop/Assets/Icons/x.svg"
-                                            Command="{Binding CloseAboutDialogCommand}" />
-                    </Panel>
-                    <TextBlock Margin="0,12,0,0">Lorem</TextBlock>
-                </StackPanel>
-            </Border>
+            ZIndex="900">
         </Border>
-        <DockPanel Margin="8" Classes="MainWindowsMain" Classes.IsModalShow="{Binding IsAboutDialogShow}">
+        <!-- 关于对话框 -->
+        <Border
+            HorizontalAlignment="Stretch"
+            Margin="16,0"
+            CornerRadius="12"
+            VerticalAlignment="Center"
+            Background="White"
+            BorderThickness="1"
+            BoxShadow="0 5 8 8 #0A000000"
+            Classes="AboutDialog"
+            Classes.Active="{Binding IsAboutDialogShow}"
+            ZIndex="999"
+            IsVisible="{Binding IsAboutDialogShow}"
+            Padding="16">
+            <StackPanel>
+                <Panel HorizontalAlignment="Stretch">
+                    <TextBlock FontSize="18" FontWeight="DemiBold" HorizontalAlignment="Left">About</TextBlock>
+                    <control:GhostIconButton Width="32" HorizontalAlignment="Right" Height="32" Focusable="False"
+                                             Icon="avares://OneDriveDriver.Desktop/Assets/Icons/x.svg"
+                                             Command="{Binding CloseAboutDialogCommand}" />
+                </Panel>
+                <TextBlock Margin="0,12,0,0">Lorem</TextBlock>
+            </StackPanel>
+        </Border>
+        <!-- BottomSheet -->
+        <Border Classes="BottomSheet"
+                Classes.Active="{Binding IsBottomSheetShow}" CornerRadius="24,24,0,0" VerticalAlignment="Bottom"
+                HorizontalAlignment="Stretch" Background="White" Height="500"
+                BoxShadow="0 5 8 8 #0A000000" ZIndex="998">
+            <StackPanel>
+                <Grid Height="24" HorizontalAlignment="Stretch">
+                    <Button Command="{Binding CloseBottomSheetCommand}"></Button>
+                </Grid>
+                <TransitioningContentControl Content="{Binding Content}">
+                    <TransitioningContentControl.PageTransition>
+                        <trans:TestTransition Duration="0:0:0.3" />
+                    </TransitioningContentControl.PageTransition>
+                </TransitioningContentControl>
+            </StackPanel>
+        </Border>
+
+        <DockPanel Margin="8" Classes="MainWindowsMain" Classes.IsModalShow="{Binding IsOverlayShow}">
             <Panel DockPanel.Dock="Top">
                 <Grid ColumnDefinitions="*,Auto">
-                    <WrapPanel>
-                        <control:GhostIconButton Width="32" Height="32" VerticalAlignment="Center" CornerRadius="1000"
-                                            Margin="0,0,4,0" Command="{Binding NavigateToMainCommand}"
-                                            Icon="avares://OneDriveDriver.Desktop/Assets/Icons/house.svg" />
-                        <TextBlock VerticalAlignment="Center" Classes="Title-Text">OneDrive Driver</TextBlock>
-                    </WrapPanel>
+                    <TextBlock Margin="0,12" FontWeight="Bold" VerticalAlignment="Center" FontSize="18"
+                               LetterSpacing="0.5">
+                        OneDrive Driver
+                    </TextBlock>
                     <control:GhostIconButton Width="32" Height="32" CornerRadius="1000" Grid.Column="1"
-                                        Icon="avares://OneDriveDriver.Desktop/Assets/Icons/ellipsis-vertical.svg">
+                                             Icon="avares://OneDriveDriver.Desktop/Assets/Icons/ellipsis-vertical.svg">
                         <control:GhostIconButton.Flyout>
                             <MenuFlyout>
                                 <MenuItem Header="Config" Command="{Binding NavigateToConfigCommand}" />
@@ -61,23 +82,16 @@
                         </control:GhostIconButton.Flyout>
                     </control:GhostIconButton>
                 </Grid>
-                <Border VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="1" Background="{StaticResource DividerColor}"></Border>
+                <Border VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="1"
+                        Background="{StaticResource DividerColor}">
+                </Border>
             </Panel>
-            <TransitioningContentControl Content="{Binding Content}">
-                <TransitioningContentControl.PageTransition>
-                    <trans:TestTransition Duration="0:0:0.3" />
-                </TransitioningContentControl.PageTransition>
-            </TransitioningContentControl>
+            <ContentControl Content="{Binding MainContent}" />
         </DockPanel>
     </Grid>
     <Window.Styles>
-        <Style Selector="TextBlock.Title-Text">
-            <Setter Property="Margin" Value="0,12" />
-            <Setter Property="FontWeight" Value="Bold" />
-            <Setter Property="FontSize" Value="18" />
-            <Setter Property="LetterSpacing" Value="0.5"></Setter>
-        </Style>
-        <Style Selector="Border.AboutDialog">
+        <!-- 遮罩层效果相关 -->
+        <Style Selector="Border.Overlay">
             <Setter Property="Opacity" Value="0" />
             <Setter Property="IsHitTestVisible" Value="False" />
             <Setter Property="Transitions">
@@ -86,7 +100,7 @@
                 </Transitions>
             </Setter>
         </Style>
-        <Style Selector="Border.AboutDialog.Shown">
+        <Style Selector="Border.Overlay.Shown">
             <Setter Property="Opacity" Value="1" />
             <Setter Property="IsHitTestVisible" Value="True" />
         </Style>
@@ -101,6 +115,24 @@
                     <EffectTransition Property="Effect" Duration="0:0:0.2" />
                 </Transitions>
             </Setter>
+        </Style>
+        <!-- BottomSheet -->
+        <Style Selector="Border.BottomSheet">
+            <Setter Property="RenderTransform" Value="translateY(500px)" />
+            <Setter Property="IsHitTestVisible" Value="False" />
+            <Setter Property="Transitions">
+                <Transitions>
+                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.15">
+                        <TransformOperationsTransition.Easing>
+                            <CircularEaseOut />
+                        </TransformOperationsTransition.Easing>
+                    </TransformOperationsTransition>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Border.BottomSheet.Active">
+            <Setter Property="RenderTransform" Value="translateY(0px)" />
+            <Setter Property="IsHitTestVisible" Value="True" />
         </Style>
     </Window.Styles>
 </Window>

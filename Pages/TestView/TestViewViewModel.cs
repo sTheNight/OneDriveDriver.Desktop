@@ -16,7 +16,7 @@ public partial class TestViewViewModel : ViewModelBase {
 
     [RelayCommand]
     public void PushToMainView() {
-        WeakReferenceMessenger.Default.Send(new RouteMessage(RouteKey.MainView));
+        WeakReferenceMessenger.Default.Send(new RouteMessage(RouteKey.ConfigView));
     }
 
     [RelayCommand]
