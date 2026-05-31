@@ -65,6 +65,7 @@ public partial class FileListStore : BaseStore {
             IsLoaded = true;
         } catch (Exception ex) {
             ErrorMessage = ex.Message;
+            FileList.Clear();
             Console.WriteLine(ex);
         } finally {
             IsLoading = false;

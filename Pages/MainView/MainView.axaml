@@ -19,7 +19,8 @@
     </UserControl.Resources>
     <Grid>
         <DockPanel>
-            <Border DockPanel.Dock="Top" Padding="8" Margin="0,8,0,0" BorderBrush="{StaticResource DividerColor}" BorderThickness="1"
+            <Border DockPanel.Dock="Top" Padding="8" Margin="0,8,0,0" BorderBrush="{StaticResource DividerColor}"
+                    BorderThickness="1"
                     CornerRadius="8">
                 <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
                     <ScrollViewer HorizontalAlignment="Stretch"
@@ -63,14 +64,23 @@
             </Border>
             <ScrollViewer VerticalScrollBarVisibility="Hidden">
                 <Panel Classes="FileListPanel" Classes.loading="{Binding IsLoading}">
-                    <ItemsControl ItemsSource="{Binding FileList}">
+                    <Border Padding="16" Margin="0,8,0,0" CornerRadius="8" BorderBrush="{StaticResource DividerColor}"
+                            BorderThickness="1"
+                            IsVisible="{Binding ErrorMessage,Converter={StaticResource NotNullConverter}}">
+                        <TextBlock Foreground="Red" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                   Text="{Binding ErrorMessage}" />
+                    </Border>
+                    <ItemsControl ItemsSource="{Binding FileList}"
+                                  IsVisible="{Binding ErrorMessage,Converter={StaticResource NullConverter}}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate x:DataType="model:FileItem">
-                                <Border Classes="FileListBorder" BorderBrush="{StaticResource DividerColor}" BorderThickness="1"
+                                <Border Classes="FileListBorder" BorderBrush="{StaticResource DividerColor}"
+                                        BorderThickness="1"
                                         CornerRadius="8" Margin="0,8,0,0" Padding="8"
                                         PointerReleased="OnFileItemPointerReleased">
                                     <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
-                                        <Border Width="32" Height="32" BorderBrush="{StaticResource DividerColor}" BorderThickness="1"
+                                        <Border Width="32" Height="32" BorderBrush="{StaticResource DividerColor}"
+                                                BorderThickness="1"
                                                 VerticalAlignment="Center" CornerRadius="8">
                                             <Image Width="16" Height="16" VerticalAlignment="Center"
                                                    HorizontalAlignment="Center">

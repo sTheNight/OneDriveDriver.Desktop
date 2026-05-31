@@ -38,9 +38,35 @@
             </Border>
             <Border IsVisible="{Binding IsLoggedIn}" BorderBrush="{StaticResource DividerColor}" BorderThickness="1"
                     CornerRadius="12" Padding="16" Margin="0,8,0,0">
-                <TextBlock>123</TextBlock>
+                <StackPanel>
+                    <TextBlock FontWeight="SemiBold">OneDrive Config</TextBlock>
+                    <TextBlock Margin="0,16,0,0">ONEDRIVE_ROOT_PATH</TextBlock>
+                    <TextBox Text="{Binding OnedriveRootPath}" Margin="0,4,0,0" />
+                    <TextBlock Margin="0,8,0,0">ONEDRIVE_CLIENT_ID</TextBlock>
+                    <TextBox Text="{Binding OneDriveClientId}" Margin="0,4,0,0" />
+                    <TextBlock Margin="0,8,0,0">ONEDRIVE_CLIENT_SECRET</TextBlock>
+                    <TextBox Text="{Binding OneDriveClientSecret}" Margin="0,4,0,0" />
+                    <TextBlock Margin="0,8,0,0">ONEDRIVE_REFRESH_TOKEN</TextBlock>
+                    <TextBox Text="{Binding OneDriveRefreshToken}" Margin="0,4,0,0" />
+                    <Button Command="{Binding UpdateOneDriveConfigCommand}" Classes="PrimaryButton" HorizontalAlignment="Right"
+                            Margin="0,8,0,0"
+                            VerticalContentAlignment="Center">
+                        <Grid ColumnDefinitions="Auto,Auto" VerticalAlignment="Center">
+                            <Image Grid.Column="0" Width="12" Height="12" VerticalAlignment="Center">
+                                <Image.Source>
+                                    <SvgImage Source="avares://OneDriveDriver.Desktop/Assets/Icons/save.svg"
+                                              CurrentColor="White">
+                                    </SvgImage>
+                                </Image.Source>
+                            </Image>
+                            <TextBlock Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center"
+                                       Margin="4,0,0,0">
+                                Save
+                            </TextBlock>
+                        </Grid>
+                    </Button>
+                </StackPanel>
             </Border>
-            <TextBlock Text="{Binding IsLoggedIn}" />
         </StackPanel>
     </Grid>
 </UserControl>

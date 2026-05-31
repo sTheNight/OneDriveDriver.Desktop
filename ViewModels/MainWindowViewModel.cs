@@ -50,7 +50,6 @@ public partial class MainWindowViewModel : ViewModelBase {
         if (Content == target) return;
         Content = target;
     }
-
     public void CloseAllModal() {
         if (IsAboutDialogShow) IsAboutDialogShow = false;
         if (Content != null) Content = null;

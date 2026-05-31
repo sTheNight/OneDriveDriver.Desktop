@@ -7,24 +7,34 @@
              xmlns:testView="clr-namespace:OneDriveDriver.Desktop.Pages.TestView"
              x:DataType="testView:TestViewViewModel"
              x:Class="OneDriveDriver.Desktop.Pages.TestView.TestView">
-    <StackPanel>
-        <TextBlock>I'm ConfigView</TextBlock>
-        <Button Command="{Binding PushToMainViewCommand}" Content="Push to Config"/>
-        <Button Command="{Binding FileSaveTestCommand}">123</Button>
-        <Button Classes="LinearButton">123</Button>
-        <Image Source="avares://OneDriveDriver.Desktop/Assets/th.jpg" HorizontalAlignment="Stretch"></Image>
-        <Rectangle Fill="Gray" HorizontalAlignment="Stretch" Height="1" Margin="0,8" />
-        <Border Background="Black">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Image Width="12" Height="12">
-                    <Image.Source>
-                        <SvgImage CurrentColor="White" Source="avares://OneDriveDriver.Desktop/Assets/Icons/x.svg"></SvgImage>
-                    </Image.Source>
-                </Image>
-                <AccessText FontSize="12" VerticalAlignment="Center" Foreground="White">123</AccessText>
-            </StackPanel>
-        </Border>
-    </StackPanel>
+    <ScrollViewer
+        VerticalScrollBarVisibility="Hidden"
+        HorizontalScrollBarVisibility="Disabled">
+        <StackPanel>
+            <TextBlock>I'm ConfigView</TextBlock>
+            <Button Command="{Binding PushToMainViewCommand}" Content="Push to Config" />
+            <Button Command="{Binding FileSaveTestCommand}">123</Button>
+            <Button Classes="LinearButton">123</Button>
+
+            <Image Source="avares://OneDriveDriver.Desktop/Assets/th.jpg" HorizontalAlignment="Stretch" />
+            <Image Source="avares://OneDriveDriver.Desktop/Assets/th.jpg" HorizontalAlignment="Stretch" />
+            <Image Source="avares://OneDriveDriver.Desktop/Assets/th.jpg" HorizontalAlignment="Stretch" />
+            <Image Source="avares://OneDriveDriver.Desktop/Assets/th.jpg" HorizontalAlignment="Stretch" />
+            <Image Source="avares://OneDriveDriver.Desktop/Assets/th.jpg" HorizontalAlignment="Stretch" />
+            <Image Source="avares://OneDriveDriver.Desktop/Assets/th.jpg" HorizontalAlignment="Stretch" />
+            <Rectangle Fill="Gray" HorizontalAlignment="Stretch" Height="1" Margin="0,8" />
+            <Border Background="Black">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Image Width="12" Height="12">
+                        <Image.Source>
+                            <SvgImage CurrentColor="White" Source="avares://OneDriveDriver.Desktop/Assets/Icons/x.svg"></SvgImage>
+                        </Image.Source>
+                    </Image>
+                    <AccessText FontSize="12" VerticalAlignment="Center" Foreground="White">123</AccessText>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
     <UserControl.Styles>
         <Style Selector="Button.LinearButton">
             <Setter Property="Foreground">

@@ -51,16 +51,17 @@
                 Classes.Active="{Binding IsBottomSheetShow}" CornerRadius="24,24,0,0" VerticalAlignment="Bottom"
                 HorizontalAlignment="Stretch" Background="White" Height="500"
                 BoxShadow="0 5 8 8 #0A000000" ZIndex="998">
-            <StackPanel>
-                <Border Height="24" BackgroundSizing="CenterBorder" BorderBrush="Gray" BorderThickness="0,0,0,1">
-                    <Button Command="{Binding CloseBottomSheetCommand}" FontSize="8" HorizontalAlignment="Center">X</Button>
+            <Grid RowDefinitions="Auto,*">
+                <Border Height="24" BackgroundSizing="CenterBorder">
+                    <Border Background="LightGray" Height="4" CornerRadius="1000" Width="50"
+                            HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </Border>
-                <TransitioningContentControl Content="{Binding Content}" Padding="8">
+                <TransitioningContentControl Grid.Row="1" Content="{Binding Content}" Padding="8">
                     <TransitioningContentControl.PageTransition>
                         <animation:RouteTransition Duration="0:0:0.3" />
                     </TransitioningContentControl.PageTransition>
                 </TransitioningContentControl>
-            </StackPanel>
+            </Grid>
         </Border>
 
         <DockPanel Margin="8" Classes="MainWindowsMain" Classes.IsModalShow="{Binding IsOverlayShow}">
@@ -139,7 +140,7 @@
             <Setter Property="IsHitTestVisible" Value="False" />
             <Setter Property="Transitions">
                 <Transitions>
-                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.15">
+                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.3">
                         <TransformOperationsTransition.Easing>
                             <CircularEaseOut />
                         </TransformOperationsTransition.Easing>
