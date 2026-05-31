@@ -13,6 +13,9 @@
         xmlns:animation="clr-namespace:OneDriveDriver.Desktop.Animation"
         Title="OneDriveDriver.Desktop">
     <Grid>
+        <WindowNotificationManager x:Name="NotificationManager"
+                                   Position="TopRight"
+                                   MaxItems="2" ZIndex="1000" />
         <!-- 遮罩层 -->
         <Border
             Name="Overlay"

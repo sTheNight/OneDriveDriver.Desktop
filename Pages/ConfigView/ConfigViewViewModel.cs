@@ -1,6 +1,8 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using Avalonia.Controls.Notifications;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Newtonsoft.Json;
+using OneDriveDriver.Desktop.Services;
 using OneDriveDriver.Desktop.Utils;
 using OneDriveDriver.Desktop.ViewModels;
 using System;
@@ -16,19 +18,25 @@ public partial class ConfigViewViewModel : ViewModelBase {
         BaseAddress = new Uri(Global.ENDPOINT)
     };
 
-    [ObservableProperty] private string _username;
-    [ObservableProperty] private string _password;
+    private readonly NotificationService _notificationService;
+
+    [ObservableProperty] private string _username = null!;
+    [ObservableProperty] private string _password = null!;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsLoggedIn))]
     private string? _accessToken;
 
-    [ObservableProperty] private string _onedriveRootPath;
-    [ObservableProperty] private string _oneDriveClientId;
-    [ObservableProperty] private string _oneDriveClientSecret;
-    [ObservableProperty] private string _oneDriveRefreshToken;
+    [ObservableProperty] private string _onedriveRootPath = null!;
+    [ObservableProperty] private string _oneDriveClientId = null!;
+    [ObservableProperty] private string _oneDriveClientSecret = null!;
+    [ObservableProperty] private string _oneDriveRefreshToken = null!;
 
     public bool IsLoggedIn => !string.IsNullOrWhiteSpace(AccessToken);
+
+    public ConfigViewViewModel(NotificationService notificationService) {
+        _notificationService = notificationService;
+    }
 
     [RelayCommand]
     public async Task LoginAsync() {
@@ -49,7 +57,8 @@ public partial class ConfigViewViewModel : ViewModelBase {
                 AccessToken = loginResponse.AccessToken;
             }
         } catch (HttpRequestException e) {
-            Console.WriteLine(e.Message);
+            _notificationService.ShowNotification(new Notification("Error", e.Message, NotificationType.Error));
+            Console.Error.WriteLine(e.Message);
         } catch (Exception e) {
             Console.Error.WriteLine(e);
         }
@@ -75,8 +84,11 @@ public partial class ConfigViewViewModel : ViewModelBase {
                 OneDriveClientSecret = configResponse.OneDriveClientSecret;
                 OneDriveRefreshToken = configResponse.OneDriveRefreshToken;
             }
+        } catch (HttpRequestException e) {
+            _notificationService.ShowNotification(new Notification("Error", e.Message, NotificationType.Error));
+            Console.Error.WriteLine(e.Message);
         } catch (Exception e) {
-            Console.WriteLine(e);
+            Console.Error.WriteLine(e);
         }
     }
 
@@ -98,11 +110,12 @@ public partial class ConfigViewViewModel : ViewModelBase {
                 new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
             var response = await _httpClient.SendAsync(httpMessage);
             response.EnsureSuccessStatusCode();
-            Console.WriteLine("success");            
+            Console.WriteLine("success");
         } catch (HttpRequestException e) {
-            Console.WriteLine(e.Message);
+            Console.Error.WriteLine(e.Message);
+            _notificationService.ShowNotification(new Notification("Error", e.Message, NotificationType.Error));
         } catch (Exception e) {
-            Console.WriteLine(e);
+            Console.Error.WriteLine(e);
         }
     }
 }

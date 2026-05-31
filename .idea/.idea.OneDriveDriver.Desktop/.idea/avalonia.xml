@@ -12,6 +12,7 @@
         <entry key="Pages/ConfigView.axaml" value="OneDriveDriver.Desktop.csproj" />
         <entry key="Pages/ConfigView/ConfigView.axaml" value="OneDriveDriver.Desktop.csproj" />
         <entry key="Pages/MainView.axaml" value="OneDriveDriver.Desktop.csproj" />
+        <entry key="Pages/MainView/MainView.axaml" value="OneDriveDriver.Desktop.csproj" />
         <entry key="Pages/TestView.axaml" value="OneDriveDriver.Desktop.csproj" />
         <entry key="Pages/TestView/TestView.axaml" value="OneDriveDriver.Desktop.csproj" />
         <entry key="Views/MainWindow.axaml" value="OneDriveDriver.Desktop.csproj" />
