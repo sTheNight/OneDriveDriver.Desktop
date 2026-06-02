@@ -83,7 +83,7 @@
             <DockPanel>
                 <Border DockPanel.Dock="Top" BorderBrush="{StaticResource DividerColor}" BorderThickness="0,0,0,1">
                     <Grid ColumnDefinitions="*,Auto" Margin="16,16">
-                        <TextBlock VerticalAlignment="Center" FontSize="18" FontWeight="Bold" TextAlignment="Center">Task</TextBlock>
+                        <TextBlock VerticalAlignment="Center" FontSize="18" FontWeight="Bold">Task</TextBlock>
                         <WrapPanel Grid.Column="1">
                             <control:GhostIconButton VerticalAlignment="Center" CornerRadius="1000"
                                                      Icon="avares://OneDriveDriver.Desktop/Assets/Icons/x.svg"
