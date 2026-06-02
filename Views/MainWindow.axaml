@@ -7,8 +7,13 @@
         x:Class="OneDriveDriver.Desktop.Views.MainWindow"
         Width="500"
         Height="800"
+        MinWidth="400"
+        MinHeight="600"
+        MaxWidth="500"
+        MaxHeight="800"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
+        FontFamily="{StaticResource Vollkorn}"
         xmlns:control="using:OneDriveDriver.Desktop.Controls"
         xmlns:animation="clr-namespace:OneDriveDriver.Desktop.Animation"
         Title="OneDriveDriver.Desktop">
@@ -78,10 +83,10 @@
                                              Icon="avares://OneDriveDriver.Desktop/Assets/Icons/ellipsis-vertical.svg">
                         <control:GhostIconButton.Flyout>
                             <MenuFlyout>
-                                <MenuItem Header="Config" Command="{Binding NavigateToConfigCommand}" />
-                                <MenuItem Header="Test" Command="{Binding NavigateToTestCommand}" />
-                                <MenuItem Header="Github" Command="{Binding OpenGithubCommand}" />
-                                <MenuItem Header="About" Command="{Binding ShowAboutDialogCommand}" />
+                                <MenuItem FontFamily="{StaticResource Vollkorn}" Header="Config" Command="{Binding NavigateToConfigCommand}" />
+                                <MenuItem FontFamily="{StaticResource Vollkorn}" Header="Test" Command="{Binding NavigateToTestCommand}" />
+                                <MenuItem FontFamily="{StaticResource Vollkorn}" Header="Github" Command="{Binding OpenGithubCommand}" />
+                                <MenuItem FontFamily="{StaticResource Vollkorn}" Header="About" Command="{Binding ShowAboutDialogCommand}" />
                             </MenuFlyout>
                         </control:GhostIconButton.Flyout>
                     </control:GhostIconButton>
