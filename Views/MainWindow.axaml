@@ -71,6 +71,34 @@
                 </TransitioningContentControl>
             </Grid>
         </Border>
+        <!-- TaskPanel -->
+        <Border Name="TaskPanel"
+                IsVisible="False"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Stretch"
+                BoxShadow="0 0 8 8 #0A000000"
+                Width="400"
+                Background="White"
+                ZIndex="999">
+            <DockPanel>
+                <Border DockPanel.Dock="Top" BorderBrush="{StaticResource DividerColor}" BorderThickness="0,0,0,1">
+                    <Grid ColumnDefinitions="*,Auto" Margin="16,16">
+                        <TextBlock VerticalAlignment="Center" FontSize="18" FontWeight="Bold" TextAlignment="Center">Task</TextBlock>
+                        <WrapPanel Grid.Column="1">
+                            <control:GhostIconButton VerticalAlignment="Center" CornerRadius="1000"
+                                                     Icon="avares://OneDriveDriver.Desktop/Assets/Icons/x.svg"
+                                                     Width="32"
+                                                     Height="32" />
+                        </WrapPanel>
+                    </Grid>
+                </Border>
+                <ScrollViewer>
+                    <StackPanel>
+                        <TextBlock>123</TextBlock>
+                    </StackPanel>
+                </ScrollViewer>
+            </DockPanel>
+        </Border>
 
         <DockPanel Margin="8" Classes="MainWindowsMain" Classes.IsModalShow="{Binding IsOverlayShow}">
             <Panel DockPanel.Dock="Top">
@@ -79,17 +107,26 @@
                                LetterSpacing="0.5">
                         OneDrive Driver
                     </TextBlock>
-                    <control:GhostIconButton Width="32" Height="32" CornerRadius="1000" Grid.Column="1"
-                                             Icon="avares://OneDriveDriver.Desktop/Assets/Icons/ellipsis-vertical.svg">
-                        <control:GhostIconButton.Flyout>
-                            <MenuFlyout>
-                                <MenuItem FontFamily="{StaticResource Vollkorn}" Header="Config" Command="{Binding NavigateToConfigCommand}" />
-                                <MenuItem FontFamily="{StaticResource Vollkorn}" Header="Test" Command="{Binding NavigateToTestCommand}" />
-                                <MenuItem FontFamily="{StaticResource Vollkorn}" Header="Github" Command="{Binding OpenGithubCommand}" />
-                                <MenuItem FontFamily="{StaticResource Vollkorn}" Header="About" Command="{Binding ShowAboutDialogCommand}" />
-                            </MenuFlyout>
-                        </control:GhostIconButton.Flyout>
-                    </control:GhostIconButton>
+                    <Grid Grid.Column="1" ColumnDefinitions="Auto,Auto" ColumnSpacing="4">
+                        <control:GhostIconButton Width="32" Height="32" CornerRadius="1000"
+                                                 Icon="avares://OneDriveDriver.Desktop/Assets/Icons/clipboard-list.svg"
+                                                 Command="{Binding ToggleTaskPanelCommand}" />
+                        <control:GhostIconButton Width="32" Height="32" CornerRadius="1000" Grid.Column="1"
+                                                 Icon="avares://OneDriveDriver.Desktop/Assets/Icons/ellipsis-vertical.svg">
+                            <control:GhostIconButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuItem FontFamily="{StaticResource Vollkorn}" Header="Config"
+                                              Command="{Binding NavigateToConfigCommand}" />
+                                    <MenuItem FontFamily="{StaticResource Vollkorn}" Header="Test"
+                                              Command="{Binding NavigateToTestCommand}" />
+                                    <MenuItem FontFamily="{StaticResource Vollkorn}" Header="Github"
+                                              Command="{Binding OpenGithubCommand}" />
+                                    <MenuItem FontFamily="{StaticResource Vollkorn}" Header="About"
+                                              Command="{Binding ShowAboutDialogCommand}" />
+                                </MenuFlyout>
+                            </control:GhostIconButton.Flyout>
+                        </control:GhostIconButton>
+                    </Grid>
                 </Grid>
                 <Border VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="1"
                         Background="{StaticResource DividerColor}">

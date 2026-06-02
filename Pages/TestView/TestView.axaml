@@ -16,6 +16,19 @@
             <Button Command="{Binding FileSaveTestCommand}">123</Button>
             <Button Classes="LinearButton">123</Button>
 
+            <Border Padding="16">
+                <StackPanel>
+                    <Button Name="PopupTrgger" Command="{Binding TogglePopupCommand}">123</Button>
+                    <Popup PlacementTarget="PopupTrgger" IsOpen="{Binding IsPopupShow}" >
+                        <Border BackgroundSizing="CenterBorder" CornerRadius="8" Background="White" Padding="8" BorderBrush="{StaticResource DividerColor}" BorderThickness="1">
+                            <StackPanel>
+                                <TextBlock>123</TextBlock>
+                            </StackPanel>
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Border>
+
             <Image Source="avares://OneDriveDriver.Desktop/Assets/th.jpg" HorizontalAlignment="Stretch" />
             <Image Source="avares://OneDriveDriver.Desktop/Assets/th.jpg" HorizontalAlignment="Stretch" />
             <Image Source="avares://OneDriveDriver.Desktop/Assets/th.jpg" HorizontalAlignment="Stretch" />

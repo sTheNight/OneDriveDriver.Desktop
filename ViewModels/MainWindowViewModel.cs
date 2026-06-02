@@ -24,8 +24,12 @@ public partial class MainWindowViewModel : ViewModelBase {
     [NotifyPropertyChangedFor(nameof(IsOverlayShow))]
     private bool _isAboutDialogShow;
 
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsOverlayShow))]
+    private bool _isTaskPanelShow;
+
     public bool IsBottomSheetShow => Content != null;
-    public bool IsOverlayShow => IsAboutDialogShow || IsBottomSheetShow;
+    public bool IsOverlayShow => IsAboutDialogShow || IsBottomSheetShow || IsTaskPanelShow;
 
     public MainWindowViewModel(
         MainViewViewModel mainView,
@@ -50,9 +54,11 @@ public partial class MainWindowViewModel : ViewModelBase {
         if (Content == target) return;
         Content = target;
     }
+
     public void CloseAllModal() {
         if (IsAboutDialogShow) IsAboutDialogShow = false;
         if (Content != null) Content = null;
+        if (IsTaskPanelShow) IsTaskPanelShow = false;
     }
 
     [RelayCommand]
@@ -83,5 +89,10 @@ public partial class MainWindowViewModel : ViewModelBase {
     [RelayCommand]
     public void CloseAboutDialog() {
         IsAboutDialogShow = false;
+    }
+
+    [RelayCommand]
+    public void ToggleTaskPanel() {
+        IsTaskPanelShow = !IsTaskPanelShow;
     }
 }

@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using OneDriveDriver.Desktop.Models;
 using OneDriveDriver.Desktop.Services;
@@ -9,6 +10,7 @@ namespace OneDriveDriver.Desktop.Pages.TestView;
 
 public partial class TestViewViewModel : ViewModelBase {
     private readonly FileSaveService _fileSaveService;
+    [ObservableProperty] private bool _isPopupShow = false;
 
     public TestViewViewModel(FileSaveService fileSaveService) {
         _fileSaveService = fileSaveService;
@@ -23,5 +25,9 @@ public partial class TestViewViewModel : ViewModelBase {
     public async void FileSaveTest() {
         var bytes = new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         await _fileSaveService.SaveStreamAsFileAsync(new MemoryStream(bytes),"aaa");
+    }
+    [RelayCommand]
+    public void TogglePopup() {
+        IsPopupShow = !IsPopupShow;
     }
 }
