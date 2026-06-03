@@ -37,7 +37,7 @@
             Margin="16,0"
             CornerRadius="12"
             VerticalAlignment="Center"
-            Background="White"
+            Background="{StaticResource BackgroundColor}"
             BorderThickness="1"
             BoxShadow="0 5 8 8 #0A000000"
             Classes="AboutDialog"
@@ -57,11 +57,11 @@
         <!-- BottomSheet -->
         <Border Classes="BottomSheet"
                 Classes.Active="{Binding IsBottomSheetShow}" CornerRadius="24,24,0,0" VerticalAlignment="Bottom"
-                HorizontalAlignment="Stretch" Background="White" Height="500"
+                HorizontalAlignment="Stretch" Background="{StaticResource BackgroundColor}" Height="500"
                 BoxShadow="0 5 8 8 #0A000000" ZIndex="998">
             <Grid RowDefinitions="Auto,*">
                 <Border Height="24" BackgroundSizing="CenterBorder">
-                    <Border Background="LightGray" Height="4" CornerRadius="1000" Width="50"
+                    <Border Background="{StaticResource DividerColor}" Height="4" CornerRadius="1000" Width="50"
                             HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </Border>
                 <TransitioningContentControl Grid.Row="1" Content="{Binding Content}" Padding="8">
@@ -78,12 +78,12 @@
                 VerticalAlignment="Stretch"
                 BoxShadow="0 0 8 8 #0A000000"
                 Width="400"
-                Background="White"
+                Background="{StaticResource BackgroundColor}"
                 ZIndex="999">
             <DockPanel>
                 <Border DockPanel.Dock="Top" BorderBrush="{StaticResource DividerColor}" BorderThickness="0,0,0,1">
-                    <Grid ColumnDefinitions="*,Auto" Margin="16,16">
-                        <TextBlock VerticalAlignment="Center" FontSize="18" FontWeight="Bold">Task</TextBlock>
+                    <Grid ColumnDefinitions="*,Auto" Margin="16">
+                        <TextBlock Classes="Title">Task</TextBlock>
                         <WrapPanel Grid.Column="1">
                             <control:GhostIconButton VerticalAlignment="Center" CornerRadius="1000"
                                                      Icon="avares://OneDriveDriver.Desktop/Assets/Icons/x.svg"
@@ -100,11 +100,10 @@
             </DockPanel>
         </Border>
 
-        <DockPanel Margin="8" Classes="MainWindowsMain" Classes.IsModalShow="{Binding IsOverlayShow}">
-            <Panel DockPanel.Dock="Top">
-                <Grid ColumnDefinitions="*,Auto">
-                    <TextBlock Margin="0,12" FontWeight="Bold" VerticalAlignment="Center" FontSize="18"
-                               LetterSpacing="0.5">
+        <DockPanel Classes="MainWindowsMain" Classes.IsModalShow="{Binding IsOverlayShow}">
+            <Border DockPanel.Dock="Top" BorderBrush="{StaticResource DividerColor}" BorderThickness="0,0,0,1">
+                <Grid ColumnDefinitions="*,Auto" Margin="16">
+                    <TextBlock Classes="Title">
                         OneDrive Driver
                     </TextBlock>
                     <Grid Grid.Column="1" ColumnDefinitions="Auto,Auto" ColumnSpacing="4">
@@ -128,14 +127,19 @@
                         </control:GhostIconButton>
                     </Grid>
                 </Grid>
-                <Border VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="1"
-                        Background="{StaticResource DividerColor}">
-                </Border>
-            </Panel>
-            <ContentControl Content="{Binding MainContent}" />
+            </Border>
+            <ContentControl Content="{Binding MainContent}" Padding="8,0" />
         </DockPanel>
     </Grid>
     <Window.Styles>
+        <!-- Title -->
+        <Style Selector="TextBlock.Title">
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="LetterSpacing" Value="0.5" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+        </Style>
         <!-- 遮罩层效果相关 -->
         <Style Selector="Border#Overlay">
             <Setter Property="Opacity" Value="0" />
@@ -169,8 +173,8 @@
             <Setter Property="IsHitTestVisible" Value="False" />
             <Setter Property="Transitions">
                 <Transitions>
-                    <DoubleTransition Property="Opacity" Duration="0:0:0.15" />
-                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.15" />
+                    <DoubleTransition Property="Opacity" Duration="0:0:0.2" />
+                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" />
                 </Transitions>
             </Setter>
         </Style>

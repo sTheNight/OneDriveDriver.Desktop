@@ -4,5 +4,5 @@
     <SolidColorBrush Color="#0F000000" x:Key="GhostButtonHoverColor" />
     <SolidColorBrush Color="#2F000000" x:Key="GhostButtonPressedColor" />
     <SolidColorBrush Color="LightGray" x:Key="DividerColor" />
-    
+    <SolidColorBrush Color="White" x:Key="BackgroundColor" />
 </ResourceDictionary>
