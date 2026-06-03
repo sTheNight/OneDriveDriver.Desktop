@@ -14,6 +14,7 @@
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         FontFamily="{StaticResource Vollkorn}"
+        Background="{DynamicResource BackgroundColor}"
         xmlns:control="using:OneDriveDriver.Desktop.Controls"
         xmlns:animation="clr-namespace:OneDriveDriver.Desktop.Animation"
         Title="OneDriveDriver.Desktop">
@@ -28,7 +29,7 @@
             Classes.Shown="{Binding IsOverlayShow}"
             PointerPressed="Overlay_OnPointerPressed"
             VerticalAlignment="Stretch"
-            Background="#3f000000"
+            Background="{DynamicResource OverlayColor}"
             ZIndex="900">
         </Border>
         <!-- 关于对话框 -->
@@ -37,7 +38,7 @@
             Margin="16,0"
             CornerRadius="12"
             VerticalAlignment="Center"
-            Background="{StaticResource BackgroundColor}"
+            Background="{DynamicResource BackgroundColor}"
             BorderThickness="1"
             BoxShadow="0 5 8 8 #0A000000"
             Classes="AboutDialog"
@@ -57,11 +58,11 @@
         <!-- BottomSheet -->
         <Border Classes="BottomSheet"
                 Classes.Active="{Binding IsBottomSheetShow}" CornerRadius="24,24,0,0" VerticalAlignment="Bottom"
-                HorizontalAlignment="Stretch" Background="{StaticResource BackgroundColor}" Height="500"
+                HorizontalAlignment="Stretch" Background="{DynamicResource BackgroundColor}" Height="500"
                 BoxShadow="0 5 8 8 #0A000000" ZIndex="998">
             <Grid RowDefinitions="Auto,*">
                 <Border Height="24" BackgroundSizing="CenterBorder">
-                    <Border Background="{StaticResource DividerColor}" Height="4" CornerRadius="1000" Width="50"
+                    <Border Background="{DynamicResource DividerColor}" Height="4" CornerRadius="1000" Width="50"
                             HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </Border>
                 <TransitioningContentControl Grid.Row="1" Content="{Binding Content}" Padding="8">
@@ -78,10 +79,10 @@
                 VerticalAlignment="Stretch"
                 BoxShadow="0 0 8 8 #0A000000"
                 Width="400"
-                Background="{StaticResource BackgroundColor}"
+                Background="{DynamicResource BackgroundColor}"
                 ZIndex="999">
             <DockPanel>
-                <Border DockPanel.Dock="Top" BorderBrush="{StaticResource DividerColor}" BorderThickness="0,0,0,1">
+                <Border DockPanel.Dock="Top" Background="{DynamicResource HeaderBackgroundColor}" BorderBrush="{DynamicResource DividerColor}" BorderThickness="0,0,0,1">
                     <Grid ColumnDefinitions="*,Auto" Margin="16">
                         <TextBlock Classes="Title">Task</TextBlock>
                         <WrapPanel Grid.Column="1">
@@ -101,16 +102,19 @@
         </Border>
 
         <DockPanel Classes="MainWindowsMain" Classes.IsModalShow="{Binding IsOverlayShow}">
-            <Border DockPanel.Dock="Top" BorderBrush="{StaticResource DividerColor}" BorderThickness="0,0,0,1">
+            <!-- Header -->
+            <Border DockPanel.Dock="Top" Background="{DynamicResource HeaderBackgroundColor}" BorderBrush="{DynamicResource DividerColor}" BorderThickness="0,0,0,1">
                 <Grid ColumnDefinitions="*,Auto" Margin="16">
                     <TextBlock Classes="Title">
                         OneDrive Driver
                     </TextBlock>
-                    <Grid Grid.Column="1" ColumnDefinitions="Auto,Auto" ColumnSpacing="4">
+                    <Grid Grid.Column="1" ColumnDefinitions="Auto,Auto,Auto" ColumnSpacing="4">
+                        <!-- <Button Classes="GhostButton" Content="淡蓝主题" Click="ApplyLightBlueTheme_OnClick" /> -->
                         <control:GhostIconButton Width="32" Height="32" CornerRadius="1000"
+                                                 Grid.Column="1"
                                                  Icon="avares://OneDriveDriver.Desktop/Assets/Icons/clipboard-list.svg"
                                                  Command="{Binding ToggleTaskPanelCommand}" />
-                        <control:GhostIconButton Width="32" Height="32" CornerRadius="1000" Grid.Column="1"
+                        <control:GhostIconButton Width="32" Height="32" CornerRadius="1000" Grid.Column="2"
                                                  Icon="avares://OneDriveDriver.Desktop/Assets/Icons/ellipsis-vertical.svg">
                             <control:GhostIconButton.Flyout>
                                 <MenuFlyout>

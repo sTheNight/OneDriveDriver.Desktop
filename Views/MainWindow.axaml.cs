@@ -1,7 +1,10 @@
 using Avalonia.Animation.Easings;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
+using Avalonia.Interactivity;
 using Avalonia.Rendering.Composition;
+using OneDriveDriver.Desktop.Theme;
 using OneDriveDriver.Desktop.ViewModels;
 using System;
 using System.ComponentModel;
@@ -83,5 +86,9 @@ public partial class MainWindow : Window {
             return;
 
         viewModel.CloseAllModal();
+    }
+
+    private void ApplyLightBlueTheme_OnClick(object? sender, RoutedEventArgs e) {
+        Application.Current!.RequestedThemeVariant = AppThemeVariants.LightBlue;
     }
 }

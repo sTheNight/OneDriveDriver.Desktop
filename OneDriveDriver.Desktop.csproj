@@ -28,10 +28,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Theme\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <Compile Update="Pages\MainView\MainView.axaml.cs">
         <DependentUpon>MainView.axaml</DependentUpon>
         <SubType>Code</SubType>

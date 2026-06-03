@@ -5,8 +5,8 @@
         </Border>
     </Design.PreviewWith>
     <Style Selector="Button.PrimaryButton /template/ ContentPresenter">
-        <Setter Property="Background" Value="Black" />
-        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Background" Value="{DynamicResource PrimaryButtonColor}" />
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryButtonForegroundColor}" />
         <Setter Property="Transitions">
             <Transitions>
                 <BrushTransition Property="Background" Duration="0:0:0.15" />
@@ -14,10 +14,10 @@
         </Setter>
     </Style>
     <Style Selector="Button.PrimaryButton:pointerover /template/ ContentPresenter">
-        <Setter Property="Background" Value="#4F4F4F" />
+        <Setter Property="Background" Value="{DynamicResource PrimaryButtonHoverColor}" />
     </Style>
     <Style Selector="Button.PrimaryButton:pressed /template/ ContentPresenter">
-        <Setter Property="Background" Value="#6F6F6F" />
+        <Setter Property="Background" Value="{DynamicResource PrimaryButtonPressedColor}" />
     </Style>
     <Style Selector="Button.PrimaryButton:pressed">
         <Setter Property="RenderTransform">

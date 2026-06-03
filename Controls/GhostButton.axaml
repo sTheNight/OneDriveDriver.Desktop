@@ -10,7 +10,7 @@
         </Border>
     </Design.PreviewWith>
     <Style Selector="Button.GhostButton /template/ ContentPresenter">
-        <Setter Property="Background" Value="{StaticResource GhostButtonColor}" />
+        <Setter Property="Background" Value="{DynamicResource GhostButtonColor}" />
         <Setter Property="Transitions">
             <Transitions>
                 <BrushTransition Property="Background" Duration="0:0:0.15" />
@@ -23,9 +23,9 @@
         </Setter>
     </Style>
     <Style Selector="Button.GhostButton:pointerover /template/ ContentPresenter">
-        <Setter Property="Background" Value="{StaticResource GhostButtonHoverColor}" />
+        <Setter Property="Background" Value="{DynamicResource GhostButtonHoverColor}" />
     </Style>
     <Style Selector="Button.GhostButton:pressed /template/ ContentPresenter">
-        <Setter Property="Background" Value="{StaticResource GhostButtonPressedColor}" />
+        <Setter Property="Background" Value="{DynamicResource GhostButtonPressedColor}" />
     </Style>
 </Styles>

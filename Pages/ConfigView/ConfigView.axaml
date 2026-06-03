@@ -9,7 +9,7 @@
              x:Class="OneDriveDriver.Desktop.Pages.ConfigView.ConfigView">
     <Grid>
         <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <Border IsVisible="{Binding !IsLoggedIn}" BorderBrush="{StaticResource DividerColor}" BorderThickness="1"
+            <Border IsVisible="{Binding !IsLoggedIn}" BorderBrush="{DynamicResource DividerColor}" BorderThickness="1"
                     CornerRadius="12" Padding="16">
                 <StackPanel>
                     <TextBlock FontWeight="SemiBold">Login</TextBlock>
@@ -36,7 +36,7 @@
                     </Button>
                 </StackPanel>
             </Border>
-            <Border IsVisible="{Binding IsLoggedIn}" BorderBrush="{StaticResource DividerColor}" BorderThickness="1"
+            <Border IsVisible="{Binding IsLoggedIn}" BorderBrush="{DynamicResource DividerColor}" BorderThickness="1"
                     CornerRadius="12" Padding="16" Margin="0,8,0,0">
                 <StackPanel>
                     <TextBlock FontWeight="SemiBold">OneDrive Config</TextBlock>

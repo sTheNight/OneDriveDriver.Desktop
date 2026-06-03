@@ -7,7 +7,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceInclude Source="avares://OneDriveDriver.Desktop/Resource/MainTheme.axaml" />
+                <ResourceInclude Source="avares://OneDriveDriver.Desktop/Theme/MainTheme.axaml" />
             </ResourceDictionary.MergedDictionaries>
             <FontFamily x:Key="Vollkorn">avares://OneDriveDriver.Desktop/Assets/Fonts#Vollkorn</FontFamily>
         </ResourceDictionary>

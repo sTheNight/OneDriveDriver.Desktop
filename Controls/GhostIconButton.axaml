@@ -48,10 +48,10 @@
         </Setter>
     </Style>
     <Style Selector="controls|GhostIconButton:pointerover /template/ Border#PART_Background">
-        <Setter Property="Background" Value="{StaticResource GhostButtonHoverColor}" />
+        <Setter Property="Background" Value="{DynamicResource GhostButtonHoverColor}" />
     </Style>
     <Style Selector="controls|GhostIconButton:pressed /template/ Border#PART_Background">
-        <Setter Property="Background" Value="{StaticResource GhostButtonPressedColor}" />
+        <Setter Property="Background" Value="{DynamicResource GhostButtonPressedColor}" />
     </Style>
     <Style Selector="controls|GhostIconButton:disabled /template/ Border#PART_Background">
         <Setter Property="Background" Value="Transparent" />

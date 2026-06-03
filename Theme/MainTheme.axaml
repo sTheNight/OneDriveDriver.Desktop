@@ -1,0 +1,40 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:theme="using:OneDriveDriver.Desktop.Theme">
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <SolidColorBrush Color="White" x:Key="BackgroundColor" />
+            <SolidColorBrush Color="White" x:Key="HeaderBackgroundColor" />
+            <SolidColorBrush Color="LightGray" x:Key="DividerColor" />
+            <SolidColorBrush Color="Black" x:Key="PrimaryButtonColor" />
+            <SolidColorBrush Color="#4F4F4F" x:Key="PrimaryButtonHoverColor" />
+            <SolidColorBrush Color="#6F6F6F" x:Key="PrimaryButtonPressedColor" />
+            <SolidColorBrush Color="White" x:Key="PrimaryButtonForegroundColor" />
+            <SolidColorBrush Color="Transparent" x:Key="GhostButtonColor" />
+            <SolidColorBrush Color="#0F000000" x:Key="GhostButtonHoverColor" />
+            <SolidColorBrush Color="#2F000000" x:Key="GhostButtonPressedColor" />
+            <SolidColorBrush Color="#3F000000" x:Key="OverlayColor" />
+            <SolidColorBrush Color="#3FFFFFFF" x:Key="LoadingOverlayColor" />
+            <SolidColorBrush Color="#0F000000" x:Key="FileListHoverColor" />
+            <SolidColorBrush Color="Gray" x:Key="SecondaryTextColor" />
+            <SolidColorBrush Color="Red" x:Key="ErrorTextColor" />
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="{x:Static theme:AppThemeVariants.LightBlue}">
+            <SolidColorBrush Color="#F4FAFF" x:Key="BackgroundColor" />
+            <SolidColorBrush Color="#E8F4FF" x:Key="HeaderBackgroundColor" />
+            <SolidColorBrush Color="#B7D9F7" x:Key="DividerColor" />
+            <SolidColorBrush Color="#5AA8F5" x:Key="PrimaryButtonColor" />
+            <SolidColorBrush Color="#3E97EA" x:Key="PrimaryButtonHoverColor" />
+            <SolidColorBrush Color="#267ED0" x:Key="PrimaryButtonPressedColor" />
+            <SolidColorBrush Color="White" x:Key="PrimaryButtonForegroundColor" />
+            <SolidColorBrush Color="Transparent" x:Key="GhostButtonColor" />
+            <SolidColorBrush Color="#DCEEFF" x:Key="GhostButtonHoverColor" />
+            <SolidColorBrush Color="#C4E2FF" x:Key="GhostButtonPressedColor" />
+            <SolidColorBrush Color="#3F6AA6D9" x:Key="OverlayColor" />
+            <SolidColorBrush Color="#66FFFFFF" x:Key="LoadingOverlayColor" />
+            <SolidColorBrush Color="#DCEEFF" x:Key="FileListHoverColor" />
+            <SolidColorBrush Color="#6B7280" x:Key="SecondaryTextColor" />
+            <SolidColorBrush Color="#DC2626" x:Key="ErrorTextColor" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+</ResourceDictionary>

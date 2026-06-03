@@ -19,7 +19,7 @@
     </UserControl.Resources>
     <Grid>
         <DockPanel>
-            <Border DockPanel.Dock="Top" Padding="8" Margin="0,8,0,0" BorderBrush="{StaticResource DividerColor}"
+            <Border DockPanel.Dock="Top" Padding="8" Margin="0,8,0,0" BorderBrush="{DynamicResource DividerColor}"
                     BorderThickness="1"
                     CornerRadius="8">
                 <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
@@ -64,22 +64,22 @@
             </Border>
             <ScrollViewer VerticalScrollBarVisibility="Hidden">
                 <Panel Classes="FileListPanel" Classes.loading="{Binding IsLoading}">
-                    <Border Padding="16" Margin="0,8,0,0" CornerRadius="8" BorderBrush="{StaticResource DividerColor}"
+                    <Border Padding="16" Margin="0,8,0,0" CornerRadius="8" BorderBrush="{DynamicResource DividerColor}"
                             BorderThickness="1"
                             IsVisible="{Binding ErrorMessage,Converter={StaticResource NotNullConverter}}">
-                        <TextBlock Foreground="Red" VerticalAlignment="Center" HorizontalAlignment="Center"
+                        <TextBlock Foreground="{DynamicResource ErrorTextColor}" VerticalAlignment="Center" HorizontalAlignment="Center"
                                    Text="{Binding ErrorMessage}" />
                     </Border>
                     <ItemsControl ItemsSource="{Binding FileList}"
                                   IsVisible="{Binding ErrorMessage,Converter={StaticResource NullConverter}}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate x:DataType="model:FileItem">
-                                <Border Classes="FileListBorder" BorderBrush="{StaticResource DividerColor}"
+                                <Border Classes="FileListBorder" BorderBrush="{DynamicResource DividerColor}"
                                         BorderThickness="1"
                                         CornerRadius="8" Margin="0,8,0,0" Padding="8"
                                         PointerReleased="OnFileItemPointerReleased">
                                     <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
-                                        <Border Width="32" Height="32" BorderBrush="{StaticResource DividerColor}"
+                                        <Border Width="32" Height="32" BorderBrush="{DynamicResource DividerColor}"
                                                 BorderThickness="1"
                                                 VerticalAlignment="Center" CornerRadius="8">
                                             <Image Width="16" Height="16" VerticalAlignment="Center"
@@ -129,20 +129,20 @@
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 ZIndex="100"
-                Background="#3Fffffff">
+                Background="{DynamicResource LoadingOverlayColor}">
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Loading..." />
         </Border>
     </Grid>
     <UserControl.Styles>
         <Style Selector="TextBlock.FileInfo">
             <Setter Property="FontSize" Value="12" />
-            <Setter Property="Foreground" Value="Gray" />
+            <Setter Property="Foreground" Value="{DynamicResource SecondaryTextColor}" />
             <Setter Property="Margin" Value="0,0,8,0" />
         </Style>
         <!-- Breadcrumb -->
         <Style Selector="TextBlock.BreadcrumbSeparator">
             <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="Foreground" Value="Gray" />
+            <Setter Property="Foreground" Value="{DynamicResource SecondaryTextColor}" />
             <Setter Property="Margin" Value="2,0" />
         </Style>
         <Style Selector="Button.BreadcrumbItem.current">
@@ -185,7 +185,7 @@
             <Setter Property="Background" Value="Transparent" />
         </Style>
         <Style Selector="Border.FileListBorder:pointerover">
-            <Setter Property="Background" Value="#0F000000" />
+            <Setter Property="Background" Value="{DynamicResource FileListHoverColor}" />
         </Style>
     </UserControl.Styles>
 </UserControl>

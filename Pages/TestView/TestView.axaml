@@ -20,7 +20,7 @@
                 <StackPanel>
                     <Button Name="PopupTrgger" Command="{Binding TogglePopupCommand}">123</Button>
                     <Popup PlacementTarget="PopupTrgger" IsOpen="{Binding IsPopupShow}" >
-                        <Border BackgroundSizing="CenterBorder" CornerRadius="8" Background="White" Padding="8" BorderBrush="{StaticResource DividerColor}" BorderThickness="1">
+                        <Border BackgroundSizing="CenterBorder" CornerRadius="8" Background="{DynamicResource BackgroundColor}" Padding="8" BorderBrush="{DynamicResource DividerColor}" BorderThickness="1">
                             <StackPanel>
                                 <TextBlock>123</TextBlock>
                             </StackPanel>
