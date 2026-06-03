@@ -82,14 +82,16 @@
                 Background="{DynamicResource BackgroundColor}"
                 ZIndex="999">
             <DockPanel>
-                <Border DockPanel.Dock="Top" Background="{DynamicResource HeaderBackgroundColor}" BorderBrush="{DynamicResource DividerColor}" BorderThickness="0,0,0,1">
+                <Border DockPanel.Dock="Top" Background="{DynamicResource HeaderBackgroundColor}"
+                        BorderBrush="{DynamicResource DividerColor}" BorderThickness="0,0,0,1">
                     <Grid ColumnDefinitions="*,Auto" Margin="16">
                         <TextBlock Classes="Title">Task</TextBlock>
                         <WrapPanel Grid.Column="1">
                             <control:GhostIconButton VerticalAlignment="Center" CornerRadius="1000"
                                                      Icon="avares://OneDriveDriver.Desktop/Assets/Icons/x.svg"
                                                      Width="32"
-                                                     Height="32" />
+                                                     Height="32"
+                                                     Command="{Binding CloseTaskPanelCommand}" />
                         </WrapPanel>
                     </Grid>
                 </Border>
@@ -103,7 +105,8 @@
 
         <DockPanel Classes="MainWindowsMain" Classes.IsModalShow="{Binding IsOverlayShow}">
             <!-- Header -->
-            <Border DockPanel.Dock="Top" Background="{DynamicResource HeaderBackgroundColor}" BorderBrush="{DynamicResource DividerColor}" BorderThickness="0,0,0,1">
+            <Border DockPanel.Dock="Top" Background="{DynamicResource HeaderBackgroundColor}"
+                    BorderBrush="{DynamicResource DividerColor}" BorderThickness="0,0,0,1">
                 <Grid ColumnDefinitions="*,Auto" Margin="16">
                     <TextBlock Classes="Title">
                         OneDrive Driver

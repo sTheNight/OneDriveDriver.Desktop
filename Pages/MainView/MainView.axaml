@@ -67,7 +67,7 @@
                     <Border Padding="16" Margin="0,8,0,0" CornerRadius="8" BorderBrush="{DynamicResource DividerColor}"
                             BorderThickness="1"
                             IsVisible="{Binding ErrorMessage,Converter={StaticResource NotNullConverter}}">
-                        <TextBlock Foreground="{DynamicResource ErrorTextColor}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                        <TextBlock Foreground="{DynamicResource ErrorTextColor}" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" HorizontalAlignment="Center"
                                    Text="{Binding ErrorMessage}" />
                     </Border>
                     <ItemsControl ItemsSource="{Binding FileList}"

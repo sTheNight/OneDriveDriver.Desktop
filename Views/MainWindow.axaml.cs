@@ -48,8 +48,8 @@ public partial class MainWindow : Window {
         }
 
 
-        var hiddenOffset = GetTaskPanelHiddnOffset();
-        var shownOffset = GetTaskPanelShownOffset();
+        var hiddenOffset = new Vector3((float)-TaskPanel.Width, 0, 0);
+        var shownOffset = new Vector3(0, 0, 0);
         var easing = new CircularEaseOut();
 
         var slideAnimation = compositor.CreateVector3KeyFrameAnimation();
@@ -65,14 +65,6 @@ public partial class MainWindow : Window {
             TaskPanel.IsVisible = false;
             TaskPanel.IsHitTestVisible = false;
         }
-    }
-
-    private Vector3 GetTaskPanelHiddnOffset() {
-        return new Vector3((float)-TaskPanel.Width, 0, 0);
-    }
-
-    private Vector3 GetTaskPanelShownOffset() {
-        return new Vector3(0, 0, 0);
     }
 
     private void Overlay_OnPointerPressed(object? sender, PointerPressedEventArgs e) {

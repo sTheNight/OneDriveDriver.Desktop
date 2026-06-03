@@ -95,4 +95,9 @@ public partial class MainWindowViewModel : ViewModelBase {
     public void ToggleTaskPanel() {
         IsTaskPanelShow = !IsTaskPanelShow;
     }
+
+    [RelayCommand]
+    public void CloseTaskPanel() {
+        IsTaskPanelShow = false;
+    }
 }
