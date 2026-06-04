@@ -4,6 +4,7 @@
     <option name="projectPerEditor">
       <map>
         <entry key="App.axaml" value="OneDriveDriver.Desktop.csproj" />
+        <entry key="Controls/AboutDialog.axaml" value="OneDriveDriver.Desktop.csproj" />
         <entry key="Controls/GhostButton.axaml" value="OneDriveDriver.Desktop.csproj" />
         <entry key="Controls/GhostIconButton.axaml" value="OneDriveDriver.Desktop.csproj" />
         <entry key="Controls/IconButton.axaml" value="OneDriveDriver.Desktop.csproj" />
@@ -17,6 +18,8 @@
         <entry key="Pages/TestView/TestView.axaml" value="OneDriveDriver.Desktop.csproj" />
         <entry key="Resource/MainTheme.axaml" value="OneDriveDriver.Desktop.csproj" />
         <entry key="Theme/MainTheme.axaml" value="OneDriveDriver.Desktop.csproj" />
+        <entry key="Views/AboutDialog.axaml" value="OneDriveDriver.Desktop.csproj" />
+        <entry key="Views/BottomSheet.axaml" value="OneDriveDriver.Desktop.csproj" />
         <entry key="Views/MainWindow.axaml" value="OneDriveDriver.Desktop.csproj" />
       </map>
     </option>

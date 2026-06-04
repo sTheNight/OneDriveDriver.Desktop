@@ -1,0 +1,45 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="using:OneDriveDriver.Desktop.ViewModels"
+             xmlns:animation="clr-namespace:OneDriveDriver.Desktop.Animation"
+             x:DataType="vm:MainWindowViewModel"
+             x:Class="OneDriveDriver.Desktop.Views.BottomSheet">
+    <Border Classes="BottomSheet"
+            Classes.Active="{Binding IsBottomSheetShow}" CornerRadius="24,24,0,0" VerticalAlignment="Bottom"
+            HorizontalAlignment="Stretch" Background="{DynamicResource BackgroundColor}" Height="500"
+            BoxShadow="0 5 8 8 #0A000000">
+        <Grid RowDefinitions="Auto,*">
+            <Border Height="24" BackgroundSizing="CenterBorder">
+                <Border Background="{DynamicResource DividerColor}" Height="4" CornerRadius="1000" Width="50"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Border>
+            <TransitioningContentControl Grid.Row="1" Content="{Binding Content}" Padding="8">
+                <TransitioningContentControl.PageTransition>
+                    <animation:RouteTransition Duration="0:0:0.3" />
+                </TransitioningContentControl.PageTransition>
+            </TransitioningContentControl>
+        </Grid>
+    </Border>
+    <UserControl.Styles>
+        <Style Selector="Border.BottomSheet">
+            <Setter Property="RenderTransform" Value="translateY(500px)" />
+            <Setter Property="IsHitTestVisible" Value="False" />
+            <Setter Property="Transitions">
+                <Transitions>
+                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.3">
+                        <TransformOperationsTransition.Easing>
+                            <CircularEaseOut />
+                        </TransformOperationsTransition.Easing>
+                    </TransformOperationsTransition>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Border.BottomSheet.Active">
+            <Setter Property="RenderTransform" Value="translateY(0px)" />
+            <Setter Property="IsHitTestVisible" Value="True" />
+        </Style>
+    </UserControl.Styles>
+</UserControl>

@@ -1,0 +1,49 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="using:OneDriveDriver.Desktop.ViewModels"
+             xmlns:control="using:OneDriveDriver.Desktop.Controls"
+             x:DataType="vm:MainWindowViewModel"
+             x:Class="OneDriveDriver.Desktop.Views.AboutDialog">
+    <Border
+        HorizontalAlignment="Stretch"
+        Margin="16,0"
+        CornerRadius="12"
+        VerticalAlignment="Center"
+        Background="{DynamicResource BackgroundColor}"
+        BorderThickness="1"
+        BoxShadow="0 5 8 8 #0A000000"
+        Classes="AboutDialog"
+        Classes.Active="{Binding IsAboutDialogShow}"
+        Padding="16">
+        <StackPanel>
+            <Panel HorizontalAlignment="Stretch">
+                <TextBlock FontSize="18" FontWeight="DemiBold" HorizontalAlignment="Left">About</TextBlock>
+                <control:GhostIconButton Width="32" HorizontalAlignment="Right" Height="32" Focusable="False"
+                                         Icon="avares://OneDriveDriver.Desktop/Assets/Icons/x.svg"
+                                         Command="{Binding CloseAboutDialogCommand}" />
+            </Panel>
+            <TextBlock Margin="0,12,0,0">Lorem</TextBlock>
+        </StackPanel>
+    </Border>
+    <UserControl.Styles>
+        <Style Selector="Border.AboutDialog">
+            <Setter Property="Opacity" Value="0" />
+            <Setter Property="RenderTransform" Value="scale(1.01,1.01)" />
+            <Setter Property="IsHitTestVisible" Value="False" />
+            <Setter Property="Transitions">
+                <Transitions>
+                    <DoubleTransition Property="Opacity" Duration="0:0:0.2" />
+                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" />
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Border.AboutDialog.Active">
+            <Setter Property="Opacity" Value="1" />
+            <Setter Property="IsHitTestVisible" Value="True" />
+            <Setter Property="RenderTransform" Value="scale(1,1)" />
+        </Style>
+    </UserControl.Styles>
+</UserControl>

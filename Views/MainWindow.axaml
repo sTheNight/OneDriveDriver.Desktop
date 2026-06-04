@@ -3,6 +3,7 @@
         xmlns:vm="using:OneDriveDriver.Desktop.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="using:OneDriveDriver.Desktop.Views"
         mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="800"
         x:Class="OneDriveDriver.Desktop.Views.MainWindow"
         Width="500"
@@ -16,7 +17,6 @@
         FontFamily="{StaticResource Vollkorn}"
         Background="{DynamicResource BackgroundColor}"
         xmlns:control="using:OneDriveDriver.Desktop.Controls"
-        xmlns:animation="clr-namespace:OneDriveDriver.Desktop.Animation"
         Title="OneDriveDriver.Desktop">
     <Grid>
         <WindowNotificationManager x:Name="NotificationManager"
@@ -33,45 +33,9 @@
             ZIndex="900">
         </Border>
         <!-- 关于对话框 -->
-        <Border
-            HorizontalAlignment="Stretch"
-            Margin="16,0"
-            CornerRadius="12"
-            VerticalAlignment="Center"
-            Background="{DynamicResource BackgroundColor}"
-            BorderThickness="1"
-            BoxShadow="0 5 8 8 #0A000000"
-            Classes="AboutDialog"
-            Classes.Active="{Binding IsAboutDialogShow}"
-            ZIndex="999"
-            Padding="16">
-            <StackPanel>
-                <Panel HorizontalAlignment="Stretch">
-                    <TextBlock FontSize="18" FontWeight="DemiBold" HorizontalAlignment="Left">About</TextBlock>
-                    <control:GhostIconButton Width="32" HorizontalAlignment="Right" Height="32" Focusable="False"
-                                             Icon="avares://OneDriveDriver.Desktop/Assets/Icons/x.svg"
-                                             Command="{Binding CloseAboutDialogCommand}" />
-                </Panel>
-                <TextBlock Margin="0,12,0,0">Lorem</TextBlock>
-            </StackPanel>
-        </Border>
+        <views:AboutDialog ZIndex="999" />
         <!-- BottomSheet -->
-        <Border Classes="BottomSheet"
-                Classes.Active="{Binding IsBottomSheetShow}" CornerRadius="24,24,0,0" VerticalAlignment="Bottom"
-                HorizontalAlignment="Stretch" Background="{DynamicResource BackgroundColor}" Height="500"
-                BoxShadow="0 5 8 8 #0A000000" ZIndex="998">
-            <Grid RowDefinitions="Auto,*">
-                <Border Height="24" BackgroundSizing="CenterBorder">
-                    <Border Background="{DynamicResource DividerColor}" Height="4" CornerRadius="1000" Width="50"
-                            HorizontalAlignment="Center" VerticalAlignment="Center" />
-                </Border>
-                <TransitioningContentControl Grid.Row="1" Content="{Binding Content}" Padding="8">
-                    <TransitioningContentControl.PageTransition>
-                        <animation:RouteTransition Duration="0:0:0.3" />
-                    </TransitioningContentControl.PageTransition>
-                </TransitioningContentControl>
-            </Grid>
-        </Border>
+        <views:BottomSheet ZIndex="998" />
         <!-- TaskPanel -->
         <Border Name="TaskPanel"
                 IsVisible="False"
@@ -172,41 +136,6 @@
                     <EffectTransition Property="Effect" Duration="0:0:0.2" />
                 </Transitions>
             </Setter>
-        </Style>
-        <!-- About Dialog -->
-        <Style Selector="Border.AboutDialog">
-            <Setter Property="Opacity" Value="0" />
-            <Setter Property="RenderTransform" Value="scale(1.01,1.01)" />
-            <Setter Property="IsHitTestVisible" Value="False" />
-            <Setter Property="Transitions">
-                <Transitions>
-                    <DoubleTransition Property="Opacity" Duration="0:0:0.2" />
-                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" />
-                </Transitions>
-            </Setter>
-        </Style>
-        <Style Selector="Border.AboutDialog.Active">
-            <Setter Property="Opacity" Value="1" />
-            <Setter Property="IsHitTestVisible" Value="True" />
-            <Setter Property="RenderTransform" Value="scale(1,1)" />
-        </Style>
-        <!-- BottomSheet -->
-        <Style Selector="Border.BottomSheet">
-            <Setter Property="RenderTransform" Value="translateY(500px)" />
-            <Setter Property="IsHitTestVisible" Value="False" />
-            <Setter Property="Transitions">
-                <Transitions>
-                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.3">
-                        <TransformOperationsTransition.Easing>
-                            <CircularEaseOut />
-                        </TransformOperationsTransition.Easing>
-                    </TransformOperationsTransition>
-                </Transitions>
-            </Setter>
-        </Style>
-        <Style Selector="Border.BottomSheet.Active">
-            <Setter Property="RenderTransform" Value="translateY(0px)" />
-            <Setter Property="IsHitTestVisible" Value="True" />
         </Style>
     </Window.Styles>
 </Window>

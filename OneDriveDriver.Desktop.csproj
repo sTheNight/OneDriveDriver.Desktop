@@ -40,5 +40,9 @@
         <DependentUpon>TestView.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="Views\AboutDialog.axaml.cs">
+        <DependentUpon>AboutDialog.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 </Project>
