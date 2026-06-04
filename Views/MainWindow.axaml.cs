@@ -14,19 +14,22 @@ using System.Threading.Tasks;
 namespace OneDriveDriver.Desktop.Views;
 
 public partial class MainWindow : Window {
-    private MainWindowViewModel _mainWindowViewModel = null!;
+    private MainWindowViewModel? _mainWindowViewModel;
     private const uint AnimationDuration = 300;
 
     public MainWindow() {
         InitializeComponent();
-        Opened += OnOpened;
+        DataContextChanged += OnDataContextChanged;
     }
 
-    private void OnOpened(object? sender, EventArgs e) {
-        if (DataContext is MainWindowViewModel viewModel) {
-            _mainWindowViewModel = viewModel;
+    private void OnDataContextChanged(object? sender, EventArgs e) {
+        if (_mainWindowViewModel is not null)
+            _mainWindowViewModel.PropertyChanged -= ViewModelOnPropertyChanged;
+
+        _mainWindowViewModel = DataContext as MainWindowViewModel;
+
+        if (_mainWindowViewModel is not null)
             _mainWindowViewModel.PropertyChanged += ViewModelOnPropertyChanged;
-        }
     }
 
     private void ViewModelOnPropertyChanged(object? sender, PropertyChangedEventArgs e) {
@@ -38,40 +41,42 @@ public partial class MainWindow : Window {
     }
 
     private async Task ShowTaskPanelAnimation() {
+        if (_mainWindowViewModel is not { } viewModel)
+            return;
+
         var compositionVisual = ElementComposition.GetElementVisual(TaskPanel);
         if (compositionVisual is null) return;
 
         var compositor = compositionVisual.Compositor;
-        if (_mainWindowViewModel.IsTaskPanelShow) {
+        if (viewModel.IsTaskPanelShow) {
             TaskPanel.IsVisible = true;
             TaskPanel.IsHitTestVisible = true;
         }
-
 
         var hiddenOffset = new Vector3((float)-TaskPanel.Width, 0, 0);
         var shownOffset = new Vector3(0, 0, 0);
         var easing = new CircularEaseOut();
 
         var slideAnimation = compositor.CreateVector3KeyFrameAnimation();
-        slideAnimation.InsertKeyFrame(0f, _mainWindowViewModel.IsTaskPanelShow ? hiddenOffset : shownOffset, easing);
-        slideAnimation.InsertKeyFrame(1f, _mainWindowViewModel.IsTaskPanelShow ? shownOffset : hiddenOffset, easing);
+        slideAnimation.InsertKeyFrame(0f, viewModel.IsTaskPanelShow ? hiddenOffset : shownOffset, easing);
+        slideAnimation.InsertKeyFrame(1f, viewModel.IsTaskPanelShow ? shownOffset : hiddenOffset, easing);
         slideAnimation.Duration = TimeSpan.FromMilliseconds(AnimationDuration);
 
         compositionVisual.StartAnimation("Offset", slideAnimation);
 
         await Task.Delay(TimeSpan.FromMilliseconds(AnimationDuration));
 
-        if (!_mainWindowViewModel.IsTaskPanelShow) {
+        if (!viewModel.IsTaskPanelShow) {
             TaskPanel.IsVisible = false;
             TaskPanel.IsHitTestVisible = false;
         }
     }
-
-    private void Overlay_OnPointerPressed(object? sender, PointerPressedEventArgs e) {
+    
+    private void Overlay_OnPointerReleased(object? sender, PointerReleasedEventArgs e) {
         if (sender is not Border { Name: "Overlay" } overlay)
             return;
-
-        if (e.GetCurrentPoint(overlay).Properties.PointerUpdateKind is not PointerUpdateKind.LeftButtonPressed)
+        
+        if (e.GetCurrentPoint(overlay).Properties.PointerUpdateKind is not PointerUpdateKind.LeftButtonReleased)
             return;
 
         if (DataContext is not MainWindowViewModel viewModel)

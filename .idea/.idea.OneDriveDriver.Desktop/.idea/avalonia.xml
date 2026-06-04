@@ -21,6 +21,7 @@
         <entry key="Views/AboutDialog.axaml" value="OneDriveDriver.Desktop.csproj" />
         <entry key="Views/BottomSheet.axaml" value="OneDriveDriver.Desktop.csproj" />
         <entry key="Views/MainWindow.axaml" value="OneDriveDriver.Desktop.csproj" />
+        <entry key="Views/TaskPanel.axaml" value="OneDriveDriver.Desktop.csproj" />
       </map>
     </option>
   </component>

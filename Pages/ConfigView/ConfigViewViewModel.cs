@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 namespace OneDriveDriver.Desktop.Pages.ConfigView;
 
 public partial class ConfigViewViewModel : ViewModelBase {
+    // TODO: 将 Config 的 API 请求行为抽离到单独的 Service 中
     private readonly HttpClient _httpClient = new() {
         BaseAddress = new Uri(Global.ENDPOINT)
     };

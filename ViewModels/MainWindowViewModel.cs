@@ -5,6 +5,7 @@ using OneDriveDriver.Desktop.Models;
 using OneDriveDriver.Desktop.Pages.ConfigView;
 using OneDriveDriver.Desktop.Pages.MainView;
 using OneDriveDriver.Desktop.Services;
+using System.Threading.Tasks;
 
 namespace OneDriveDriver.Desktop.ViewModels;
 
@@ -72,7 +73,7 @@ public partial class MainWindowViewModel : ViewModelBase {
     }
 
     [RelayCommand]
-    public async void OpenGithub() {
+    public async Task OpenGithub() {
         await _urlLauncher.LaunchAsync("https://github.com/sTheNight/onedrive_driver_rs");
     }
 

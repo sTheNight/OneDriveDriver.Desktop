@@ -27,7 +27,7 @@
             Name="Overlay"
             HorizontalAlignment="Stretch"
             Classes.Shown="{Binding IsOverlayShow}"
-            PointerPressed="Overlay_OnPointerPressed"
+            PointerReleased="Overlay_OnPointerReleased"
             VerticalAlignment="Stretch"
             Background="{DynamicResource OverlayColor}"
             ZIndex="900">
@@ -37,35 +37,12 @@
         <!-- BottomSheet -->
         <views:BottomSheet ZIndex="998" />
         <!-- TaskPanel -->
-        <Border Name="TaskPanel"
-                IsVisible="False"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Stretch"
-                BoxShadow="0 0 8 8 #0A000000"
-                Width="400"
-                Background="{DynamicResource BackgroundColor}"
-                ZIndex="999">
-            <DockPanel>
-                <Border DockPanel.Dock="Top" Background="{DynamicResource HeaderBackgroundColor}"
-                        BorderBrush="{DynamicResource DividerColor}" BorderThickness="0,0,0,1">
-                    <Grid ColumnDefinitions="*,Auto" Margin="16">
-                        <TextBlock Classes="Title">Task</TextBlock>
-                        <WrapPanel Grid.Column="1">
-                            <control:GhostIconButton VerticalAlignment="Center" CornerRadius="1000"
-                                                     Icon="avares://OneDriveDriver.Desktop/Assets/Icons/x.svg"
-                                                     Width="32"
-                                                     Height="32"
-                                                     Command="{Binding CloseTaskPanelCommand}" />
-                        </WrapPanel>
-                    </Grid>
-                </Border>
-                <ScrollViewer>
-                    <StackPanel>
-                        <TextBlock>123</TextBlock>
-                    </StackPanel>
-                </ScrollViewer>
-            </DockPanel>
-        </Border>
+        <views:TaskPanel Name="TaskPanel"
+                         IsVisible="False"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Stretch"
+                         Width="400"
+                         ZIndex="1000" />
 
         <DockPanel Classes="MainWindowsMain" Classes.IsModalShow="{Binding IsOverlayShow}">
             <!-- Header -->

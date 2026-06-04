@@ -20,7 +20,7 @@ public class ViewLocator : IDataTemplate {
             return new TestView();
         if(param is ConfigViewViewModel)
             return new ConfigView();
-        return new TextBlock { Text = "Not Found: " + param?.ToString() };
+        return new TextBlock { Text = "Not Found: " + param };
 
     }
 

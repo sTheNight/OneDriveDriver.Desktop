@@ -3,12 +3,15 @@ using OneDriveDriver.Desktop.Models;
 using OneDriveDriver.Desktop.Services;
 using OneDriveDriver.Desktop.Stores;
 using OneDriveDriver.Desktop.ViewModels;
+using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace OneDriveDriver.Desktop.Pages.MainView;
 
 public partial class MainViewViewModel : ViewModelBase {
+    public event EventHandler? BreadcrumbsChanged;
+    
     private readonly FileListStore _fileListStore;
     private readonly FileDownloadService _fileDownloadService;
 
@@ -29,7 +32,10 @@ public partial class MainViewViewModel : ViewModelBase {
             if (e.PropertyName == nameof(FileListStore.ErrorMessage))
                 OnPropertyChanged(nameof(ErrorMessage));
         };
-        _fileListStore.Segments.CollectionChanged += (_, _) => { RebuildBreadcrumbs(); };
+        _fileListStore.Segments.CollectionChanged += (_, _) => {
+            RebuildBreadcrumbs();
+            BreadcrumbsChanged?.Invoke(this, EventArgs.Empty);
+        };
         RebuildBreadcrumbs();
 
         _ = _fileListStore.EnsureLoadedAsync();

@@ -1,0 +1,36 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:OneDriveDriver.Desktop.Controls"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="800"
+             xmlns:vm="using:OneDriveDriver.Desktop.ViewModels"
+             x:DataType="vm:MainWindowViewModel"
+             x:Class="OneDriveDriver.Desktop.Views.TaskPanel">
+    <Border HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            BoxShadow="0 0 8 8 #0A000000"
+            Background="{DynamicResource BackgroundColor}">
+        <DockPanel>
+            <Border DockPanel.Dock="Top" Background="{DynamicResource HeaderBackgroundColor}"
+                    BorderBrush="{DynamicResource DividerColor}" BorderThickness="0,0,0,1">
+                <Grid ColumnDefinitions="*,Auto" Margin="16">
+                    <!-- 此处的 Title 样式继承自 MainWindows -->
+                    <TextBlock Classes="Title">Task</TextBlock>
+                    <WrapPanel Grid.Column="1">
+                        <controls:GhostIconButton VerticalAlignment="Center" CornerRadius="1000"
+                                                  Icon="avares://OneDriveDriver.Desktop/Assets/Icons/x.svg"
+                                                  Width="32"
+                                                  Height="32"
+                                                  Command="{Binding CloseTaskPanelCommand}" />
+                    </WrapPanel>
+                </Grid>
+            </Border>
+            <ScrollViewer>
+                <StackPanel>
+                    <TextBlock>123</TextBlock>
+                </StackPanel>
+            </ScrollViewer>
+        </DockPanel>
+    </Border>
+</UserControl>

@@ -7,6 +7,7 @@ using OneDriveDriver.Desktop.Views;
 namespace OneDriveDriver.Desktop.Services;
 
 public class NotificationService {
+    // TODO: 将显示通知的方法收束到 Service 中而不应该由 ViewModel/Code-Behind 手动实例化 Notification 对象
     private WindowNotificationManager? _notificationManager;
 
     private void TryGetWindowsNotificationManager() {

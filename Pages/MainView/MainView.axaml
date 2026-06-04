@@ -24,6 +24,7 @@
                     CornerRadius="8">
                 <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
                     <ScrollViewer HorizontalAlignment="Stretch"
+                                  Name="BreadCrumbScroll"
                                   MinWidth="0"
                                   HorizontalScrollBarVisibility="Hidden"
                                   VerticalScrollBarVisibility="Disabled"

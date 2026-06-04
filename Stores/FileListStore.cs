@@ -6,7 +6,6 @@ using OneDriveDriver.Desktop.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -54,13 +53,11 @@ public partial class FileListStore : BaseStore {
 
             var content = await response.Content.ReadAsStringAsync();
             var fileList = JsonConvert.DeserializeObject<List<FileItem>>(content) ?? [];
-
-            await Dispatcher.UIThread.InvokeAsync(() => {
+            
                 FileList.Clear();
 
                 foreach (var fileItem in fileList)
                     FileList.Add(fileItem);
-            });
 
             IsLoaded = true;
         } catch (Exception ex) {
