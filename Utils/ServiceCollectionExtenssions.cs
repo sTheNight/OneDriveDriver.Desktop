@@ -13,7 +13,7 @@ public static class ServiceCollectionExtensions {
         public void AddDependencyInjection() {
             // Service
             serviceCollection.AddSingleton<IUrlLauncher, UrlLauncher>();
-            serviceCollection.AddSingleton<NotificationService>();
+            serviceCollection.AddSingleton<INotificationService,NotificationService>();
             serviceCollection.AddSingleton<FileDownloadService>();
             // Store
             serviceCollection.AddSingleton<FileListStore>();

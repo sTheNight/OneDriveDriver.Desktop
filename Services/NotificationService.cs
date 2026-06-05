@@ -3,10 +3,15 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Controls.Notifications;
 using OneDriveDriver.Desktop.Stores;
 using OneDriveDriver.Desktop.Views;
+using System;
 
 namespace OneDriveDriver.Desktop.Services;
 
-public class NotificationService {
+public interface INotificationService {
+    public void ShowError(string title, string message);
+}
+
+public class NotificationService : INotificationService {
     // TODO: 将显示通知的方法收束到 Service 中而不应该由 ViewModel/Code-Behind 手动实例化 Notification 对象
     private WindowNotificationManager? _notificationManager;
 

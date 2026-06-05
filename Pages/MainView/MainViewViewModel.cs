@@ -26,11 +26,14 @@ public partial class MainViewViewModel : ViewModelBase {
         _fileListStore = fileListStore;
         _fileDownloadService = fileDownloadService;
         _fileListStore.PropertyChanged += (_, e) => {
-            if (e.PropertyName == nameof(FileListStore.IsLoading))
-                OnPropertyChanged(nameof(IsLoading));
-
-            if (e.PropertyName == nameof(FileListStore.ErrorMessage))
-                OnPropertyChanged(nameof(ErrorMessage));
+            switch (e.PropertyName) {
+                case nameof(FileListStore.IsLoading):
+                    OnPropertyChanged(nameof(IsLoading));
+                    break;
+                case nameof(FileListStore.ErrorMessage):
+                    OnPropertyChanged(nameof(ErrorMessage));
+                    break;
+            }
         };
         _fileListStore.Segments.CollectionChanged += (_, _) => {
             RebuildBreadcrumbs();
@@ -55,12 +58,12 @@ public partial class MainViewViewModel : ViewModelBase {
     }
 
     [RelayCommand]
-    public async Task RefreshAsync() {
+    private async Task RefreshAsync() {
         await _fileListStore.RefreshAsync();
     }
 
     [RelayCommand]
-    public async Task DownloadAsync(FileItem fileItem) {
+    private async Task DownloadAsync(FileItem fileItem) {
         await _fileDownloadService.DownloadAsync(fileItem);
     }
 
@@ -71,7 +74,7 @@ public partial class MainViewViewModel : ViewModelBase {
     }
 
     [RelayCommand]
-    public async Task NavigateToBreadcrumbAsync(BreadcrumbItem breadcrumb) {
+    private async Task NavigateToBreadcrumbAsync(BreadcrumbItem breadcrumb) {
         await _fileListStore.NavigateToSegmentCount(breadcrumb.SegmentCount);
     }
 }

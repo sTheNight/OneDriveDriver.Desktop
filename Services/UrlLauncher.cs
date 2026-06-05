@@ -5,6 +5,9 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 
 namespace OneDriveDriver.Desktop.Services;
+public interface IUrlLauncher {
+    Task<bool> LaunchAsync(string url);
+}
 
 public class UrlLauncher : IUrlLauncher {
     public async Task<bool> LaunchAsync(string url) {

@@ -1,5 +1,4 @@
-﻿using Avalonia.Controls.Notifications;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Newtonsoft.Json;
 using OneDriveDriver.Desktop.Services;
@@ -13,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace OneDriveDriver.Desktop.Pages.ConfigView;
 
-public partial class ConfigViewViewModel(NotificationService notificationService) : ViewModelBase {
+public partial class ConfigViewViewModel(INotificationService notificationService) : ViewModelBase {
     // TODO: 将 Config 的 API 请求行为抽离到单独的 Service 中
     private readonly HttpClient _httpClient = new() {
         BaseAddress = new Uri(Global.ENDPOINT)
