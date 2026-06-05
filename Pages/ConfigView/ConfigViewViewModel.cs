@@ -13,34 +13,29 @@ using System.Threading.Tasks;
 
 namespace OneDriveDriver.Desktop.Pages.ConfigView;
 
-public partial class ConfigViewViewModel : ViewModelBase {
+public partial class ConfigViewViewModel(NotificationService notificationService) : ViewModelBase {
     // TODO: 将 Config 的 API 请求行为抽离到单独的 Service 中
     private readonly HttpClient _httpClient = new() {
         BaseAddress = new Uri(Global.ENDPOINT)
     };
 
-    private readonly NotificationService _notificationService;
+    [ObservableProperty] public partial string Username { get; set; } = null!;
 
-    [ObservableProperty] private string _username = null!;
-    [ObservableProperty] private string _password = null!;
+    [ObservableProperty] public partial string Password { get; set; } = null!;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsLoggedIn))]
     private string? _accessToken;
 
-    [ObservableProperty] private string _onedriveRootPath = null!;
-    [ObservableProperty] private string _oneDriveClientId = null!;
-    [ObservableProperty] private string _oneDriveClientSecret = null!;
-    [ObservableProperty] private string _oneDriveRefreshToken = null!;
+    [ObservableProperty] public partial string OnedriveRootPath { get; set; } = null!;
+    [ObservableProperty] public partial string OneDriveClientId { get; set; } = null!;
+    [ObservableProperty] public partial string OneDriveClientSecret { get; set; } = null!;
+    [ObservableProperty] public partial string OneDriveRefreshToken { get; set; } = null!;
 
     public bool IsLoggedIn => !string.IsNullOrWhiteSpace(AccessToken);
 
-    public ConfigViewViewModel(NotificationService notificationService) {
-        _notificationService = notificationService;
-    }
-
     [RelayCommand]
-    public async Task LoginAsync() {
+    private async Task LoginAsync() {
         try {
             var loginRequest = new LoginRequest {
                 Username = Username,
@@ -58,8 +53,8 @@ public partial class ConfigViewViewModel : ViewModelBase {
                 AccessToken = loginResponse.AccessToken;
             }
         } catch (HttpRequestException e) {
-            _notificationService.ShowNotification(new Notification("Error", e.Message, NotificationType.Error));
-            Console.Error.WriteLine(e.Message);
+            notificationService.ShowError("Login Failed", e.Message);
+            await Console.Error.WriteLineAsync(e.Message);
         } catch (Exception e) {
             Console.Error.WriteLine(e);
         }
@@ -69,7 +64,7 @@ public partial class ConfigViewViewModel : ViewModelBase {
         if (IsLoggedIn) _ = GetOneDriveConfig();
     }
 
-    public async Task GetOneDriveConfig() {
+    private async Task GetOneDriveConfig() {
         try {
             if (string.IsNullOrWhiteSpace(AccessToken)) return;
 
@@ -86,15 +81,15 @@ public partial class ConfigViewViewModel : ViewModelBase {
                 OneDriveRefreshToken = configResponse.OneDriveRefreshToken;
             }
         } catch (HttpRequestException e) {
-            _notificationService.ShowNotification(new Notification("Error", e.Message, NotificationType.Error));
-            Console.Error.WriteLine(e.Message);
+            notificationService.ShowError("Get Config Failed", e.Message);
+            await Console.Error.WriteLineAsync(e.Message);
         } catch (Exception e) {
             Console.Error.WriteLine(e);
         }
     }
 
     [RelayCommand]
-    public async Task UpdateOneDriveConfig() {
+    private async Task UpdateOneDriveConfig() {
         try {
             if (string.IsNullOrWhiteSpace(AccessToken)) return;
 
@@ -113,8 +108,8 @@ public partial class ConfigViewViewModel : ViewModelBase {
             response.EnsureSuccessStatusCode();
             Console.WriteLine("success");
         } catch (HttpRequestException e) {
-            Console.Error.WriteLine(e.Message);
-            _notificationService.ShowNotification(new Notification("Error", e.Message, NotificationType.Error));
+            await Console.Error.WriteLineAsync(e.Message);
+            notificationService.ShowError("Update Failed", e.Message);
         } catch (Exception e) {
             Console.Error.WriteLine(e);
         }

@@ -39,6 +39,8 @@
         <!-- TaskPanel -->
         <views:TaskPanel Name="TaskPanel"
                          IsVisible="False"
+                         DataContext="{Binding TaskPanelViewModel}"
+                         CloseCommand="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).CloseTaskPanelCommand}"
                          HorizontalAlignment="Left"
                          VerticalAlignment="Stretch"
                          Width="400"

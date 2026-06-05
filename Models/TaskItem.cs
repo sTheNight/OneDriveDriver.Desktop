@@ -1,6 +1,7 @@
-﻿namespace OneDriveDriver.Desktop.Models;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-public class TaskItem {
+namespace OneDriveDriver.Desktop.Models;
+
+public partial class TaskItem : ObservableObject, ITask {
     public string Title { get; }
-    public bool Completed { get; }
 }

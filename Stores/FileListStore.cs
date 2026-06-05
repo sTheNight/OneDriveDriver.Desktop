@@ -6,6 +6,7 @@ using OneDriveDriver.Desktop.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -18,12 +19,16 @@ public partial class FileListStore : BaseStore {
 
     private Task? _loadingTask;
 
-    [ObservableProperty] private bool _isLoaded;
-    [ObservableProperty] private bool _isLoading;
-    [ObservableProperty] private string? _errorMessage;
+    [ObservableProperty]
+    public partial bool IsLoaded { get; set; }
 
-    public ObservableCollection<FileItem> FileList { get; } = new();
-    public ObservableCollection<string> Segments { get; } = new();
+    [ObservableProperty]
+    public partial bool IsLoading { get; set; }
+
+    [ObservableProperty]
+    public partial string? ErrorMessage { get; set; }
+    public ObservableCollection<FileItem> FileList { get; } = [];
+    public ObservableCollection<string> Segments { get; } = [];
 
     public async Task EnsureLoadedAsync() {
         if (IsLoaded)
@@ -85,12 +90,7 @@ public partial class FileListStore : BaseStore {
         await RefreshAsync();
     }
 
-    public string BuildFullUri() {
-        string fullUri = string.Empty;
-        foreach (var segment in Segments) {
-            fullUri += "/" + segment;
-        }
-
-        return fullUri;
+    private string BuildFullUri() {
+        return Segments.Aggregate(string.Empty, (current, segment) => current + ("/" + segment));
     }
 }

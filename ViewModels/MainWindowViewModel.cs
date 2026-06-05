@@ -12,22 +12,23 @@ namespace OneDriveDriver.Desktop.ViewModels;
 public partial class MainWindowViewModel : ViewModelBase {
     private readonly ConfigViewViewModel _configView;
     private readonly Pages.TestView.TestViewViewModel _testView;
+    public TaskPanelViewModel TaskPanelViewModel { get; private set; }
     private readonly IUrlLauncher _urlLauncher;
 
-    [ObservableProperty] private MainViewViewModel _mainContent;
-
+    [ObservableProperty]
+    public partial MainViewViewModel MainContent { get; set; }
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsBottomSheetShow))]
     [NotifyPropertyChangedFor(nameof(IsOverlayShow))]
-    private object? _content;
+    public partial object? Content { get; set; }
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsOverlayShow))]
-    private bool _isAboutDialogShow;
+    public partial bool IsAboutDialogShow { get; set; }
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsOverlayShow))]
-    private bool _isTaskPanelShow;
+    public partial bool IsTaskPanelShow { get; set; }
 
     public bool IsBottomSheetShow => Content != null;
     public bool IsOverlayShow => IsAboutDialogShow || IsBottomSheetShow || IsTaskPanelShow;
@@ -36,17 +37,19 @@ public partial class MainWindowViewModel : ViewModelBase {
         MainViewViewModel mainView,
         ConfigViewViewModel configView,
         Pages.TestView.TestViewViewModel testView,
+        TaskPanelViewModel taskPanelViewModel,
         IUrlLauncher urlLauncher
     ) {
-        _mainContent = mainView;
+        MainContent = mainView;
         _configView = configView;
         _testView = testView;
+        TaskPanelViewModel = taskPanelViewModel;
         _urlLauncher = urlLauncher;
 
         WeakReferenceMessenger.Default.Register<RouteMessage>(this, OnNavigatedTo);
     }
 
-    public void OnNavigatedTo(object recipient, RouteMessage key) {
+    private void OnNavigatedTo(object recipient, RouteMessage key) {
         ViewModelBase? target = key.Key switch {
             RouteKey.ConfigView => _configView,
             RouteKey.TestView => _testView,
@@ -63,42 +66,42 @@ public partial class MainWindowViewModel : ViewModelBase {
     }
 
     [RelayCommand]
-    public void NavigateToConfig() {
+    private void NavigateToConfig() {
         WeakReferenceMessenger.Default.Send(new RouteMessage(RouteKey.ConfigView));
     }
 
     [RelayCommand]
-    public void NavigateToTest() {
+    private void NavigateToTest() {
         WeakReferenceMessenger.Default.Send(new RouteMessage(RouteKey.TestView));
     }
 
     [RelayCommand]
-    public async Task OpenGithub() {
+    private async Task OpenGithub() {
         await _urlLauncher.LaunchAsync("https://github.com/sTheNight/onedrive_driver_rs");
     }
 
     [RelayCommand]
-    public void ShowAboutDialog() {
+    private void ShowAboutDialog() {
         IsAboutDialogShow = true;
     }
 
     [RelayCommand]
-    public void CloseBottomSheet() {
+    private void CloseBottomSheet() {
         WeakReferenceMessenger.Default.Send(new RouteMessage(RouteKey.Close));
     }
 
     [RelayCommand]
-    public void CloseAboutDialog() {
+    private void CloseAboutDialog() {
         IsAboutDialogShow = false;
     }
 
     [RelayCommand]
-    public void ToggleTaskPanel() {
+    private void ToggleTaskPanel() {
         IsTaskPanelShow = !IsTaskPanelShow;
     }
 
     [RelayCommand]
-    public void CloseTaskPanel() {
+    private void CloseTaskPanel() {
         IsTaskPanelShow = false;
     }
 }

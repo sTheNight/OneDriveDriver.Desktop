@@ -3,9 +3,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:OneDriveDriver.Desktop.Controls"
+             xmlns:views="using:OneDriveDriver.Desktop.Views"
              mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="800"
              xmlns:vm="using:OneDriveDriver.Desktop.ViewModels"
-             x:DataType="vm:MainWindowViewModel"
+             x:DataType="vm:TaskPanelViewModel"
              x:Class="OneDriveDriver.Desktop.Views.TaskPanel">
     <Border HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
@@ -22,7 +23,7 @@
                                                   Icon="avares://OneDriveDriver.Desktop/Assets/Icons/x.svg"
                                                   Width="32"
                                                   Height="32"
-                                                  Command="{Binding CloseTaskPanelCommand}" />
+                                                  Command="{Binding $parent[views:TaskPanel].CloseCommand}" />
                     </WrapPanel>
                 </Grid>
             </Border>

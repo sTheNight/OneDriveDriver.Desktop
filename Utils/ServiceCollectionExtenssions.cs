@@ -8,14 +8,18 @@ using TestViewViewModel = OneDriveDriver.Desktop.Pages.TestView.TestViewViewMode
 
 namespace OneDriveDriver.Desktop.Utils;
 
-public static class ServiceCollectionExtenssions {
+public static class ServiceCollectionExtensions {
     extension(ServiceCollection serviceCollection) {
         public void AddDependencyInjection() {
+            // Service
             serviceCollection.AddSingleton<IUrlLauncher, UrlLauncher>();
-            serviceCollection.AddSingleton<FileSaveService>();
             serviceCollection.AddSingleton<NotificationService>();
             serviceCollection.AddSingleton<FileDownloadService>();
+            // Store
             serviceCollection.AddSingleton<FileListStore>();
+            serviceCollection.AddSingleton<TaskStore>();
+            // ViewModel
+            serviceCollection.AddSingleton<TaskPanelViewModel>();
             serviceCollection.AddSingleton<MainWindowViewModel>();
             serviceCollection.AddSingleton<TestViewViewModel>();
             serviceCollection.AddSingleton<MainViewViewModel>();
