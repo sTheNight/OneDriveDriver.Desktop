@@ -3,5 +3,5 @@
 namespace OneDriveDriver.Desktop.Models;
 
 public partial class TaskItem : ObservableObject, ITask {
-    public string Title { get; }
+    public string Title { get; set; }
 }

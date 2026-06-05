@@ -6,6 +6,7 @@
              xmlns:views="using:OneDriveDriver.Desktop.Views"
              mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="800"
              xmlns:vm="using:OneDriveDriver.Desktop.ViewModels"
+             xmlns:m="using:OneDriveDriver.Desktop.Models"
              x:DataType="vm:TaskPanelViewModel"
              x:Class="OneDriveDriver.Desktop.Views.TaskPanel">
     <Border HorizontalAlignment="Stretch"
@@ -28,9 +29,13 @@
                 </Grid>
             </Border>
             <ScrollViewer>
-                <StackPanel>
-                    <TextBlock>123</TextBlock>
-                </StackPanel>
+                <ItemsControl ItemsSource="{Binding Tasks}">
+                    <ItemsControl.DataTemplates>
+                        <DataTemplate x:DataType="m:TaskItem">
+                            <TextBlock Text="{Binding Title}" />
+                        </DataTemplate>
+                    </ItemsControl.DataTemplates>
+                </ItemsControl>
             </ScrollViewer>
         </DockPanel>
     </Border>
