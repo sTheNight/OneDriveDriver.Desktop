@@ -5,6 +5,7 @@
       <map>
         <entry key="App.axaml" value="OneDriveDriver.Desktop.csproj" />
         <entry key="Controls/AboutDialog.axaml" value="OneDriveDriver.Desktop.csproj" />
+        <entry key="Controls/Badge.axaml" value="OneDriveDriver.Desktop.csproj" />
         <entry key="Controls/GhostButton.axaml" value="OneDriveDriver.Desktop.csproj" />
         <entry key="Controls/GhostIconButton.axaml" value="OneDriveDriver.Desktop.csproj" />
         <entry key="Controls/IconButton.axaml" value="OneDriveDriver.Desktop.csproj" />

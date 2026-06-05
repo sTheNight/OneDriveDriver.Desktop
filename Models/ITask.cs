@@ -1,5 +1,5 @@
-﻿namespace OneDriveDriver.Desktop.Models;
+namespace OneDriveDriver.Desktop.Models;
 
 public interface ITask {
-    
+    string Title { get; }
 }

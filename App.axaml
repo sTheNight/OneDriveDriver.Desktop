@@ -22,5 +22,6 @@
         <StyleInclude Source="avares://OneDriveDriver.Desktop/Controls/GhostIconButton.axaml" />
         <StyleInclude Source="avares://OneDriveDriver.Desktop/Controls/GhostButton.axaml" />
         <StyleInclude Source="avares://OneDriveDriver.Desktop/Controls/PrimaryButton.axaml" />
+        <StyleInclude Source="avares://OneDriveDriver.Desktop/Controls/Badge.axaml" />
     </Application.Styles>
 </Application>

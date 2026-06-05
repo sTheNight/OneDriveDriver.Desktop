@@ -21,7 +21,7 @@
     <Grid>
         <WindowNotificationManager x:Name="NotificationManager"
                                    Position="TopRight"
-                                   MaxItems="2" ZIndex="1000" />
+                                   MaxItems="2" ZIndex="2000" />
         <!-- 遮罩层 -->
         <Border
             Name="Overlay"

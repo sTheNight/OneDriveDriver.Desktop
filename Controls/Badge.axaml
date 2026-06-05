@@ -1,0 +1,21 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:OneDriveDriver.Desktop.Controls">
+    <Design.PreviewWith>
+        <Border Padding="32,64" Background="White">
+            <controls:Badge BadgeText="123" />
+        </Border>
+    </Design.PreviewWith>
+
+    <Style Selector="controls|Badge">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border Padding="12,4" Background="#eff6ff" CornerRadius="1000">
+                    <AccessText VerticalAlignment="Center" Padding="0" Margin="0" HorizontalAlignment="Center"
+                                TextAlignment="DetectFromContent" FontSize="12"
+                                Foreground="#1447e6" Text="{TemplateBinding BadgeText}" />
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>
