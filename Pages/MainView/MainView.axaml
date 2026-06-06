@@ -17,7 +17,7 @@
         <converter:ItemToIconConverter x:Key="ItemToIconConverter" />
         <converter:IconColorConverter x:Key="IconColorConverter" />
     </UserControl.Resources>
-    <Grid>
+    <Grid Margin="8,0">
         <DockPanel>
             <Border DockPanel.Dock="Top" Padding="8" Margin="0,8,0,0" BorderBrush="{DynamicResource DividerColor}"
                     BorderThickness="1"

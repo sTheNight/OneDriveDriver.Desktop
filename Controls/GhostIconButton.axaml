@@ -6,7 +6,7 @@
             <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="16">
                 <TextBlock VerticalAlignment="Center">Click Me:</TextBlock>
                 <controls:GhostIconButton Width="32" Height="32"
-                                     Icon="avares://OneDriveDriver.Desktop/Assets/Icons/file.svg" />
+                                          Icon="avares://OneDriveDriver.Desktop/Assets/Icons/file.svg" />
             </WrapPanel>
         </Grid>
     </Design.PreviewWith>

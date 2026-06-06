@@ -14,8 +14,6 @@ namespace OneDriveDriver.Desktop;
     Url = "https://docs.avaloniaui.net/docs/concepts/view-locator")]
 public class ViewLocator : IDataTemplate {
     public Control? Build(object? param) {
-        if (param is MainViewViewModel)
-            return new MainView();
         if (param is TestViewViewModel)
             return new TestView();
         if(param is ConfigViewViewModel)

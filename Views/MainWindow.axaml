@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="using:OneDriveDriver.Desktop.Views"
+        xmlns:mainpage="using:OneDriveDriver.Desktop.Pages.MainView"
         mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="800"
         x:Class="OneDriveDriver.Desktop.Views.MainWindow"
         Width="500"
@@ -78,7 +79,8 @@
                     </Grid>
                 </Grid>
             </Border>
-            <ContentControl Content="{Binding MainContent}" Padding="8,0" />
+            <mainpage:MainView
+                DataContext="{Binding MainViewViewModel}" />
         </DockPanel>
     </Grid>
     <Window.Styles>

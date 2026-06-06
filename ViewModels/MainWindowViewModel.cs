@@ -16,7 +16,7 @@ public partial class MainWindowViewModel : ViewModelBase {
     private readonly IUrlLauncher _urlLauncher;
 
     [ObservableProperty]
-    public partial MainViewViewModel MainContent { get; set; }
+    public partial MainViewViewModel MainViewViewModel { get; set; }
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsBottomSheetShow))]
     [NotifyPropertyChangedFor(nameof(IsOverlayShow))]
@@ -40,7 +40,7 @@ public partial class MainWindowViewModel : ViewModelBase {
         TaskPanelViewModel taskPanelViewModel,
         IUrlLauncher urlLauncher
     ) {
-        MainContent = mainView;
+        MainViewViewModel = mainView;
         _configView = configView;
         _testView = testView;
         TaskPanelViewModel = taskPanelViewModel;
