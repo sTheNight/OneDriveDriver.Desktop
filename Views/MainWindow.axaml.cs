@@ -40,10 +40,12 @@ public partial class MainWindow : Window {
         }
     }
 
+    private uint _taskPanelAnimationVersion;
     private async Task ShowTaskPanelAnimation() {
+        var currentAnimationVersion = _taskPanelAnimationVersion;
         if (_mainWindowViewModel is not { } viewModel)
             return;
-
+        
         var compositionVisual = ElementComposition.GetElementVisual(TaskPanel);
         if (compositionVisual is null) return;
 
@@ -53,7 +55,7 @@ public partial class MainWindow : Window {
             TaskPanel.IsHitTestVisible = true;
         }
 
-        var hiddenOffset = new Vector3((float)-TaskPanel.Width, 0, 0);
+        var hiddenOffset = new Vector3((float)-TaskPanel.PanelBorder.Width, 0, 0);
         var shownOffset = new Vector3(0, 0, 0);
         var easing = new CircularEaseOut();
 
@@ -61,7 +63,8 @@ public partial class MainWindow : Window {
         slideAnimation.InsertKeyFrame(0f, viewModel.IsTaskPanelShow ? hiddenOffset : shownOffset, easing);
         slideAnimation.InsertKeyFrame(1f, viewModel.IsTaskPanelShow ? shownOffset : hiddenOffset, easing);
         slideAnimation.Duration = TimeSpan.FromMilliseconds(AnimationDuration);
-
+        
+        if(currentAnimationVersion != _taskPanelAnimationVersion++) return;
         compositionVisual.StartAnimation("Offset", slideAnimation);
 
         await Task.Delay(TimeSpan.FromMilliseconds(AnimationDuration));

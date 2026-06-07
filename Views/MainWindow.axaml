@@ -42,9 +42,8 @@
                          IsVisible="False"
                          DataContext="{Binding TaskPanelViewModel}"
                          CloseCommand="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).CloseTaskPanelCommand}"
-                         HorizontalAlignment="Left"
+                         HorizontalAlignment="Stretch"
                          VerticalAlignment="Stretch"
-                         Width="400"
                          ZIndex="1000" />
 
         <DockPanel Classes="MainWindowsMain" Classes.IsModalShow="{Binding IsOverlayShow}">

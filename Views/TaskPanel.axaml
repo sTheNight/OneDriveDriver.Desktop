@@ -9,9 +9,11 @@
              xmlns:m="using:OneDriveDriver.Desktop.Models"
              x:DataType="vm:TaskPanelViewModel"
              x:Class="OneDriveDriver.Desktop.Views.TaskPanel">
-    <Border HorizontalAlignment="Stretch"
+    <Border Width="400"
+            HorizontalAlignment="Left"
             VerticalAlignment="Stretch"
             BoxShadow="0 0 8 8 #0A000000"
+            Name="PanelBorder"
             Background="{DynamicResource BackgroundColor}">
         <DockPanel>
             <Border DockPanel.Dock="Top" Background="{DynamicResource HeaderBackgroundColor}"
