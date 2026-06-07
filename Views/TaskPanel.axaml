@@ -29,28 +29,35 @@
                 </Grid>
             </Border>
             <ScrollViewer>
-                <ItemsControl ItemsSource="{Binding Tasks}">
-                    <ItemsControl.DataTemplates>
-                        <DataTemplate x:DataType="m:DownloadTask">
-                            <Border BorderBrush="{DynamicResource DividerColor}" BorderThickness="1" CornerRadius="8"
-                                    Padding="12,8" Margin="8,8,8,0">
-                                <Grid ColumnDefinitions="*,Auto,Auto" VerticalAlignment="Stretch"
-                                      HorizontalAlignment="Stretch">
-                                    <TextBlock VerticalAlignment="Center" Text="{Binding Title}"
-                                               TextTrimming="CharacterEllipsis" />
-                                    <controls:Badge BadgeText="{Binding Status}" Grid.Column="1" />
-                                    <controls:GhostIconButton
-                                        Grid.Column="2"
-                                        Icon="avares://OneDriveDriver.Desktop/Assets/Icons/x.svg"
-                                        Margin="12,0,0,0"
-                                        Width="32" Height="32"
-                                        CornerRadius="1000"
-                                        Command="{Binding CancelCommand}" />
-                                </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </ItemsControl.DataTemplates>
-                </ItemsControl>
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Center" Margin="0,64" TextAlignment="Center"
+                               IsVisible="{Binding !IsHaveTasks}">
+                        No Tasks
+                    </TextBlock>
+                    <ItemsControl ItemsSource="{Binding Tasks}" IsVisible="{Binding IsHaveTasks}">
+                        <ItemsControl.DataTemplates>
+                            <DataTemplate x:DataType="m:DownloadTask">
+                                <Border BorderBrush="{DynamicResource DividerColor}" BorderThickness="1"
+                                        CornerRadius="8"
+                                        Padding="12,8" Margin="8,8,8,0">
+                                    <Grid ColumnDefinitions="*,Auto,Auto" VerticalAlignment="Stretch"
+                                          HorizontalAlignment="Stretch">
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding Title}"
+                                                   TextTrimming="CharacterEllipsis" />
+                                        <controls:Badge BadgeText="{Binding Status}" Grid.Column="1" />
+                                        <controls:GhostIconButton
+                                            Grid.Column="2"
+                                            Icon="avares://OneDriveDriver.Desktop/Assets/Icons/x.svg"
+                                            Margin="12,0,0,0"
+                                            Width="32" Height="32"
+                                            CornerRadius="1000"
+                                            Command="{Binding CancelCommand}" />
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.DataTemplates>
+                    </ItemsControl>
+                </StackPanel>
             </ScrollViewer>
         </DockPanel>
     </Border>

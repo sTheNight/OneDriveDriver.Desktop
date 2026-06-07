@@ -9,8 +9,12 @@ public partial class TaskPanelViewModel : ViewModelBase {
     private readonly TaskStore _taskStore;
 
     public ObservableCollection<ITask> Tasks => _taskStore.Tasks;
+    public bool IsHaveTasks => _taskStore.Tasks.Count > 0;
 
     public TaskPanelViewModel(TaskStore taskStore) {
         this._taskStore = taskStore;
+        _taskStore.Tasks.CollectionChanged += (sender, args) => {
+            OnPropertyChanged(nameof(IsHaveTasks));
+        };
     }
 }
