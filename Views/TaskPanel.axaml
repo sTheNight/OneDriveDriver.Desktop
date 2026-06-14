@@ -41,20 +41,21 @@
                             <DataTemplate x:DataType="m:DownloadTask">
                                 <Border BorderBrush="{DynamicResource DividerColor}" BorderThickness="1"
                                         CornerRadius="8"
-                                        Padding="12,8" Margin="8,8,8,0">
-                                    <Grid ColumnDefinitions="*,Auto,Auto" VerticalAlignment="Stretch"
-                                          HorizontalAlignment="Stretch">
-                                        <TextBlock VerticalAlignment="Center" Text="{Binding Title}"
-                                                   TextTrimming="CharacterEllipsis" />
-                                        <controls:Badge BadgeText="{Binding Status}" Grid.Column="1" />
-                                        <controls:GhostIconButton
-                                            Grid.Column="2"
-                                            Icon="avares://OneDriveDriver.Desktop/Assets/Icons/x.svg"
-                                            Margin="12,0,0,0"
-                                            Width="32" Height="32"
-                                            CornerRadius="1000"
-                                            Command="{Binding CancelCommand}" />
-                                    </Grid>
+                                        Padding="12" Margin="8,8,8,0">
+                                    <StackPanel>
+                                        <controls:Badge BadgeText="{Binding Status}" HorizontalAlignment="Left" />
+                                        <TextBlock Margin="0,8,0,0" FontSize="16" Text="{Binding Title}" />
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                            <controls:GhostIconButton
+                                                Icon="avares://OneDriveDriver.Desktop/Assets/Icons/folder-open.svg"
+                                                Command="{Binding OpenInFolderCommand}" CornerRadius="1000" Width="32"
+                                                Height="32" />
+                                            <controls:GhostIconButton
+                                                Icon="avares://OneDriveDriver.Desktop/Assets/Icons/x.svg"
+                                                Command="{Binding CancelCommand}" CornerRadius="1000" Width="32"
+                                                Height="32" />
+                                        </StackPanel>
+                                    </StackPanel>
                                 </Border>
                             </DataTemplate>
                         </ItemsControl.DataTemplates>

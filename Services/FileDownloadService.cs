@@ -31,6 +31,7 @@ public class FileDownloadService(TaskStore taskStore, INotificationService notif
             Directory.CreateDirectory(downloadsPath);
 
             var targetPath = Path.Combine(downloadsPath, GetSafeFileName(fileItem.Name));
+            taskItem.DownLoadPath = targetPath;
             tempPath = $"{targetPath}.download";
 
             using var response = await _httpClient.GetAsync(
