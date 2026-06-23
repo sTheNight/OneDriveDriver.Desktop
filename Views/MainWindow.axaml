@@ -7,7 +7,7 @@
         xmlns:mainpage="using:OneDriveDriver.Desktop.Pages.MainView"
         mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="800"
         x:Class="OneDriveDriver.Desktop.Views.MainWindow"
-        Width="500"
+        Width="450"
         Height="800"
         MinWidth="400"
         MinHeight="600"
